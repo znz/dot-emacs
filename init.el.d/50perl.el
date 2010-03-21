@@ -1,4 +1,4 @@
-(eval-when-compile (require 'woman))
+(eval-when-compile (autoload 'Man-getpage-in-background "man"))
 (defun perldoc (word)
   (interactive "sperldoc: ")
   (let ((manual-program))
