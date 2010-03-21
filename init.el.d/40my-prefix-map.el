@@ -32,6 +32,13 @@
     (lambda () (interactive)
       (flyspell-mode -1)))
 
+  (defun my-set-variable-tab-width (arg)
+    "(set-variable tab-width arg)"
+    (interactive "p")
+    (set-variable 'tab-width arg)
+    (redraw-display))
+  (define-key my-prefix-map "t" 'my-set-variable-tab-width)
+
   (define-key my-prefix-map "v" 'toggle-read-only)
 
   (defun delete-line (&optional arg)
