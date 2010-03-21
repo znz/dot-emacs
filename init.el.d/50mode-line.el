@@ -1,6 +1,10 @@
-;; 同名ファイルのバッファ名
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+;; 同一ファイル名のバッファ名を分かりやすくする。
+(static-when (locate-library "uniquify")
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-ignore-buffers-re "*[^*]+*")
+  ;;(setq uniquify-min-dir-content 1)
+  )
 
 ;; 重複する空白を削る。
 (setq-default
