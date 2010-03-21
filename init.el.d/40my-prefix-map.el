@@ -20,6 +20,17 @@
   (define-key my-prefix-map " "
     (lambda () (interactive) (insert-and-inherit " ")))
 
+  (defun my-base64-decode (beg end)
+    "選択したリージョンをbase64-decode-stringして別バッファで表示する。"
+    (interactive "r")
+    (let ((encoded (buffer-substring-no-properties beg end)))
+      (with-output-to-temp-buffer "*my-base64-decode*"
+        (princ
+         (decode-coding-string
+          (base64-decode-string encoded)
+          'undecided)) )))
+  (define-key my-prefix-map "b" 'my-base64-decode)
+
   (define-key my-prefix-map "c" 'compile)
 
   (define-key my-prefix-map "f"
