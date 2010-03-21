@@ -19,7 +19,6 @@
       )))
 
 (eval-after-load "mhc" '(my-byte-compile-file my-dot-mhc-file))
-(eval-after-load "navi2ch" '(my-byte-compile-file navi2ch-init-file))
 (eval-after-load "riece" '(my-byte-compile-file riece-variables-file))
 (eval-after-load "w3m" '(my-byte-compile-file w3m-init-file))
 (eval-after-load "wl" '(my-byte-compile-file wl-init-file))
