@@ -1,15 +1,15 @@
 #!/usr/bin/make -f
 # -*- coding: utf-8 -*-
 
-default: emacs_symlink
+default: init_files
 
-.PHONY:: default emacs_symlink
+.PHONY:: default emacs_symlink init_files
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
 EMACS_D_DIR = .
 
 emacs_symlink:: $(HOME)/.emacs.el
-emacs_symlink:: $(DOT_EMACS_D_DIR)/init.el
+init_files:: $(DOT_EMACS_D_DIR)/init.el
 
 ifeq ($(OS),Windows_NT)
 $(HOME)/.emacs.el: $(EMACS_D_DIR)/emacs.el
