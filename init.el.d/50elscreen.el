@@ -7,24 +7,33 @@
     (memq object '(nil t)))
 
   (load "elscreen")
-  (eval-after-load "color-theme"
-    '(load "elscreen-color-theme"))
-  (load "elscreen-dired")
-  ;;(when window-system
-  ;;  (load "elscreen-dnd"))
-  (load "elscreen-gf")
-  (eval-after-load "goby"
-    '(load "elscreen-goby"))
-  (eval-after-load "howm"
-    '(load "elscreen-howm"))
-  (load "elscreen-server")
-  (eval-after-load "speedbnar"
-    '(load "elscreen-speedbar"))
-  (eval-after-load "w3m"
-    '(load "elscreen-w3m"))
-  (eval-after-load "wl"
-    '(load "elscreen-wl"))
-
+  (static-when (locate-library "elscreen-color-theme")
+    (eval-after-load "color-theme"
+      '(load "elscreen-color-theme")))
+  (static-when (locate-library "elscreen-dired")
+    (load "elscreen-dired"))
+  ;;(static-when (locate-library "elscreen-dnd")
+  ;;  (when window-system
+  ;;    (load "elscreen-dnd")))
+  (static-when (locate-library "elscreen-gf")
+    (load "elscreen-gf"))
+  (static-when (locate-library "elscreen-goby")
+    (eval-after-load "goby"
+      '(load "elscreen-goby")))
+  (static-when (locate-library "elscreen-howm")
+    (eval-after-load "howm"
+      '(load "elscreen-howm")))
+  (static-when (locate-library "elscreen-server")
+    (load "elscreen-server"))
+  (static-when (locate-library "elscreen-speedbar")
+    (eval-after-load "speedbar"
+      '(load "elscreen-speedbar")))
+  (static-when (locate-library "elscreen-w3m")
+    (eval-after-load "w3m"
+      '(load "elscreen-w3m")))
+  (static-when (locate-library "elscreen-wl")
+    (eval-after-load "wl"
+      '(load "elscreen-wl")))
   (static-when (locate-library "elscreen-mew")
     (eval-after-load "mew"
       '(load "elscreen-mew")))
