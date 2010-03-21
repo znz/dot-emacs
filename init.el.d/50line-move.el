@@ -1,27 +1,29 @@
 (static-cond
  ((>= emacs-major-version 23)
-  (global-set-key "\C-p" 'previous-line)
-  (global-set-key "\C-n" 'next-line)
-  (setq line-move-visual nil)
-  (defun previous-window-line (n)
+  (setq line-move-visual t)
+  (defun my-previous-window-line (n)
     (interactive "p")
     (let ((line-move-visual t))
       (previous-line n)))
-  (defun next-window-line (n)
+  (defun my-next-window-line (n)
     (interactive "p")
     (let ((line-move-visual t))
       (next-line n)))
-  (global-set-key [up] 'previous-window-line)
-  (global-set-key [down] 'next-window-line)
+  (defun my-previous-physical-line (n)
+    (interactive "p")
+    (let ((line-move-visual nil))
+      (previous-line n)))
+  (defun my-next-physical-line (n)
+    (interactive "p")
+    (let ((line-move-visual nil))
+      (next-line n)))
   )
 
  (t
-  ;;(global-set-key "\C-p" 'previous-window-line)
-  ;;(global-set-key "\C-n" 'next-window-line)
-  (global-set-key [up] 'previous-window-line)
-  (global-set-key [down] 'next-window-line)
+  (defalias 'my-previous-physical-line 'previous-line)
+  (defalias 'my-next-physical-line 'next-line)
 
-  (defun previous-window-line (n)
+  (defun my-previous-window-line (n)
     (interactive "p")
     (let ((cur-col
            (- (current-column)
@@ -31,7 +33,7 @@
     (run-hooks 'auto-line-hook)
     )
 
-  (defun next-window-line (n)
+  (defun my-next-window-line (n)
     (interactive "p")
     (let ((cur-col
            (- (current-column)
@@ -41,6 +43,13 @@
     (run-hooks 'auto-line-hook)
     )
   ))
+
+(global-set-key "\C-p" 'my-previous-window-line)
+(global-set-key "\C-n" 'my-next-window-line)
+(define-key my-prefix-map "\C-p" 'my-previous-physical-line)
+(define-key my-prefix-map "\C-n" 'my-next-physical-line)
+(global-set-key [up] 'my-previous-window-line)
+(global-set-key [down] 'my-next-window-line)
 
 (setq line-move-ignore-invisible t)
 
