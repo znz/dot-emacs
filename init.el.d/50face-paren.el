@@ -18,37 +18,35 @@
 
   ;; lisp-mode の色設定に追加
   (setq lisp-font-lock-keywords-2
-        (append '(("(\\|)" . paren-face))
+        (append '(("[()]" . paren-face))
                 lisp-font-lock-keywords-2))
 
   ;; scheme-mode の色設定に追加
-  (add-hook
-   'scheme-mode-hook
-   (lambda ()
-     (setq scheme-font-lock-keywords-2
-           (append '(("(\\|)" . paren-face))
-                   scheme-font-lock-keywords-2))))
+  (eval-after-load "scheme"
+    '(setq scheme-font-lock-keywords-2
+	   (append '(("[()]" . paren-face))
+		   scheme-font-lock-keywords-2)))
 
   ;; c-mode の色設定に追加
   (setq c-font-lock-keywords-3
-        (append '(("(\\|)" . paren-face))
-                '(("{\\|}" . brace-face))
-                '(("\\[\\|\\]" . bracket-face))
+        (append '(("[()]" . paren-face))
+                '(("[{}]" . brace-face))
+                '(("[][]" . bracket-face))
                 c-font-lock-keywords-3))
 
   (eval-after-load "ruby-mode"
     '(setq ruby-font-lock-keywords
-           (append '(("(\\|)" . paren-face))
-                   '(("{\\|}" . brace-face))
-                   '(("\\[\\|\\]" . bracket-face))
+           (append '(("[()]" . paren-face))
+                   '(("[{}]" . brace-face))
+                   '(("[][]" . bracket-face))
                    ruby-font-lock-keywords)))
-
-  (eval-after-load "ruby-mode"
-    '(setq ruby-font-lock-keywords
-           (append
-            '(("\\<initialize\\>" . font-lock-keyword-face))
-            ruby-font-lock-keywords)))
   )
+
+;; 対応する括弧をハイライト
+(static-when (functionp 'show-paren-mode)
+  (show-paren-mode 1))
+(static-when (fboundp 'paren-set-mode) ; XEmacs
+  (paren-set-mode 'paren))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
