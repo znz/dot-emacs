@@ -12,6 +12,17 @@
 (static-when (fboundp 'xterm-mouse-mode)
   (xterm-mouse-mode 1))
 
+(static-when (eq window-system 'x)
+  (static-cond
+   ((locate-library "mwheel")
+    ;;(autoload 'mwheel-install "mwheel" "Enable mouse wheel support.")
+    (require 'mwheel)
+    (when (fboundp 'mwheel-install)
+      (mwheel-install)))
+   (t
+    (global-set-key [mouse-4] 'scroll-down)
+    (global-set-key [mouse-5] 'scroll-up))))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
