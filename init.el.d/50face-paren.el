@@ -21,12 +21,6 @@
         (append '(("[()]" . paren-face))
                 lisp-font-lock-keywords-2))
 
-  ;; scheme-mode の色設定に追加
-  (eval-after-load "scheme"
-    '(setq scheme-font-lock-keywords-2
-	   (append '(("[()]" . paren-face))
-		   scheme-font-lock-keywords-2)))
-
   ;; c-mode の色設定に追加
   (setq c-font-lock-keywords-3
         (append '(("[()]" . paren-face))
