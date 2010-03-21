@@ -64,9 +64,12 @@
   (when (string-match "\\`ttps?://" url)
     (setq url (concat "h" url))))
 
-
 (eval-when-compile (require 'url))
+(my-once-before url-hexify-string-cs require-url
+  (require 'url))
 ;; http://www.bookshelf.jp/cgi-bin/goto.cgi?file=meadow&node=url-hexify-string
+;; (url-hexify-string-cs "検索") => "%8C%9F%8D%F5"
+;; (url-hexify-string-cs " 検索" 'euc-jp) => "%B8%A1%BA%F7"
 (defun url-hexify-string-cs (str &optional cs)
   "Escape characters in a string"
   (mapconcat
