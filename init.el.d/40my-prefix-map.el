@@ -58,6 +58,16 @@
       (kill-line arg)))
   (define-key my-prefix-map "\C-k" 'delete-line)
 
+  ;; %を押すと対応する括弧に飛ぶ
+  (defun match-paren (arg)
+    "Go to the matching parenthesis if on parenthesis otherwise insert %."
+    (interactive "p")
+    (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+          ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+          (t (self-insert-command (or arg 1)))))
+  ;;(global-set-key "%" 'match-paren)
+  (define-key ctl-x-map "%" 'match-paren)
+  (define-key my-prefix-map "%" 'match-paren)
   )
 
 ;;; Local Variables:
