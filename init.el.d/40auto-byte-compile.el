@@ -19,8 +19,6 @@
       )))
 
 (eval-after-load "mhc" '(my-byte-compile-file my-dot-mhc-file))
-(eval-after-load "w3m" '(my-byte-compile-file w3m-init-file))
-(eval-after-load "wl" '(my-byte-compile-file wl-init-file))
 (eval-when-compile
   (add-hook 'after-init-hook
             (lambda ()
