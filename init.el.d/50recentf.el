@@ -14,8 +14,11 @@
 
   (setq recentf-max-menu-items 10)
   (setq recentf-max-saved-items 2000)
+
   ;; TRAMP を除外
-  (setq recentf-exclude '("^/[^/:]+:"))
+  (static-when (boundp 'tramp-file-name-regexp)
+    (add-to-list 'recentf-exclude tramp-file-name-regexp))
+
   ;(setq recentf-auto-cleanup 'never)
   (static-when (fboundp 'file-remote-p)
     (add-to-list 'recentf-keep 'file-remote-p))
