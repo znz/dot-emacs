@@ -1,4 +1,5 @@
 (static-when (locate-library "cmuscheme")
+  (eval-when-compile (require 'cmuscheme))
   ;; scheme-mode の色設定に追加
   (defun my-scheme-mode-hook-font-lock ()
     (setq scheme-font-lock-keywords-2

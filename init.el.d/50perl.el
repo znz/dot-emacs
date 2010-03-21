@@ -1,3 +1,4 @@
+(eval-when-compile (require 'woman))
 (defun perldoc (word)
   (interactive "sperldoc: ")
   (let ((manual-program))
