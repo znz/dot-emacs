@@ -25,10 +25,6 @@ endif
 $(DOT_EMACS_D_DIR)/init.el: $(EMACS_D_DIR)/init.el.d/[0-9][0-9]*.el
 	sed '/^ *;;/d;/^$$/d' $^ > $@
 	rm -f $@c
-
-$(DOT_EMACS_D_DIR)/init.el: $(EMACS_D_DIR)/init.el.d/[0-9][0-9]*.el
-	sed '/^ *;;/d;/^$$/d' $^ > $@
-	rm -f $@c
 $(DOT_EMACS_D_DIR)/dot-wl.el: $(EMACS_D_DIR)/wanderlust.d/[0-9][0-9]*.el
 	cat $^ > $@
 	rm -f $@c
