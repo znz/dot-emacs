@@ -36,6 +36,72 @@
                '("^%INBOX:.*@imap\\.gmail\\.com" . remove))
   )
 
+;; wl-draft-parent-folder の例:
+;; "%INBOX:\"GMAIL-ADDRESS\"/clear@imap.gmail.com:993!"
+;; "%[Gmail]/ゴミ箱:\"GMAIL-ADDRESS\"/clear@imap.gmail.com:993!"
+(defun my-wl-gmail-address-config (name gmail-address user-name)
+  (add-to-list
+   'wl-draft-config-alist
+   `((string-match
+      (concat "\\`%.*:\""
+	      ,(regexp-quote gmail-address)
+	      "\"\\/clear\@imap\\.gmail\\.com\\(:993\\)?\\(!\\)?\\'")
+      wl-draft-parent-folder)
+     (template . ,name)
+     ))
+  (add-to-list
+   'wl-draft-config-alist
+   `(reply ,(concat "^To:.*" gmail-address)
+     (template . ,name)
+     ) t)
+  (add-to-list
+   'wl-draft-config-alist
+   `(,(concat "^From: .*" gmail-address)
+     (template . ,name)
+     ))
+  (add-to-list
+   'wl-draft-config-alist
+   `(,(concat "^Sender: .*" gmail-address)
+     (template . ,name)
+     ))
+  (add-to-list
+   'wl-template-alist
+   `(,(concat "smtp-" name "-ssl")
+     (wl-smtp-posting-server . "smtp.gmail.com")
+     (wl-smtp-posting-port . 465)
+     (wl-smtp-posting-user . ,gmail-address)
+     (wl-smtp-authenticate-type . "plain")
+     (wl-smtp-authenticate-realm . nil)
+     (wl-smtp-connection-type . 'ssl)
+     ) t)
+  (add-to-list
+   'wl-template-alist
+   `(,(concat "smtp-" name "-starttls")
+     (wl-smtp-posting-server . "smtp.gmail.com")
+     (wl-smtp-posting-port . 587)
+     (wl-smtp-posting-user . ,gmail-address)
+     (wl-smtp-authenticate-type . "plain")
+     (wl-smtp-authenticate-realm . nil)
+     (wl-smtp-connection-type . 'starttls)
+     ) t)
+  (add-to-list
+   'wl-template-alist
+   `(,name
+     (wl-from . ,gmail-address)
+     ("From" . ,(concat user-name " <" gmail-address ">"))
+     ("Bcc" . (wl-address-header-extract-address wl-from))
+     ("Organization" . nil)
+     (top . nil)
+     (bottom . ,(concat "\n-- \n" user-name " <" gmail-address ">"))
+     (template . ,(concat "smtp-" name "-ssl"))
+     ))
+  (add-to-list 'wl-user-mail-address-list gmail-address t) )
+
+(mapc
+ (lambda (x)
+   (apply #'my-wl-gmail-address-config x))
+ my-gmail-address-list)
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
