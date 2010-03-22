@@ -7,6 +7,9 @@
       (or (getenv "EMAIL")
           "zn\@mbf.nifty.com"))
 
+(defconst my-private-directory
+  "~/.emacs.d/private")
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
