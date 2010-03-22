@@ -26,6 +26,9 @@
 (eval-after-load "semi-setup"
   '(set-alist 'mime-view-type-subtype-score-alist '(text . html) 0))
 
+;; [Wanderlust:14217]
+(add-to-list 'mime-charset-coding-system-alist '(cp932 . shift_jis))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
