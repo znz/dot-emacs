@@ -9,8 +9,9 @@
 ;; `M-x elmo-cache-expire-by-age'
 ;; `M-x elmo-cache-expire-by-size'
 
-;;(setq elmo-cache-directory
-;;      (expand-file-name "elmo-cache/" temporary-file-directory))
+(setq
+ elmo-cache-directory
+ (expand-file-name "elmo-cache/" temporary-file-directory))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
