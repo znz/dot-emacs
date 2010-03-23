@@ -11,7 +11,7 @@
 
 (setq
  elmo-cache-directory
- (expand-file-name "elmo-cache/" temporary-file-directory))
+ (expand-file-name "elmo-cache" temporary-file-directory))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
