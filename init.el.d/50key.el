@@ -21,6 +21,8 @@
 (global-set-key [(control f4)] 'kill-this-buffer) ; バッファを削除
 (global-set-key [(meta f4)] 'delete-frame)   ; フレームを削除
 
+(global-set-key (kbd "<Scroll_Lock>") '(lambda () (interactive) nil)) ; 無視する
+
 ;; input-method
 (global-set-key [zenkaku-hankaku] 'toggle-input-method)
 (global-set-key [kanji] 'toggle-input-method)
