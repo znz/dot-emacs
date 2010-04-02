@@ -33,11 +33,19 @@
         "^X-Virus-Scanned:"
         "^X-Quarantine:"
         "^X-BeenThere:"
+        "^X-Enigmail-Version:"
         "^X-Mailman-Version:"
         "^In-Reply-To:"
         "^X-MSMail-Priority:"
         "^X-MimeOLE:"
         "^X-Spam-Checker-Version:"
+	;; news.gmane.org
+        "^Approved:"
+	"^Original-Received:"
+        "^Original-X-From:"
+        "^X-Amavis-Spam-Status:"
+        "^X-policyd-weight:"
+        "^X-Rc-\\(Virus\\|Spam\\):"
         ))
 
 ;; 表示するヘッダの設定
