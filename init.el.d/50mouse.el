@@ -23,6 +23,11 @@
     (global-set-key [mouse-4] 'scroll-down)
     (global-set-key [mouse-5] 'scroll-up))))
 
+(static-when (fboundp 'text-scale-adjust)
+  ;; Control+ホイールで文字の大きさを変更
+  (global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
+  (global-set-key (kbd "<C-mouse-5>") 'text-scale-decrease))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
