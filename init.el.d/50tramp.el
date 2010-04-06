@@ -1,6 +1,9 @@
 (static-when (locate-library "tramp")
   (setq tramp-auto-save-directory
         (expand-file-name "tramp" temporary-file-directory))
+  (setq tramp-persistency-file-name
+        (expand-file-name "tramp-connection-history.el"
+                          temporary-file-directory))
   ;; バックアップファイルを作らない。
   (add-to-list 'backup-directory-alist
                (cons tramp-file-name-regexp nil))
