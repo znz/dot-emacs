@@ -2,6 +2,10 @@
 (static-when (functionp 'resize-minibuffer-mode)
   (resize-minibuffer-mode t))
 
+;; ミニバッファで文字が入力されたらデフォルト値を消す
+(static-when (functionp 'minibuffer-electric-default-mode)
+  (minibuffer-electric-default-mode t))
+
 ;; minibuffer 内で C-w で単語削除
 (define-key minibuffer-local-completion-map "\C-w" 'backward-kill-word)
 
