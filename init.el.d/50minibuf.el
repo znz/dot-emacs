@@ -5,6 +5,10 @@
 ;; minibuffer 内で C-w で単語削除
 (define-key minibuffer-local-completion-map "\C-w" 'backward-kill-word)
 
+;; 補完ウィンドウを補完完了時に消す
+(when (require 'lcomp nil t)
+  (lcomp-install))
+
 ;; http://d.hatena.ne.jp/rubikitch/20091216/minibuffer
 ;; 間違ってC-gを押してしまった場合は、再び同じコマンドを起動してM-pで前の入力を呼び戻せる
 (static-when (fboundp 'add-to-history)
