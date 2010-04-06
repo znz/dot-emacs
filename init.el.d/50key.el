@@ -50,6 +50,16 @@
 (defun my-other-window-back (arg) (interactive "p") (other-window (- arg)))
 (global-set-key "\C-xp" 'my-other-window-back)
 
+;; Shift+矢印キーで分割している window 間を移動
+(static-when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings)
+  (global-set-key "\M-[1;2A" 'windmove-up)
+  (global-set-key "\M-[1;2B" 'windmove-down)
+  (global-set-key "\M-[1;2C" 'windmove-right)
+  (global-set-key "\M-[1;2D" 'windmove-left)
+  (setq windmove-wrap-around nil))
+
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
