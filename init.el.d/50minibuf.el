@@ -21,6 +21,11 @@
       (add-to-history minibuffer-history-variable (minibuffer-contents))))
   )
 
+;; ミニバッファの深さを表示する (enable-recursive-minibuffers が nil なら不要)
+(static-when (fboundp 'minibuffer-depth-indicate-mode)
+  (when enable-recursive-minibuffers
+    (minibuffer-depth-indicate-mode t)))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
