@@ -4,8 +4,9 @@
          (buffer-file-name (current-buffer))
          (= (point-min) (point-max)))
     (when (y-or-n-p "Delete file and kill buffer?")
-      (delete-file
-       (buffer-file-name (current-buffer)))
+      (let (delete-by-moving-to-trash)
+        (delete-file
+         (buffer-file-name (current-buffer))))
       (kill-buffer (current-buffer)))))
 (add-hook 'after-save-hook 'delete-file-if-no-contents)
 
