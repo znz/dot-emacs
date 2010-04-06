@@ -11,7 +11,8 @@
 
 ;; 補完ウィンドウを補完完了時に消す
 (when (require 'lcomp nil t)
-  (lcomp-install))
+  (lcomp-mode 1)
+  (lcomp-keys-mode 1))
 
 ;; http://d.hatena.ne.jp/rubikitch/20091216/minibuffer
 ;; 間違ってC-gを押してしまった場合は、再び同じコマンドを起動してM-pで前の入力を呼び戻せる
