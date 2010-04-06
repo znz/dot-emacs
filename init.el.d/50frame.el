@@ -19,4 +19,4 @@
 (scroll-bar-mode 1)
 
 (setq-default indicate-empty-lines t)
-(setq-default indicate-buffer-boundaries 'left)
+(setq-default indicate-buffer-boundaries 'right)
