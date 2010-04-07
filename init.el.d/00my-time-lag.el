@@ -10,6 +10,7 @@
          (lag (+ (* 60000 min) (* 1000 sec) msec)))
     (message "'.emacs.el' loading time: %d msec." lag)))
 (setq my-time-zero (current-time))
+;; 起動処理全体の時間は (emacs-init-time)
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
