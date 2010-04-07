@@ -12,6 +12,7 @@
   (define-key my-prefix-map ";" my-anything-prefix-map)
   (define-key my-anything-prefix-map (kbd "C-q") 'anything)
   (define-key my-anything-prefix-map "f" 'anything-for-files)
+  (define-key my-anything-prefix-map "i" 'anything-imenu)
   (define-key my-anything-prefix-map "r" 'anything-resume)
   (define-key my-anything-prefix-map "y" 'anything-show-kill-ring)
   (define-key my-anything-prefix-map ";" 'anything)
