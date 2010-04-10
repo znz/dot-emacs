@@ -37,7 +37,7 @@
 	 "lib:[^][ ]+"
 	 "\\|"
 	 ;; ruby-list [[ruby-list:12345]] など
-	 "ruby-\\(list\\|dev\\):[0-9]+"
+	 "ruby-\\(list\\|dev\\|ext\\|talk\\|core\\):[0-9]+"
 	 "\\|"
 	 ;; man [[man:tr(1)]] など
 	 "man:[^()]+([0-9])"
