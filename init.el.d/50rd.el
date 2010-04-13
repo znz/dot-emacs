@@ -123,11 +123,13 @@
 	 ".*$") 0 rd-rurema-keyword-face))
     ;; 書きかけの印
     (add-to-list 'rd-font-lock-keywords
-		 '("^#@todo.*$" 0 rd-rurema-todo-face)) )
+		 '("^#@todo.*$" 0 rd-rurema-todo-face))
+    (setq imenu-generic-expression '((nil "^[=+-]+.+" 0)))
+    )
   (add-hook 'rd-mode-hook #'my-rd-mode-hook-function))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
-;;; indent-tabs-mode: nil
+;;; indent-tabs-mode: t
 ;;; End:
