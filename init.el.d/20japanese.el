@@ -1,3 +1,4 @@
+;; (install-elisp "http://nijino.homelinux.net/emacs/cp5022x.el")
 (cond
  ((not (string< mule-version "6.0"))
   ;; encode-translation-table の設定
