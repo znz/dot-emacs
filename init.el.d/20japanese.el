@@ -77,14 +77,42 @@
   '(when (coding-system-p 'cp51932)
      (add-to-list 'w3m-compatible-encoding-alist '(euc-jp . cp51932))))
 ;; Gnus
-(eval-after-load "mm-util"
-  '(when (coding-system-p 'cp50220)
-     (add-to-list 'mm-charset-override-alist '(iso-2022-jp . cp50220))))
+;;(eval-after-load "mm-util"
+;;  '(when (coding-system-p 'cp50220)
+;;     (add-to-list 'mm-charset-override-alist '(iso-2022-jp . cp50220))))
 ;; SEMI (cf. http://d.hatena.ne.jp/kiwanami/20091103/1257243524)
-(eval-after-load "mcs-20"
-  '(when (coding-system-p 'cp50220)
-     (add-to-list 'mime-charset-coding-system-alist
-                  '(iso-2022-jp . cp50220))))
+;;(eval-after-load "mcs-20"
+;;  '(when (coding-system-p 'cp50220)
+;;     (add-to-list 'mime-charset-coding-system-alist
+;;                  '(iso-2022-jp . cp50220))))
+
+(static-when (fboundp 'define-coding-system)
+  (define-coding-system 'cp50220+jisx0212
+    "CP50220 (Microsoft iso-2022-jp for mail) + JIS X 0212"
+    :coding-type 'iso-2022
+    :mnemonic ?J
+    :designation [(ascii japanese-jisx0208-1978 japanese-jisx0208
+                         japanese-jisx0212 ; 追加
+                         latin-jisx0201 katakana-jisx0201)
+                  nil nil nil]
+    :flags '(short ascii-at-eol ascii-at-cntl 7-bit designation)
+    :charset-list '(ascii japanese-jisx0208
+                          japanese-jisx0212 ; 追加
+                          japanese-jisx0208-1978 latin-jisx0201
+                          katakana-jisx0201)
+    :decode-translation-table '(cp51932-decode japanese-ucs-jis-to-cp932-map)
+    :encode-translation-table '(cp50220-jisx0201-katakana-to-zenkaku
+                                cp51932-encode japanese-ucs-cp932-to-jis-map))
+  ;; Gnus
+  (eval-after-load "mm-util"
+    '(when (coding-system-p 'cp50220+jisx0212)
+       (add-to-list 'mm-charset-override-alist '(iso-2022-jp . cp50220+jisx0212))))
+  ;; SEMI
+  (eval-after-load "mcs-20"
+    '(when (coding-system-p 'cp50220+jisx0212)
+       (add-to-list 'mime-charset-coding-system-alist
+                    '(iso-2022-jp . cp50220+jisx0212))))
+  )
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
