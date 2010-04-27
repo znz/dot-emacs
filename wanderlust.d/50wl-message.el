@@ -72,6 +72,13 @@
 ;(setq wl-message-mode-line-format "Wanderlust: << %f / %n %F>> [%m]")
 (setq wl-message-mode-line-format "WL: << %f / %n %F>> [%m]")
 
+(add-hook
+ 'mime-view-mode-hook
+ (lambda ()
+   (local-set-key "j" (lambda () (interactive) (scroll-up 1)))
+   (local-set-key "k" (lambda () (interactive) (scroll-down 1)))
+   ))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
