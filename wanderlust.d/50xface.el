@@ -20,12 +20,16 @@
         ))
 
 ;; for Emacs 22 or later
-(when (and (not (featurep 'xemacs))
-           (>= emacs-major-version 22)
-           (not wl-highlight-x-face-function))
+(static-when
+    (and (not (featurep 'xemacs))
+         (>= emacs-major-version 22)
+         ;;(not wl-highlight-x-face-function)
+         )
   ;; http://gist.github.com/283328
-  ;; git clone git://gist.github.com/283328.git ~/.emacs.d/gravatar-el
-  (add-to-list 'load-path "~/.emacs.d/gravatar-el")
+  ;;(shell-command-to-string "git clone git://gist.github.com/283328.git ~/.emacs.d/site-lisp/gravatar-el")
+  ;;(byte-compile-file "~/.emacs.d/site-lisp/gravatar-el/gravatar.el")
+  ;;(byte-compile-file "~/.emacs.d/site-lisp/gravatar-el/wl-gravatar.el")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/gravatar-el")
   (when (require 'wl-gravatar nil t)
     (setq gravatar-directory "~/.cache/emacs-gravatar/")
     (setq gravatar-unregistered-icon 'identicon)
