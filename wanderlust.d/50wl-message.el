@@ -39,9 +39,9 @@
         "^X-MSMail-Priority:"
         "^X-MimeOLE:"
         "^X-Spam-Checker-Version:"
-	;; news.gmane.org
+        ;; news.gmane.org
         "^Approved:"
-	"^Original-Received:"
+        "^Original-Received:"
         "^Original-X-From:"
         "^X-Amavis-Spam-Status:"
         "^X-policyd-weight:"
