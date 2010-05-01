@@ -10,7 +10,8 @@
 (define-key minibuffer-local-completion-map "\C-w" 'backward-kill-word)
 
 ;; 補完ウィンドウを補完完了時に消す
-(when (require 'lcomp nil t)
+(static-when (locate-library "lcomp")
+  (require 'lcomp)
   (lcomp-mode 1)
   (lcomp-keys-mode 1))
 
