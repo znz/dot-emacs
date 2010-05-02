@@ -43,6 +43,8 @@
     (lambda () (interactive)
       (flyspell-mode -1)))
 
+  (define-key my-prefix-map "o" 'browse-url-at-point)
+
   (defun my-set-variable-tab-width (arg)
     "(set-variable tab-width arg)"
     (interactive "p")
