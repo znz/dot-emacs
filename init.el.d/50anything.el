@@ -8,6 +8,7 @@
   (defvar my-anything-prefix-map (make-keymap)
     "anything起動用keymap")
   (define-key my-anything-prefix-map (kbd "C-g") 'keyboard-quit)
+  (define-key my-prefix-map (kbd "C-a") 'anything)
   (define-key my-prefix-map (kbd "C-q") my-anything-prefix-map)
   (define-key my-prefix-map ";" my-anything-prefix-map)
   (define-key my-anything-prefix-map (kbd "C-q") 'anything)
