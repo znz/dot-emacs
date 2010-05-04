@@ -3,7 +3,7 @@
 
 default: init_files
 
-.PHONY:: default emacs_symlink init_files
+.PHONY:: default emacs_symlink init_files clean
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
 EMACS_D_DIR = .
@@ -28,3 +28,6 @@ $(DOT_EMACS_D_DIR)/init.el: $(EMACS_D_DIR)/init.el.d/[0-9][0-9]*.el
 $(DOT_EMACS_D_DIR)/dot-wl.el: $(EMACS_D_DIR)/wanderlust.d/[0-9][0-9]*.el
 	cat $^ > $@
 	rm -f $@c
+
+clean:
+	rm -f $(DOT_EMACS_D_DIR)/*.elc
