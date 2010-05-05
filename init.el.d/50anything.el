@@ -11,12 +11,15 @@
   (define-key my-prefix-map (kbd "C-a") 'anything)
   (define-key my-prefix-map (kbd "C-q") my-anything-prefix-map)
   (define-key my-prefix-map ";" my-anything-prefix-map)
+  (define-key my-prefix-map (kbd "C-;") 'anything-execute-anything-command)
   (define-key my-anything-prefix-map (kbd "C-q") 'anything)
+  (define-key my-anything-prefix-map ";" 'anything)
+  (define-key my-anything-prefix-map "b" 'anything-for-buffers)
   (define-key my-anything-prefix-map "f" 'anything-for-files)
   (define-key my-anything-prefix-map "i" 'anything-imenu)
+  (define-key my-anything-prefix-map "k" 'anything-show-kill-ring)
   (define-key my-anything-prefix-map "r" 'anything-resume)
   (define-key my-anything-prefix-map "y" 'anything-show-kill-ring)
-  (define-key my-anything-prefix-map ";" 'anything)
 
   (setq anything-sources
         '(
