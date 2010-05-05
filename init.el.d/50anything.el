@@ -8,6 +8,7 @@
   (defvar my-anything-prefix-map (make-keymap)
     "anything起動用keymap")
   (define-key my-anything-prefix-map ";" 'anything)
+  (define-key my-anything-prefix-map "B" 'descbinds-anything)
   (define-key my-anything-prefix-map "b" 'anything-for-buffers)
   (define-key my-anything-prefix-map "f" 'anything-for-files)
   (define-key my-anything-prefix-map "i" 'anything-imenu)
@@ -45,6 +46,8 @@
         (expand-file-name "anything-c-adaptive-history.el"
                           temporary-file-directory))
 
+  (static-when (locate-library "descbinds-anything")
+    (autoload 'descbinds-anything "descbinds-anything" nil t))
   )
 
 ;;; Local Variables:
