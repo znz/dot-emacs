@@ -1,4 +1,4 @@
-(setq auto-install-directory "~/.emacs.d/elisp/")
+(setq auto-install-directory "~/.emacs.d/auto-install/") ; default
 ;; (make-directory auto-install-directory)
 ;; (shell-command-to-string (concat "cd " auto-install-directory " && wget -N http://www.emacswiki.org/emacs/download/auto-install.el"))
 ;; (shell-command-to-string (concat "cd " auto-install-directory " && curl -O http://www.emacswiki.org/emacs/download/auto-install.el"))
