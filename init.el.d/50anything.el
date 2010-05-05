@@ -47,6 +47,9 @@
                           temporary-file-directory))
 
   (static-when (locate-library "descbinds-anything")
+    ;; descbinds-anything を autoload にするため
+    ;; descbinds-anything-install の内容をコピー
+    (fset 'describe-bindings 'descbinds-anything)
     (autoload 'descbinds-anything "descbinds-anything" nil t))
   )
 
