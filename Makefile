@@ -6,7 +6,7 @@ default: init_files
 .PHONY:: default emacs_symlink init_files clean
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
-EMACS_D_DIR = .
+EMACS_D_DIR = $(shell pwd)
 
 # Cocoa Emacs (MacPorts)
 EMACS_APP = $(wildcard /Applications/MacPorts/Emacs.app)
@@ -72,3 +72,20 @@ $(AUTO_INSTALL_DIR)/auto-install.el:
 auto-install:: $(AUTO_INSTALL_DIR)/cp5022x.el
 $(AUTO_INSTALL_DIR)/cp5022x.el:
 	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
+
+SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
+.PHONY:: install-w3m
+EMACS_W3M_DIR = $(EMACS_D_DIR)/../w3m
+install-w3m: $(EMACS_W3M_DIR)
+	cd $(EMACS_W3M_DIR) && autoreconf -f -i -s
+	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons" --infodir="$(DOT_EMACS_D_DIR)/info"
+	cd $(EMACS_W3M_DIR) && make
+	cd $(EMACS_W3M_DIR) && make install
+	cd $(EMACS_W3M_DIR) && git clean -f
+	cd $(EMACS_W3M_DIR) && rm -r autom4te.cache
+	cd $(EMACS_W3M_DIR) && git status
+$(EMACS_W3M_DIR):
+	mkdir -p $(EMACS_W3M_DIR)/CVS
+	cd $(EMACS_W3M_DIR) && echo emacs-w3m > CVS/Repository
+	cd $(EMACS_W3M_DIR) && echo :pserver:anonymous@cvs.namazu.org:/storage/cvsroot > CVS/Root
+	cd $(EMACS_W3M_DIR) && git cvsimport -v
