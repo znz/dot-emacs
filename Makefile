@@ -7,6 +7,7 @@ default: init_files
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
 EMACS_D_DIR = $(shell pwd)
+RUBY = $(shell which ruby)
 
 # Cocoa Emacs (MacPorts)
 EMACS_APP = $(wildcard /Applications/MacPorts/Emacs.app)
@@ -15,8 +16,6 @@ EMACS = $(EMACS_APP)/Contents/MacOS/Emacs
 else
 EMACS = $(shell which emacs)
 endif
-
-RUBY = ruby
 
 emacs_symlink:: $(HOME)/.emacs.el
 init_files:: $(DOT_EMACS_D_DIR)
@@ -108,3 +107,17 @@ $(WL_DIR):
 	cd $(WL_DIR) && echo wanderlust > CVS/Repository
 	cd $(WL_DIR) && echo :pserver:anonymous@cvs.m17n.org:/cvs/root > CVS/Root
 	cd $(WL_DIR) && git cvsimport -v
+
+.PHONY:: install-mhc
+MHC_DIR = $(EMACS_D_DIR)/../mhc
+install-mhc: $(MHC_DIR)
+	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $?"
+	cd $(MHC_DIR)/emacs && $(RUBY) make.rb
+	cd $(MHC_DIR)/emacs && $(RUBY) make.rb install
+	cd $(MHC_DIR) && git clean -f
+	cd $(MHC_DIR) && git status
+$(MHC_DIR):
+	mkdir -p $(MHC_DIR)/CVS
+	cd $(MHC_DIR) && echo mhc > CVS/Repository
+	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
+	cd $(MHC_DIR) && git cvsimport -v
