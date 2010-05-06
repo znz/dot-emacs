@@ -75,12 +75,13 @@ $(AUTO_INSTALL_DIR)/cp5022x.el:
 	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
 
 SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
+INFO_DIR = $(DOT_EMACS_D_DIR)/info
 
 .PHONY:: install-w3m
 EMACS_W3M_DIR = $(EMACS_D_DIR)/../w3m
 install-w3m: $(EMACS_W3M_DIR)
 	cd $(EMACS_W3M_DIR) && autoreconf -f -i -s
-	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(DOT_EMACS_D_DIR)/info"
+	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(INFO_DIR)"
 	cd $(EMACS_W3M_DIR) && make
 	cd $(EMACS_W3M_DIR) && make install
 	cd $(EMACS_W3M_DIR) && make install-icons
@@ -98,7 +99,7 @@ WL_DIR = $(EMACS_D_DIR)/../wanderlust
 install-wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
 	cd $(WL_DIR) && echo '(setq load-path (cons "~/.emacs.d/site-lisp/w3m" load-path))' >> WL-CFG
-	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)" "INFODIR=$(DOT_EMACS_D_DIR)/info" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
+	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)" "INFODIR=$(INFO_DIR)" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
 	cd $(WL_DIR) && git checkout WL-CFG
 	cd $(WL_DIR) && git clean -f
 	cd $(WL_DIR) && git status
@@ -122,8 +123,15 @@ $(MHC_DIR):
 	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
 	cd $(MHC_DIR) && git cvsimport -v
 
-
 .PHONY:: install-wl-gravatar-el
 WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
 install-wl-gravatar-el:
 	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
+
+.PHONY:: install-org-mode
+ORG_MODE_DIR = $(EMACS_D_DIR)/org-mode
+install-org-mode: $(ORG_MODE_DIR)
+	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR)
+	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
+$(ORG_MODE_DIR):
+	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
