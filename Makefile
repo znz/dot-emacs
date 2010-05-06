@@ -95,7 +95,7 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
 
 .PHONY:: install-wl
-WL_DIR = $(EMACS_D_DIR)/wanderlust
+WL_DIR = $(EMACS_D_DIR)/wl
 install-wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
 	cd $(WL_DIR) && echo '(setq load-path (cons "~/.emacs.d/site-lisp/w3m" load-path))' >> WL-CFG
