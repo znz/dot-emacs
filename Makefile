@@ -97,8 +97,8 @@ $(EMACS_W3M_DIR):
 WL_DIR = $(EMACS_D_DIR)/../wanderlust
 install-wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
-	cd $(WL_DIR) && echo '(setq load-path (cons "~/.site-lisp/load-path/emacs-w3m" load-path))' >> WL-CFG
-	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)/wl" "INFODIR=$(DOT_EMACS_D_DIR)/info" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
+	cd $(WL_DIR) && echo '(setq load-path (cons "~/.emacs.d/site-lisp/w3m" load-path))' >> WL-CFG
+	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)" "INFODIR=$(DOT_EMACS_D_DIR)/info" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
 	cd $(WL_DIR) && git checkout WL-CFG
 	cd $(WL_DIR) && git clean -f
 	cd $(WL_DIR) && git status
