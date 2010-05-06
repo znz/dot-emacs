@@ -84,6 +84,7 @@ install-w3m: $(EMACS_W3M_DIR)
 	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(DOT_EMACS_D_DIR)/info"
 	cd $(EMACS_W3M_DIR) && make
 	cd $(EMACS_W3M_DIR) && make install
+	cd $(EMACS_W3M_DIR) && make install-icons
 	cd $(EMACS_W3M_DIR) && git clean -f
 	cd $(EMACS_W3M_DIR) && rm -r autom4te.cache
 	cd $(EMACS_W3M_DIR) && git status
