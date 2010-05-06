@@ -17,6 +17,7 @@ EMACS = $(shell which emacs)
 endif
 
 emacs_symlink:: $(HOME)/.emacs.el
+init_files:: $(DOT_EMACS_D_DIR)
 init_files:: $(DOT_EMACS_D_DIR)/init.el
 init_files:: $(DOT_EMACS_D_DIR)/dot-navi2ch.el
 init_files:: $(DOT_EMACS_D_DIR)/dot-wl.el
@@ -29,6 +30,9 @@ $(HOME)/.emacs.el: $(EMACS_D_DIR)/emacs.el
 	[ -L $@ -o ! -e $@ ]
 	ln -sf $(CURDIR)/$< $@
 endif
+
+$(DOT_EMACS_D_DIR):
+	mkdir $(DOT_EMACS_D_DIR)
 
 # 結合と*.elcの削除
 $(DOT_EMACS_D_DIR)/init.el: $(EMACS_D_DIR)/init.el.d/[0-9][0-9]*.el
