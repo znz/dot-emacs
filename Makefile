@@ -49,6 +49,7 @@ clean:
 	rm -f $(DOT_EMACS_D_DIR)/*.elc
 
 APEL_VERSION = 10.7
+.PHONY:: install-apel
 install-apel: apel-$(APEL_VERSION).tar.gz
 	tar xvf apel-$(APEL_VERSION).tar.gz
 	(cd apel-$(APEL_VERSION) && make EMACS=$(EMACS) && sudo make EMACS=$(EMACS) install)
@@ -56,3 +57,18 @@ install-apel: apel-$(APEL_VERSION).tar.gz
 
 apel-$(APEL_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
+
+.PHONY:: auto-install
+AUTO_INSTALL_DIR = $(DOT_EMACS_D_DIR)/auto-install
+auto-install:: $(AUTO_INSTALL_DIR)
+$(AUTO_INSTALL_DIR):
+	mkdir $(AUTO_INSTALL_DIR)
+
+## see init.el.d/10install.el
+auto-install:: $(AUTO_INSTALL_DIR)/auto-install.el
+$(AUTO_INSTALL_DIR)/auto-install.el:
+	wget -N http://www.emacswiki.org/emacs/download/auto-install.el -O $@
+
+auto-install:: $(AUTO_INSTALL_DIR)/cp5022x.el
+$(AUTO_INSTALL_DIR)/cp5022x.el:
+	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
