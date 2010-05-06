@@ -20,6 +20,7 @@
   (define-key my-prefix-map ";" my-anything-prefix-map)
   (define-key my-prefix-map (kbd "C-;") 'anything-execute-anything-command)
   (define-key my-prefix-map (kbd "C-a") 'anything)
+  (define-key my-prefix-map (kbd "C-o") 'anything-occur)
   (define-key my-prefix-map (kbd "C-q") my-anything-prefix-map)
 
   (setq anything-sources
