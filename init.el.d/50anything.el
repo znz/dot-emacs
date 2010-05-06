@@ -46,6 +46,9 @@
   (setq anything-c-adaptive-history-file
         (expand-file-name "anything-c-adaptive-history.el"
                           temporary-file-directory))
+  ;; デフォルトの anything-c-adaptive-history-file が出来ていたら削除
+  (static-when (file-exists-p "~/.emacs.d/anything-c-adaptive-history")
+    (delete-file "~/.emacs.d/anything-c-adaptive-history"))
 
   (static-when (locate-library "descbinds-anything")
     ;; descbinds-anything を autoload にするため
