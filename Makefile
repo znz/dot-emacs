@@ -16,6 +16,8 @@ else
 EMACS = $(shell which emacs)
 endif
 
+RUBY = ruby
+
 emacs_symlink:: $(HOME)/.emacs.el
 init_files:: $(DOT_EMACS_D_DIR)
 init_files:: $(DOT_EMACS_D_DIR)/init.el
@@ -74,11 +76,12 @@ $(AUTO_INSTALL_DIR)/cp5022x.el:
 	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
 
 SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
+
 .PHONY:: install-w3m
 EMACS_W3M_DIR = $(EMACS_D_DIR)/../w3m
 install-w3m: $(EMACS_W3M_DIR)
 	cd $(EMACS_W3M_DIR) && autoreconf -f -i -s
-	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons" --infodir="$(DOT_EMACS_D_DIR)/info"
+	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(DOT_EMACS_D_DIR)/info"
 	cd $(EMACS_W3M_DIR) && make
 	cd $(EMACS_W3M_DIR) && make install
 	cd $(EMACS_W3M_DIR) && git clean -f
@@ -89,3 +92,18 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && echo emacs-w3m > CVS/Repository
 	cd $(EMACS_W3M_DIR) && echo :pserver:anonymous@cvs.namazu.org:/storage/cvsroot > CVS/Root
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
+
+.PHONY:: install-wl
+WL_DIR = $(EMACS_D_DIR)/../wanderlust
+install-wl: $(WL_DIR)
+	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
+	cd $(WL_DIR) && echo '(setq load-path (cons "~/.site-lisp/load-path/emacs-w3m" load-path))' >> WL-CFG
+	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)/wl" "INFODIR=$(DOT_EMACS_D_DIR)/info" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
+	cd $(WL_DIR) && git checkout WL-CFG
+	cd $(WL_DIR) && git clean -f
+	cd $(WL_DIR) && git status
+$(WL_DIR):
+	mkdir -p $(WL_DIR)/CVS
+	cd $(WL_DIR) && echo wanderlust > CVS/Repository
+	cd $(WL_DIR) && echo :pserver:anonymous@cvs.m17n.org:/cvs/root > CVS/Root
+	cd $(WL_DIR) && git cvsimport -v
