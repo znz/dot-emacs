@@ -121,3 +121,9 @@ $(MHC_DIR):
 	cd $(MHC_DIR) && echo mhc > CVS/Repository
 	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
 	cd $(MHC_DIR) && git cvsimport -v
+
+
+.PHONY:: install-wl-gravatar-el
+WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
+install-wl-gravatar-el:
+	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
