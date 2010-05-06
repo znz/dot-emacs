@@ -10,10 +10,16 @@
 (define-key minibuffer-local-completion-map "\C-w" 'backward-kill-word)
 
 ;; 補完ウィンドウを補完完了時に消す
-(static-when (locate-library "lcomp")
+(static-when (require 'lcomp nil t)
   (require 'lcomp)
-  (lcomp-mode 1)
-  (lcomp-keys-mode 1))
+  (static-cond
+   ;; new version
+   ((fboundp 'lcomp-mode)
+    (lcomp-mode 1)
+    (lcomp-keys-mode 1))
+   ;; obsolete version
+   (t (lcomp-activate-advices t))
+   ))
 
 ;; http://d.hatena.ne.jp/rubikitch/20091216/minibuffer
 ;; 間違ってC-gを押してしまった場合は、再び同じコマンドを起動してM-pで前の入力を呼び戻せる
