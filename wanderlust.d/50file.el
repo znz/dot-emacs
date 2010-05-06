@@ -1,3 +1,6 @@
+(static-when (file-directory-p "~/.emacs.d/icons/wl")
+  (setq wl-icon-directory "~/.emacs.d/icons/wl"))
+
 (setq wl-folders-file
       (expand-file-name "dot-folders.txt" my-private-directory))
 ;; use LF instead of CRLF on Meadow
@@ -11,7 +14,7 @@
 
 (setq mime-situation-examples-file
       (expand-file-name "mime-example.el" temporary-file-directory))
-(when
+(static-when
     (and (not (file-exists-p mime-situation-examples-file))
          (file-exists-p "~/.mime-example"))
   (rename-file "~/.mime-example" mime-situation-examples-file))
