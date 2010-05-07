@@ -20,6 +20,7 @@ endif
 emacs_symlink:: $(HOME)/.emacs.el
 init_files:: $(DOT_EMACS_D_DIR)
 init_files:: $(DOT_EMACS_D_DIR)/init.el
+init_files:: $(DOT_EMACS_D_DIR)/dot-mhc.el
 init_files:: $(DOT_EMACS_D_DIR)/dot-navi2ch.el
 init_files:: $(DOT_EMACS_D_DIR)/dot-wl.el
 
@@ -113,8 +114,9 @@ $(WL_DIR):
 MHC_DIR = $(EMACS_D_DIR)/mhc
 install-mhc: $(MHC_DIR)
 	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $?"
-	cd $(MHC_DIR)/emacs && $(RUBY) make.rb
-	cd $(MHC_DIR)/emacs && $(RUBY) make.rb install
+	cd $(MHC_DIR) && $(RUBY) make.rb
+	cd $(MHC_DIR) && $(RUBY) make.rb install
+	cd $(MHC_DIR) && cp samples/DOT.schedule.sample.jp $(DOT_EMACS_D_DIR)/DOT.schedule.sample.jp
 	cd $(MHC_DIR) && git clean -f
 	cd $(MHC_DIR) && git status
 $(MHC_DIR):
