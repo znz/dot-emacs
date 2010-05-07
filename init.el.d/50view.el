@@ -6,6 +6,7 @@
   (after help-follow-read-only activate)
   (setq buffer-read-only t))
 
+(eval-when-compile (require 'view))
 (defun my-view-mode-hook ()
   (define-key view-mode-map "b" 'scroll-down)
   (define-key view-mode-map " " 'scroll-up)
