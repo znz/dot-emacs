@@ -9,6 +9,10 @@
   (define-key my-prefix-map "a" 'org-agenda)
   (setq org-log-done t)
   (setq org-agenda-files (file-expand-wildcards "~/Org/*.org"))
+
+  (defadvice org-insert-time-stamp (around time-locale-set-C activate)
+    (let ((system-time-locale "C"))
+      ad-do-it))
   )
 
 ;;; Local Variables:
