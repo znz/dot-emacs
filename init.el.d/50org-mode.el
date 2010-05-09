@@ -18,7 +18,7 @@
   (org-remember-insinuate)
   (setq org-default-notes-file
         (expand-file-name "notes.org" org-directory))
-  (let* ((body "\n   Added: %U\n   %a\n   %i")
+  (let* ((body "\n   %i\n   %a\n   Added: %U")
          (note (concat "** %?" body)))
     (setq org-remember-templates
           `(("Todo" ?t
