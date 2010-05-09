@@ -7,8 +7,10 @@
   (add-to-list 'auto-mode-alist ' ("\\.org\\'" . org-mode))
   (define-key my-prefix-map "l" 'org-store-link)
   (define-key my-prefix-map "a" 'org-agenda)
-  (setq org-log-done t)
   (setq org-agenda-files (file-expand-wildcards "~/Org/*.org"))
+
+  (setq org-log-done t)
+  (setq org-startup-truncated nil)
 
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
