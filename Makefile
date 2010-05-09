@@ -137,3 +137,11 @@ install-org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
 $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
+
+.PHONY:: install-remember-el
+REMEMBER_EL_DIR = $(EMACS_D_DIR)/remember-el
+install-remember-el: $(REMEMBER_EL_DIR)
+	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR)
+	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR) install
+$(REMEMBER_EL_DIR):
+	git clone git://repo.or.cz/remember-el.git $(REMEMBER_EL_DIR)
