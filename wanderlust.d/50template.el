@@ -55,6 +55,8 @@
    (wl-smtp-connection-type . nil)
    ))
 
+(load "~/.emacs.d/private/my-template")
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
