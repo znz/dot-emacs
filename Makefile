@@ -73,7 +73,7 @@ SEMI_VERSION = 1.14.6
 install-semi: semi-$(SEMI_VERSION).tar.gz
 	tar xvf semi-$(SEMI_VERSION).tar.gz
 	(cd semi-$(SEMI_VERSION) && ln -snf $(SITE_LISP_DIR)/flim)
-	(cd semi-$(SEMI_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(HOME)/elisp)
+	(cd semi-$(SEMI_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
 	rm -rf semi-$(SEMI_VERSION)
 semi-$(SEMI_VERSION).tar.gz:
 	curl -O http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/semi/semi-1.14-for-flim-1.14/semi-$(SEMI_VERSION).tar.gz
@@ -117,7 +117,8 @@ $(EMACS_W3M_DIR):
 WL_DIR = $(EMACS_D_DIR)/wl
 install-wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
-	cd $(WL_DIR) && echo '(setq load-path (cons "~/.emacs.d/site-lisp/w3m" load-path))' >> WL-CFG
+	@: 'w3m を加える。(flimやsemiも)'
+	cd $(WL_DIR) && echo '(setq load-path (append (file-expand-wildcards "~/.emacs.d/site-lisp/*") load-path))' >> WL-CFG
 	cd $(WL_DIR) && make "EMACS=$(EMACS)" "LISPDIR=$(SITE_LISP_DIR)" "INFODIR=$(INFO_DIR)" "PIXMAPDIR=$(DOT_EMACS_D_DIR)/icons/wl" elc install-elc install-info
 	cd $(WL_DIR) && git checkout WL-CFG
 	cd $(WL_DIR) && git clean -f
