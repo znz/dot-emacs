@@ -10,9 +10,14 @@
 ;; wl-draft-config-alist の適用時に最初にマッチした要素のみ適用する。
 (setq wl-draft-config-matchone t)
 
+(defvar my-template-alist nil
+  "wl-template-alistの前の方に追加する部分")
+(defvar my-smtp-template-alist nil
+  "wl-template-alistに追加するSMTP設定")
+
 ;; ドラフトバッファでC-c C-j もしくは M-x wl-template-select で適用
 (add-to-list
- 'wl-template-alist
+ 'my-template-alist
  `("default"
    ("From" . wl-from)
    ("Bcc" . (wl-address-header-extract-address wl-from))
@@ -29,7 +34,7 @@
    ))
 
 (add-to-list
- 'wl-template-alist
+ 'my-smtp-template-alist
  '("smtp-nifty-vs2nd"
    (wl-smtp-posting-server . "vs2nd.nifty.com")
    (wl-smtp-posting-port . 587)
@@ -40,7 +45,7 @@
    ))
 
 (add-to-list
- 'wl-template-alist
+ 'my-smtp-template-alist
  '("smtp-localhost"
    (wl-smtp-posting-server . "localhost")
    (wl-smtp-posting-port . nil)

@@ -65,27 +65,7 @@
      (template . ,name)
      ))
   (add-to-list
-   'wl-template-alist
-   `(,(concat "smtp-" name "-ssl")
-     (wl-smtp-posting-server . "smtp.gmail.com")
-     (wl-smtp-posting-port . 465)
-     (wl-smtp-posting-user . ,gmail-address)
-     (wl-smtp-authenticate-type . "plain")
-     (wl-smtp-authenticate-realm . nil)
-     (wl-smtp-connection-type . 'ssl)
-     ) t)
-  (add-to-list
-   'wl-template-alist
-   `(,(concat "smtp-" name "-starttls")
-     (wl-smtp-posting-server . "smtp.gmail.com")
-     (wl-smtp-posting-port . 587)
-     (wl-smtp-posting-user . ,gmail-address)
-     (wl-smtp-authenticate-type . "plain")
-     (wl-smtp-authenticate-realm . nil)
-     (wl-smtp-connection-type . 'starttls)
-     ) t)
-  (add-to-list
-   'wl-template-alist
+   'my-template-alist
    `(,name
      (wl-from . ,gmail-address)
      ("From" . ,(concat user-name " <" gmail-address ">"))
@@ -94,6 +74,26 @@
      (top . nil)
      (bottom . ,(concat "\n-- \n" user-name " <" gmail-address ">"))
      (template . ,(concat "smtp-" name "-ssl"))
+     ))
+  (add-to-list
+   'my-smtp-template-alist
+   `(,(concat "smtp-" name "-ssl")
+     (wl-smtp-posting-server . "smtp.gmail.com")
+     (wl-smtp-posting-port . 465)
+     (wl-smtp-posting-user . ,gmail-address)
+     (wl-smtp-authenticate-type . "plain")
+     (wl-smtp-authenticate-realm . nil)
+     (wl-smtp-connection-type . 'ssl)
+     ))
+  (add-to-list
+   'my-smtp-template-alist
+   `(,(concat "smtp-" name "-starttls")
+     (wl-smtp-posting-server . "smtp.gmail.com")
+     (wl-smtp-posting-port . 587)
+     (wl-smtp-posting-user . ,gmail-address)
+     (wl-smtp-authenticate-type . "plain")
+     (wl-smtp-authenticate-realm . nil)
+     (wl-smtp-connection-type . 'starttls)
      ))
   (add-to-list 'wl-user-mail-address-list gmail-address t) )
 
