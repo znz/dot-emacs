@@ -56,9 +56,27 @@ install-apel: apel-$(APEL_VERSION).tar.gz
 	tar xvf apel-$(APEL_VERSION).tar.gz
 	(cd apel-$(APEL_VERSION) && make EMACS=$(EMACS) && sudo make EMACS=$(EMACS) install)
 	rm -rf apel-$(APEL_VERSION)
-
 apel-$(APEL_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
+
+FLIM_VERSION = 1.14.9
+.PHONY:: install-flim
+install-flim: flim-$(FLIM_VERSION).tar.gz
+	tar xvf flim-$(FLIM_VERSION).tar.gz
+	(cd flim-$(FLIM_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
+	rm -rf flim-$(FLIM_VERSION)
+flim-$(FLIM_VERSION).tar.gz:
+	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/flim/flim-1.14/flim-$(FLIM_VERSION).tar.gz
+
+SEMI_VERSION = 1.14.6
+.PHONY:: install-semi
+install-semi: semi-$(SEMI_VERSION).tar.gz
+	tar xvf semi-$(SEMI_VERSION).tar.gz
+	(cd semi-$(SEMI_VERSION) && ln -snf $(SITE_LISP_DIR)/flim)
+	(cd semi-$(SEMI_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(HOME)/elisp)
+	rm -rf semi-$(SEMI_VERSION)
+semi-$(SEMI_VERSION).tar.gz:
+	curl -O http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/semi/semi-1.14-for-flim-1.14/semi-$(SEMI_VERSION).tar.gz
 
 .PHONY:: auto-install
 AUTO_INSTALL_DIR = $(DOT_EMACS_D_DIR)/auto-install
