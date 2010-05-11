@@ -1,3 +1,8 @@
+;; 言語を日本語にする
+(set-language-environment 'Japanese)
+;; 極力UTF-8とする
+(prefer-coding-system 'utf-8)
+
 ;; (install-elisp "http://nijino.homelinux.net/emacs/cp5022x.el")
 (static-cond
  ((not (string< mule-version "6.0"))
