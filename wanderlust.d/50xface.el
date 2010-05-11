@@ -50,6 +50,11 @@
         (when (and (file-exists-p path)
                    (zerop (nth 7 (file-attributes path))))
           (delete-file path))))
+    (static-cond
+     ((exec-installed-p "wget")) ; ok
+     ((exec-installed-p "curl")
+      (setq gravatar-retrieval-program "curl -s -o '%s' '%s'"))
+     (t (error "download program not found")))
     (setq gravatar-directory "~/.cache/emacs-gravatar/")
     (setq gravatar-unregistered-icon 'identicon)
     (setq wl-gravatar-retrieve-once t)
