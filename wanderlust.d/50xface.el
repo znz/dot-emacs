@@ -31,6 +31,25 @@
   ;;(byte-compile-file "~/.emacs.d/site-lisp/gravatar-el/wl-gravatar.el")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gravatar-el")
   (when (require 'wl-gravatar nil t)
+    ;; 古いキャッシュを消す。
+    (defvar my-gravatar-old-threshold 7
+      "何日以上古くなっていると消すか")
+    (defadvice gravatar-retrieve (before delete-old-cache activate)
+      (let (delete-by-moving-to-trash
+            (path (ad-get-arg 0)))
+        (when (and (file-exists-p path)
+                   (<= my-gravatar-old-threshold
+                       (time-to-number-of-days
+                        (time-since
+                         (nth 6 (file-attributes path))))))
+          (delete-file path))))
+    ;; ファイルの取得に失敗して空だったら消す。
+    (defadvice gravatar-retrieve (after delete-empty-cache activate)
+      (let (delete-by-moving-to-trash
+            (path (ad-get-arg 0)))
+        (when (and (file-exists-p path)
+                   (zerop (nth 7 (file-attributes path))))
+          (delete-file path))))
     (setq gravatar-directory "~/.cache/emacs-gravatar/")
     (setq gravatar-unregistered-icon 'identicon)
     (setq wl-gravatar-retrieve-once t)
