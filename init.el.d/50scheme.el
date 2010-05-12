@@ -14,8 +14,7 @@
     (switch-to-buffer-other-window
      (get-buffer-create "*scheme*"))
     (run-scheme scheme-program-name))
-  (define-key global-map
-    "\C-cs" 'scheme-other-window)
+  (define-key my-prefix-map "s" 'scheme-other-window)
 
   (when t
     ;; Gaucheのインデント設定
