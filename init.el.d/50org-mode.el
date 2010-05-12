@@ -48,6 +48,9 @@
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
       ad-do-it))
+  (defadvice org-remember-apply-template (around time-locale-set-C activate)
+    (let ((system-time-locale "C"))
+      ad-do-it))
   )
 
 ;;; Local Variables:
