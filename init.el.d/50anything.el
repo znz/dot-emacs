@@ -33,9 +33,8 @@
 
   (defun my-anything-config ()
     (require 'anything-config)
-    (define-key anything-map (kbd "C-M-n") 'anything-next-source)
-    (define-key anything-map (kbd "C-M-p") 'anything-previous-source)
-    (define-key anything-map (kbd "C-t") 'anything-execute-persistent-action)
+    ;;(define-key anything-map (kbd "C-M-n") 'anything-next-source)
+    ;;(define-key anything-map (kbd "C-M-p") 'anything-previous-source)
     )
   (eval-after-load "anything" '(my-anything-config))
 
