@@ -9,8 +9,8 @@
   )
 
 ;; puttyの中などでもマウスを使えるようにする。
-(static-when (fboundp 'xterm-mouse-mode)
-  (xterm-mouse-mode 1))
+;;(static-when (fboundp 'xterm-mouse-mode)
+;;  (xterm-mouse-mode 1))
 
 (static-when (eq window-system 'x)
   (static-cond
