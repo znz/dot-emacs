@@ -8,7 +8,7 @@
   (setq bbdb-quiet-about-name-mismatches t)
   (setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
   (setq bbdb-ignore-some-messages-alist
-        '(("From" . "no.?reply\\|DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch")
+        '(("From" . "no.?reply\\|DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch\\|redmine")
           ("To" . "DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch")))
   (add-hook 'bbdb-notice-hook 'bbdb-auto-notes-hook)
   (setq bbdb-auto-notes-alist
@@ -16,6 +16,7 @@
           ("X-Mailing-List" (".*$" ML 0))
           ("X-Sequence" ("^\\([^ ]+\\) \\([0-9]+\\)$" ML 1))
           ("List-Id" ("<\\([^<>]+\\)>" ML 1))
+          ("Subject" (".*" last-subj 0 t))
           ("X-URL" (".*" www 0))
           ("X-URI" (".*" www 0))
           ("Organization" (".*" Organization 0))
