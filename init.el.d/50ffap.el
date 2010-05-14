@@ -14,6 +14,9 @@
   ;; 新規ファイルの場合には確認する
   (setq ffap-newfile-prompt t)
   (setq ffap-rfc-path "http://mla.n-z.jp/?rfc:%s")
+  (defun mla (mla)
+    (interactive (list (completing-read "mla: " nil nil nil (ffap-string-at-point))))
+    (browse-url (concat "http://mla.n-z.jp/?" mla)))
   )
 
 ;;; Local Variables:
