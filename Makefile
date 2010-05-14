@@ -96,6 +96,26 @@ $(AUTO_INSTALL_DIR)/cp5022x.el:
 SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
 INFO_DIR = $(DOT_EMACS_D_DIR)/info
 
+.PHONY:: install-skk
+SKK_DIR = $(EMACS_D_DIR)/skk
+install-skk: $(SKK_DIR)
+	cd $(SKK_DIR)/main && echo '(setq APEL_DIR "$(SITE_LISP_DIR)/apel")' >> SKK-CFG
+	cd $(SKK_DIR)/main && echo '(setq EMU_DIR "$(SITE_LISP_DIR)/emu")' >> SKK-CFG
+	cd $(SKK_DIR)/main && echo '(setq SKK_DATADIR "$(DOT_EMACS_D_DIR)/etc/skk")' >> SKK-CFG
+	cd $(SKK_DIR)/main && echo '(setq SKK_INFODIR "$(INFO_DIR)")' >> SKK-CFG
+	cd $(SKK_DIR)/main && echo '(setq SKK_LISPDIR "$(SITE_LISP_DIR)/skk")' >> SKK-CFG
+	cd $(SKK_DIR)/main && make what-where EMACS=$(EMACS)
+	cd $(SKK_DIR)/main && make install EMACS=$(EMACS)
+	cd $(SKK_DIR)/main && git clean -f
+	cd $(SKK_DIR)/main && git checkout SKK-CFG
+$(SKK_DIR):
+	mkdir -p $(SKK_DIR)/CVS
+	cd $(SKK_DIR) && echo skk > CVS/Repository
+	echo enter guest as password
+	cvs -d :pserver:guest@openlab.jp:/circus/cvsroot login
+	cd $(SKK_DIR) && echo :pserver:guest@openlab.jp:/circus/cvsroot > CVS/Root
+	cd $(SKK_DIR) && git cvsimport -v
+
 .PHONY:: install-w3m
 EMACS_W3M_DIR = $(EMACS_D_DIR)/w3m
 install-w3m: $(EMACS_W3M_DIR)
