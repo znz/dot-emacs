@@ -18,7 +18,7 @@
   (define-key my-anything-prefix-map (kbd "C-g") 'keyboard-quit)
   (define-key my-anything-prefix-map (kbd "C-q") 'anything)
   (define-key my-prefix-map ";" my-anything-prefix-map)
-  (define-key my-prefix-map (kbd "C-;") 'anything-execute-anything-command)
+  (define-key my-prefix-map (kbd "C-;") 'anything-execute-anything-command) ; anything-config.el で preconfigured なものから選ぶ。
   (define-key my-prefix-map (kbd "C-a") 'anything)
   (define-key my-prefix-map (kbd "C-o") 'anything-occur)
   (define-key my-prefix-map (kbd "C-q") my-anything-prefix-map)
