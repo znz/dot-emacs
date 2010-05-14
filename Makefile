@@ -54,7 +54,7 @@ APEL_VERSION = 10.7
 .PHONY:: install-apel
 install-apel: apel-$(APEL_VERSION).tar.gz
 	tar xvf apel-$(APEL_VERSION).tar.gz
-	(cd apel-$(APEL_VERSION) && make EMACS=$(EMACS) && sudo make EMACS=$(EMACS) install)
+	(cd apel-$(APEL_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR) VERSION_SPECIFIC_LISPDIR=$(SITE_LISP_DIR))
 	rm -rf apel-$(APEL_VERSION)
 apel-$(APEL_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
