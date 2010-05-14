@@ -10,7 +10,7 @@
                     (equal x
                            (cdr (assq 'artid (navi2ch-bm-get-article-internal
                                               (navi2ch-bm-get-property-internal (point))))))))
-      (previous-line 1))))
+      (forward-line -1))))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
