@@ -6,6 +6,8 @@
   (setq bbdb-pop-up-target-lines 3)
   (setq bbdb-offer-save 'savenoprompt)
   (setq bbdb-quiet-about-name-mismatches t)
+  (setq bbdb-always-add-addresses t)
+  (setq bbdb-new-nets-always-primary t)
   (setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
   (setq bbdb-ignore-some-messages-alist
         '(("From" . "no.?reply\\|DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch\\|redmine")
@@ -19,7 +21,7 @@
           ("Subject" (".*" last-subj 0 t))
           ("X-URL" (".*" www 0))
           ("X-URI" (".*" www 0))
-          ("Organization" (".*" Organization 0))
+          ("Organization" (".*" company 0))
           ("Newsgroup" ("[^,]+" newsgroups 0))
           ("X-Mailer" (".*$" User-Agent 0))
           ("X-Newsreader" (".*$" User-Agent 0))
