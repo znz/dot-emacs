@@ -42,7 +42,7 @@
             ("GoodThing" ?g ,note nil "Good Things")
             )))
 
-  (setq org-log-done t)
+  (setq org-log-done 'time)
   (setq org-startup-truncated nil)
 
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
