@@ -4,6 +4,7 @@
 (prefer-coding-system 'utf-8)
 
 ;; (install-elisp "http://nijino.homelinux.net/emacs/cp5022x.el")
+;; (auto-install-from-url "http://nijino.homelinux.net/emacs/cp5022x.el")
 (static-cond
  ((not (string< mule-version "6.0"))
   ;; encode-translation-table の設定
