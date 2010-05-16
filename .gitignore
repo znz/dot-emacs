@@ -1,8 +1,8 @@
 *.tar.gz
 *~
-mhc/
-org-mode/
-remember-el/
-skk/
-w3m/
-wl/
+mhc
+org-mode
+remember-el
+skk
+w3m
+wl
