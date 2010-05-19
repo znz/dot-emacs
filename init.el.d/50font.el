@@ -19,7 +19,9 @@
   (setq my-font "Monaco"))
  )
 (when my-font
-  (set-default-font my-font)
+  (static-if (fboundp 'set-frame-font)
+      (set-frame-font my-font)
+    (set-default-font my-font))
   (add-to-list 'default-frame-alist `(font . ,my-font))
   )
 
