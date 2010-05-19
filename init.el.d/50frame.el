@@ -21,6 +21,9 @@
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'right)
 
+(set-frame-parameter nil 'alpha '(85 75))
+(add-to-list 'default-frame-alist '(alpha 85 75))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
