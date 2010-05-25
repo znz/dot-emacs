@@ -11,6 +11,10 @@
     (c-set-style "ruby")
     )))
 
+(static-when (locate-library "xcscope")
+  (eval-after-load "cc-mode"
+    '(require 'xcscope)))
+
 (setq c-style-variables-are-local-p t)
 
 (static-when (fboundp 'global-cwarn-mode)
