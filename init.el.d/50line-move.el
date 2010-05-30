@@ -58,6 +58,12 @@
   (setq longlines-show-hard-newlines t)
   )
 
+;; 行頭での C-a を M-m の挙動にする。
+(defadvice move-beginning-of-line (around move-bol-or-bti activate)
+  (if (bolp)
+      (back-to-indentation)
+    ad-do-it))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
