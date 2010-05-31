@@ -7,8 +7,15 @@
           (expand-file-name (concat ".ssh-agent-csh-" (system-name)) "~"))
          (keychain2-filename
           (expand-file-name (concat (system-name) "-csh") "~/.keychain"))
+         (keychain2-filename-short
+          ;; system-name が FQDN で `uname -n` がドメインなしの場合
+          (expand-file-name (concat
+                             (car (split-string (system-name) "\\."))
+                             "-csh") "~/.keychain"))
          (filename (cond
                     ((file-exists-p keychain2-filename) keychain2-filename)
+                    ((file-exists-p keychain2-filename-short)
+                     keychain2-filename-short)
                     (t keychain1-filename)))
          (buffer
           (find-file-noselect filename))
