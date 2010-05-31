@@ -7,6 +7,7 @@
          (setenv "RSENSE_HOME" rsense-home)
          (add-to-list 'load-path (expand-file-name "etc" rsense-home))
          (require 'rsense)
+         (add-hook 'kill-emacs-hook #'rsense-exit)
          ))))
 
 ;;; Local Variables:
