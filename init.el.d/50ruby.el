@@ -1,8 +1,8 @@
-;; (install-elisp "http://svn.ruby-lang.org/repos/ruby/trunk/misc/inf-ruby.el")
-;; (install-elisp "http://svn.ruby-lang.org/repos/ruby/trunk/misc/rdoc-mode.el")
-;; (install-elisp "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-electric.el")
-;; (install-elisp "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-mode.el")
-;; (install-elisp "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-style.el")
+;; (auto-install-from-url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/inf-ruby.el")
+;; (auto-install-from-url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/rdoc-mode.el")
+;; (auto-install-from-url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-electric.el")
+;; (auto-install-from-url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-mode.el")
+;; (auto-install-from-url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-style.el")
 (static-when (locate-library "ruby-mode")
   (autoload 'ruby-mode "ruby-mode"
     "Major mode for editing Ruby source files." t)
