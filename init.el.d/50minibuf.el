@@ -18,8 +18,10 @@
     (lcomp-mode 1)
     (lcomp-keys-mode 1))
    ;; obsolete version
-   (t (lcomp-activate-advices t))
-   ))
+   (t
+    (my-once-before try-completion activate-lcomp
+      (lcomp-activate-advices t))
+    )))
 
 ;; http://d.hatena.ne.jp/rubikitch/20091216/minibuffer
 ;; 間違ってC-gを押してしまった場合は、再び同じコマンドを起動してM-pで前の入力を呼び戻せる
