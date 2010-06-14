@@ -184,3 +184,13 @@ install-remember-el: $(REMEMBER_EL_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR) install
 $(REMEMBER_EL_DIR):
 	git clone git://repo.or.cz/remember-el.git $(REMEMBER_EL_DIR)
+
+.PHONY:: install-elscreen
+ELSCREEN_VERSION = 1.4.6
+install-elscreen: elscreen-$(ELSCREEN_VERSION).tar.gz
+	tar xvf elscreen-$(ELSCREEN_VERSION).tar.gz
+	mkdir -p $(SITE_LISP_DIR)/elscreen
+	cp -p elscreen-$(ELSCREEN_VERSION)/elscreen.el $(SITE_LISP_DIR)/elscreen
+	rm -rf elscreen-$(ELSCREEN_VERSION)
+elscreen-$(ELSCREEN_VERSION).tar.gz:
+	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-$(ELSCREEN_VERSION).tar.gz
