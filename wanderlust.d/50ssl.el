@@ -1,3 +1,5 @@
+(eval-when-compile (require 'cl))
+
 (static-defconst my-ca-certificates
   (find-if
    #'file-exists-p
