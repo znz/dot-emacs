@@ -50,7 +50,7 @@ $(DOT_EMACS_D_DIR)/dot-wl.el: $(EMACS_D_DIR)/wanderlust.d/[0-9][0-9]*.el
 clean:
 	rm -f $(DOT_EMACS_D_DIR)/*.elc
 
-APEL_VERSION = 10.7
+APEL_VERSION = 10.8
 .PHONY:: install-apel
 install-apel: apel-$(APEL_VERSION).tar.gz
 	tar xvf apel-$(APEL_VERSION).tar.gz
