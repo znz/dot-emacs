@@ -17,6 +17,7 @@
         "^Content-Transfer-Encoding:"
         "^Content-Disposition:"
         "\\(DKIM\\|DomainKey\\)-Signature:"
+        "^Received-SPF:"
         "^X-Priority:"
         "^Importance:"
         "^X-Original-To:"
