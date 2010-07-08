@@ -195,3 +195,13 @@ install-elscreen: elscreen-$(ELSCREEN_VERSION).tar.gz
 	rm -rf elscreen-$(ELSCREEN_VERSION)
 elscreen-$(ELSCREEN_VERSION).tar.gz:
 	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-$(ELSCREEN_VERSION).tar.gz
+
+.PHONY:: install-elscreen-wl
+ELSCREEN_WL_VERSION = 0.8.0
+install-elscreen-wl: elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
+	tar xvf elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
+	mkdir -p $(SITE_LISP_DIR)/elscreen
+	cp -p elscreen-wl-$(ELSCREEN_WL_VERSION)/elscreen-wl.el $(SITE_LISP_DIR)/elscreen
+	rm -rf elscreen-wl-$(ELSCREEN_WL_VERSION)
+elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz:
+	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
