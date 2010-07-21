@@ -1,10 +1,10 @@
 (define-key my-prefix-map "m" 'browse-url-at-point)
 
-(setq browse-url-browser-function
-      (static-cond
-       ((locate-library "w3m")
-	(setq browse-url-browser-function 'w3m-browse-url))
-       (t 'browse-url-generic)))
+;; (setq browse-url-browser-function
+;;       (static-cond
+;;        ((locate-library "w3m")
+;; 	(setq browse-url-browser-function 'w3m-browse-url))
+;;        (t 'browse-url-generic)))
 (setq browse-url-generic-program
       (static-cond
        ((featurep 'meadow) "fiber.exe")
