@@ -21,8 +21,8 @@
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'right)
 
-(set-frame-parameter nil 'alpha '(100 80))
-(add-to-list 'default-frame-alist '(alpha 100 80))
+(set-frame-parameter nil 'alpha '(90 80))
+(add-to-list 'default-frame-alist '(alpha 90 80))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
