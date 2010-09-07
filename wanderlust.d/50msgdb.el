@@ -13,6 +13,8 @@
       '("newsgroups"
         "content-type"
         "reply-to"
+        "user-agent"
+        "x-mailer"
         ;; ML
         "list-id" "x-ml-name" "mailing-list"
         "x-mail-count" "x-ml-count" "x-sequence"
