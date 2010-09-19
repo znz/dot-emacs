@@ -6,7 +6,7 @@ default: init_files
 .PHONY:: default emacs_symlink init_files clean
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
-EMACS_D_DIR = $(shell pwd)
+SRC_TOP_DIR = $(shell pwd)
 RUBY = $(shell which ruby)
 
 # Cocoa Emacs (MacPorts)
@@ -25,10 +25,10 @@ init_files:: $(DOT_EMACS_D_DIR)/dot-navi2ch.el
 init_files:: $(DOT_EMACS_D_DIR)/dot-wl.el
 
 ifeq ($(OS),Windows_NT)
-$(HOME)/.emacs.el: $(EMACS_D_DIR)/emacs.el
+$(HOME)/.emacs.el: $(SRC_TOP_DIR)/emacs.el
 	cp $< $@
 else
-$(HOME)/.emacs.el: $(EMACS_D_DIR)/emacs.el
+$(HOME)/.emacs.el: $(SRC_TOP_DIR)/emacs.el
 	[ -L $@ -o ! -e $@ ]
 	ln -sf $(CURDIR)/$< $@
 endif
@@ -37,18 +37,20 @@ $(DOT_EMACS_D_DIR):
 	mkdir $(DOT_EMACS_D_DIR)
 
 # 結合と*.elcの削除
-$(DOT_EMACS_D_DIR)/init.el: $(EMACS_D_DIR)/init.el.d/[0-9][0-9]*.el
+$(DOT_EMACS_D_DIR)/init.el: $(SRC_TOP_DIR)/init.el.d/[0-9][0-9]*.el
 	sed '/^ *;;/d;/^$$/d' $^ > $@
 	rm -f $@c
-$(DOT_EMACS_D_DIR)/dot-%.el: $(EMACS_D_DIR)/%.d/[0-9][0-9]*.el
+$(DOT_EMACS_D_DIR)/dot-%.el: $(SRC_TOP_DIR)/%.d/[0-9][0-9]*.el
 	cat $^ > $@
 	rm -f $@c
-$(DOT_EMACS_D_DIR)/dot-wl.el: $(EMACS_D_DIR)/wanderlust.d/[0-9][0-9]*.el
+$(DOT_EMACS_D_DIR)/dot-wl.el: $(SRC_TOP_DIR)/wanderlust.d/[0-9][0-9]*.el
 	cat $^ > $@
 	rm -f $@c
 
-clean:
+clean::
 	rm -f $(DOT_EMACS_D_DIR)/*.elc
+allclean::
+	rm -f $(INIT_FILES)
 
 APEL_VERSION = 10.8
 .PHONY:: install-apel
@@ -97,7 +99,7 @@ SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
 INFO_DIR = $(DOT_EMACS_D_DIR)/info
 
 .PHONY:: install-skk
-SKK_DIR = $(EMACS_D_DIR)/skk
+SKK_DIR = $(SRC_TOP_DIR)/skk
 install-skk: $(SKK_DIR)
 	cd $(SKK_DIR)/main && echo '(setq APEL_DIR "$(SITE_LISP_DIR)/apel")' >> SKK-CFG
 	cd $(SKK_DIR)/main && echo '(setq EMU_DIR "$(SITE_LISP_DIR)/emu")' >> SKK-CFG
@@ -117,7 +119,7 @@ $(SKK_DIR):
 	cd $(SKK_DIR) && git cvsimport -v
 
 .PHONY:: install-w3m
-EMACS_W3M_DIR = $(EMACS_D_DIR)/w3m
+EMACS_W3M_DIR = $(SRC_TOP_DIR)/w3m
 install-w3m: $(EMACS_W3M_DIR)
 	cd $(EMACS_W3M_DIR) && autoreconf -f -i -s
 	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(INFO_DIR)"
@@ -135,7 +137,7 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
 
 .PHONY:: install-wl
-WL_DIR = $(EMACS_D_DIR)/wl
+WL_DIR = $(SRC_TOP_DIR)/wl
 install-wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
 	@: 'w3m を加える。(flimやsemiも)'
@@ -151,7 +153,7 @@ $(WL_DIR):
 	cd $(WL_DIR) && git cvsimport -v
 
 .PHONY:: install-mhc
-MHC_DIR = $(EMACS_D_DIR)/mhc
+MHC_DIR = $(SRC_TOP_DIR)/mhc
 install-mhc: $(MHC_DIR)
 	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $?"
 	cd $(MHC_DIR) && $(RUBY) make.rb
@@ -171,7 +173,7 @@ install-wl-gravatar-el:
 	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
 
 .PHONY:: install-org-mode
-ORG_MODE_DIR = $(EMACS_D_DIR)/org-mode
+ORG_MODE_DIR = $(SRC_TOP_DIR)/org-mode
 install-org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
@@ -179,7 +181,7 @@ $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
 
 .PHONY:: install-remember-el
-REMEMBER_EL_DIR = $(EMACS_D_DIR)/remember-el
+REMEMBER_EL_DIR = $(SRC_TOP_DIR)/remember-el
 install-remember-el: $(REMEMBER_EL_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR) install
