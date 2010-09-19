@@ -17,12 +17,14 @@ else
 EMACS = $(shell which emacs)
 endif
 
+
 emacs_symlink:: $(HOME)/.emacs.el
 init_files:: $(DOT_EMACS_D_DIR)
-init_files:: $(DOT_EMACS_D_DIR)/init.el
-init_files:: $(DOT_EMACS_D_DIR)/dot-mhc.el
-init_files:: $(DOT_EMACS_D_DIR)/dot-navi2ch.el
-init_files:: $(DOT_EMACS_D_DIR)/dot-wl.el
+INIT_FILES += $(DOT_EMACS_D_DIR)/init.el
+INIT_FILES += $(DOT_EMACS_D_DIR)/dot-mhc.el
+INIT_FILES += $(DOT_EMACS_D_DIR)/dot-navi2ch.el
+INIT_FILES += $(DOT_EMACS_D_DIR)/dot-wl.el
+init_files:: $(INIT_FILES)
 
 ifeq ($(OS),Windows_NT)
 $(HOME)/.emacs.el: $(SRC_TOP_DIR)/emacs.el
@@ -207,3 +209,30 @@ install-elscreen-wl: elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
 	rm -rf elscreen-wl-$(ELSCREEN_WL_VERSION)
 elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz:
 	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
+
+echo:
+	@echo CURDIR=$(CURDIR)
+	@echo HOME=$(HOME)
+	@echo OS=$(OS)
+	@echo
+	@echo DOT_EMACS_D_DIR=$(DOT_EMACS_D_DIR)
+	@echo INIT_FILES=$(INIT_FILES)
+	@echo SRC_TOP_DIR=$(SRC_TOP_DIR)
+	@echo RUBY=$(RUBY)
+	@echo EMACS_APP=$(EMACS_APP)
+	@echo EMACS=$(EMACS)
+	@echo SITE_LISP_DIR=$(SITE_LISP_DIR)
+	@echo INFO_DIR=$(INFO_DIR)
+	@echo APEL_VERSION=$(APEL_VERSION)
+	@echo FLIM_VERSION=$(FLIM_VERSION)
+	@echo SEMI_VERSION=$(SEMI_VERSION)
+	@echo AUTO_INSTALL_DIR=$(AUTO_INSTALL_DIR)
+	@echo SKK_DIR=$(SKK_DIR)
+	@echo EMACS_W3M_DIR=$(EMACS_W3M_DIR)
+	@echo WL_DIR=$(WL_DIR)
+	@echo MHC_DIR=$(MHC_DIR)
+	@echo WL_GRAVATAR_EL_DIR=$(WL_GRAVATAR_EL_DIR)
+	@echo ORG_MODE_DIR=$(ORG_MODE_DIR)
+	@echo REMEMBER_EL_DIR=$(REMEMBER_EL_DIR)
+	@echo ELSCREEN_VERSION=$(ELSCREEN_VERSION)
+	@echo ELSCREEN_WL_VERSION=$(ELSCREEN_WL_VERSION)
