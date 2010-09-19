@@ -3,11 +3,13 @@
 
 default: init_files
 
-.PHONY:: default emacs_symlink init_files clean
+.PHONY:: default emacs_symlink init_files clean allclean all
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
 SRC_TOP_DIR = $(shell pwd)
 RUBY = $(shell which ruby)
+SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
+INFO_DIR = $(DOT_EMACS_D_DIR)/info
 
 # Cocoa Emacs (MacPorts)
 EMACS_APP = $(wildcard /Applications/MacPorts/Emacs.app)
@@ -25,6 +27,7 @@ INIT_FILES += $(DOT_EMACS_D_DIR)/dot-mhc.el
 INIT_FILES += $(DOT_EMACS_D_DIR)/dot-navi2ch.el
 INIT_FILES += $(DOT_EMACS_D_DIR)/dot-wl.el
 init_files:: $(INIT_FILES)
+all:: init_files
 
 ifeq ($(OS),Windows_NT)
 $(HOME)/.emacs.el: $(SRC_TOP_DIR)/emacs.el
@@ -51,8 +54,9 @@ $(DOT_EMACS_D_DIR)/dot-wl.el: $(SRC_TOP_DIR)/wanderlust.d/[0-9][0-9]*.el
 
 clean::
 	rm -f $(DOT_EMACS_D_DIR)/*.elc
-allclean::
+allclean:: clean
 	rm -f $(INIT_FILES)
+	rm -rf $(INFO_DIR)
 
 APEL_VERSION = 10.8
 .PHONY:: install-apel
@@ -62,6 +66,9 @@ install-apel: apel-$(APEL_VERSION).tar.gz
 	rm -rf apel-$(APEL_VERSION)
 apel-$(APEL_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
+all:: install-apel
+allclean::
+	rm -rf $(SITE_LISP_DIR)/apel $(SITE_LISP_DIR)/emu
 
 FLIM_VERSION = 1.14.9
 .PHONY:: install-flim
@@ -71,6 +78,9 @@ install-flim: flim-$(FLIM_VERSION).tar.gz
 	rm -rf flim-$(FLIM_VERSION)
 flim-$(FLIM_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/flim/flim-1.14/flim-$(FLIM_VERSION).tar.gz
+all:: install-flim
+allclean::
+	rm -rf $(SITE_LISP_DIR)/flim
 
 SEMI_VERSION = 1.14.6
 .PHONY:: install-semi
@@ -81,6 +91,10 @@ install-semi: semi-$(SEMI_VERSION).tar.gz
 	rm -rf semi-$(SEMI_VERSION)
 semi-$(SEMI_VERSION).tar.gz:
 	curl -O http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/semi/semi-1.14-for-flim-1.14/semi-$(SEMI_VERSION).tar.gz
+all:: install-semi
+allclean::
+	rm -rf $(SITE_LISP_DIR)/semi
+
 
 .PHONY:: auto-install
 AUTO_INSTALL_DIR = $(DOT_EMACS_D_DIR)/auto-install
@@ -96,9 +110,10 @@ $(AUTO_INSTALL_DIR)/auto-install.el:
 auto-install:: $(AUTO_INSTALL_DIR)/cp5022x.el
 $(AUTO_INSTALL_DIR)/cp5022x.el:
 	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
+all:: auto-install
+allclean::
+	rm -f $(AUTO_INSTALL_DIR)/auto-install.el $(AUTO_INSTALL_DIR)/cp5022x.el
 
-SITE_LISP_DIR = $(DOT_EMACS_D_DIR)/site-lisp
-INFO_DIR = $(DOT_EMACS_D_DIR)/info
 
 .PHONY:: install-skk
 SKK_DIR = $(SRC_TOP_DIR)/skk
@@ -119,6 +134,10 @@ $(SKK_DIR):
 	cvs -d :pserver:guest@openlab.jp:/circus/cvsroot login
 	cd $(SKK_DIR) && echo :pserver:guest@openlab.jp:/circus/cvsroot > CVS/Root
 	cd $(SKK_DIR) && git cvsimport -v
+all:: install-skk
+allclean::
+	rm -rf $(SITE_LISP_DIR)/skk
+	rm -rf $(DOT_EMACS_D_DIR)/etc/skk
 
 .PHONY:: install-w3m
 EMACS_W3M_DIR = $(SRC_TOP_DIR)/w3m
@@ -137,6 +156,10 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && echo emacs-w3m > CVS/Repository
 	cd $(EMACS_W3M_DIR) && echo :pserver:anonymous@cvs.namazu.org:/storage/cvsroot > CVS/Root
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
+all:: install-w3m
+allclean::
+	rm -rf $(SITE_LISP_DIR)/w3m
+	rm -rf $(DOT_EMACS_D_DIR)/icons/w3m
 
 .PHONY:: install-wl
 WL_DIR = $(SRC_TOP_DIR)/wl
@@ -153,11 +176,15 @@ $(WL_DIR):
 	cd $(WL_DIR) && echo wanderlust > CVS/Repository
 	cd $(WL_DIR) && echo :pserver:anonymous@cvs.m17n.org:/cvs/root > CVS/Root
 	cd $(WL_DIR) && git cvsimport -v
+all:: install-wl
+allclean::
+	rm -rf $(SITE_LISP_DIR)/wl
+	rm -rf $(DOT_EMACS_D_DIR)/icons/wl
 
 .PHONY:: install-mhc
 MHC_DIR = $(SRC_TOP_DIR)/mhc
 install-mhc: $(MHC_DIR)
-	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $?"
+	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $$?"
 	cd $(MHC_DIR) && $(RUBY) make.rb
 	cd $(MHC_DIR) && $(RUBY) make.rb install
 	cd $(MHC_DIR) && cp samples/DOT.schedule.sample.jp $(DOT_EMACS_D_DIR)/DOT.schedule.sample.jp
@@ -168,11 +195,18 @@ $(MHC_DIR):
 	cd $(MHC_DIR) && echo mhc > CVS/Repository
 	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
 	cd $(MHC_DIR) && git cvsimport -v
+all:: install-mhc
+allclean::
+	rm -rf $(SITE_LISP_DIR)/mhc
+	rm -rf $(DOT_EMACS_D_DIR)/icons/mhc
 
 .PHONY:: install-wl-gravatar-el
 WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
 install-wl-gravatar-el:
 	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
+all:: install-wl-gravatar-el
+allclean::
+	rm -rf $(WL_GRAVATAR_EL_DIR)
 
 .PHONY:: install-org-mode
 ORG_MODE_DIR = $(SRC_TOP_DIR)/org-mode
@@ -181,6 +215,9 @@ install-org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
 $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
+all:: install-org-mode
+allclean::
+	rm -rf $(SITE_LISP_DIR)/org-mode
 
 .PHONY:: install-remember-el
 REMEMBER_EL_DIR = $(SRC_TOP_DIR)/remember-el
@@ -189,6 +226,9 @@ install-remember-el: $(REMEMBER_EL_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR) install
 $(REMEMBER_EL_DIR):
 	git clone git://repo.or.cz/remember-el.git $(REMEMBER_EL_DIR)
+all:: install-remember-el
+allclean::
+	rm -rf $(SITE_LISP_DIR)/remember-el
 
 .PHONY:: install-elscreen
 ELSCREEN_VERSION = 1.4.6
@@ -199,6 +239,9 @@ install-elscreen: elscreen-$(ELSCREEN_VERSION).tar.gz
 	rm -rf elscreen-$(ELSCREEN_VERSION)
 elscreen-$(ELSCREEN_VERSION).tar.gz:
 	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-$(ELSCREEN_VERSION).tar.gz
+all:: install-elscreen
+allclean::
+	rm -rf $(SITE_LISP_DIR)/elscreen
 
 .PHONY:: install-elscreen-wl
 ELSCREEN_WL_VERSION = 0.8.0
@@ -209,6 +252,8 @@ install-elscreen-wl: elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
 	rm -rf elscreen-wl-$(ELSCREEN_WL_VERSION)
 elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz:
 	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
+all:: install-elscreen-wl
+
 
 echo:
 	@echo CURDIR=$(CURDIR)
