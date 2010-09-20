@@ -3,7 +3,7 @@
 
 default: init_files
 
-.PHONY:: default emacs_symlink init_files clean allclean all
+.PHONY:: default emacs_symlink init_files clean allclean all update
 
 DOT_EMACS_D_DIR = $(HOME)/.emacs.d
 SRC_TOP_DIR = $(shell pwd)
@@ -78,9 +78,12 @@ FLIM_VERSION = 1.14
 install-flim: $(SITE_LISP_DIR)/flim
 ifeq "$(FLIM_VERSION)" "1.14"
 $(SITE_LISP_DIR)/flim: flim-1.14
-	(cd flim-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
+	cd flim-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR)
 flim-1.14:
 	cvs -z9 -d :pserver:anonymous@cvs.m17n.org:/cvs/root checkout -r flim-1_14 -d flim-1.14 flim
+update-flim:
+	cd flim-1.14 && cvs -qz9 update -dP
+update:: update-flim
 else
 $(SITE_LISP_DIR)/flim: flim-$(FLIM_VERSION).tar.gz
 	tar xvf flim-$(FLIM_VERSION).tar.gz
@@ -100,9 +103,12 @@ SEMI_VERSION = 1.14
 install-semi: $(SITE_LISP_DIR)/semi
 ifeq "$(SEMI_VERSION)" "1.14"
 $(SITE_LISP_DIR)/semi: semi-1.14
-	(cd semi-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
+	cd semi-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR)
 semi-1.14:
 	cvs -z9 -d :pserver:anonymous@cvs.m17n.org:/cvs/root checkout -r semi-1_14 -d semi-1.14 semi
+update-semi:
+	cd semi-1.14 && cvs -qz9 update -dP
+update:: update-semi
 else
 $(SITE_LISP_DIR)/semi: semi-$(SEMI_VERSION).tar.gz
 	tar xvf semi-$(SEMI_VERSION).tar.gz
@@ -157,11 +163,14 @@ $(SKK_DIR):
 	cvs -d :pserver:guest@openlab.jp:/circus/cvsroot login
 	cd $(SKK_DIR) && echo :pserver:guest@openlab.jp:/circus/cvsroot > CVS/Root
 	cd $(SKK_DIR) && git cvsimport -v
+update-skk:
+	cd $(SKK_DIR) && git cvsimport -v
 uninstall-skk:
 	rm -rf $(SITE_LISP_DIR)/skk
 	rm -rf $(DOT_EMACS_D_DIR)/etc/skk
 all:: install-skk
 allclean:: uninstall-skk
+update:: update-skk
 
 .PHONY:: install-w3m uninstall-w3m
 EMACS_W3M_DIR = $(SRC_TOP_DIR)/w3m
@@ -181,11 +190,14 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && echo emacs-w3m > CVS/Repository
 	cd $(EMACS_W3M_DIR) && echo :pserver:anonymous@cvs.namazu.org:/storage/cvsroot > CVS/Root
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
+update-w3m:
+	cd $(EMACS_W3M_DIR) && git cvsimport -v
 uninstall-w3m:
 	rm -rf $(SITE_LISP_DIR)/w3m
 	rm -rf $(DOT_EMACS_D_DIR)/icons/w3m
 all:: install-w3m
 allclean:: uninstall-w3m
+update:: update-w3m
 
 .PHONY:: install-wl uninstall-wl
 WL_DIR = $(SRC_TOP_DIR)/wl
@@ -203,11 +215,14 @@ $(WL_DIR):
 	cd $(WL_DIR) && echo wanderlust > CVS/Repository
 	cd $(WL_DIR) && echo :pserver:anonymous@cvs.m17n.org:/cvs/root > CVS/Root
 	cd $(WL_DIR) && git cvsimport -v
+update-wl:
+	cd $(WL_DIR) && git cvsimport -v
 uninstall-wl:
 	rm -rf $(SITE_LISP_DIR)/wl
 	rm -rf $(DOT_EMACS_D_DIR)/icons/wl
 all:: install-wl
 allclean:: uninstall-wl
+update:: update-wl
 
 .PHONY:: install-mhc uninstall-mhc
 MHC_DIR = $(SRC_TOP_DIR)/mhc
@@ -224,21 +239,27 @@ $(MHC_DIR):
 	cd $(MHC_DIR) && echo mhc > CVS/Repository
 	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
 	cd $(MHC_DIR) && git cvsimport -v
+#update-mhc:
+#	cd $(MHC_DIR) && git cvsimport -v
 uninstall-mhc:
 	rm -rf $(SITE_LISP_DIR)/mhc
 	rm -rf $(DOT_EMACS_D_DIR)/icons/mhc
 all:: install-mhc
 allclean:: uninstall-mhc
+#update:: update-mhc
 
 .PHONY:: install-wl-gravatar-el uninstall-wl-gravatar-el
 WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
 install-wl-gravatar-el: $(WL_GRAVATAR_EL_DIR)
 $(WL_GRAVATAR_EL_DIR):
 	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
+update-wl-gravatar-el:
+	cd $(WL_GRAVATAR_EL_DIR) && git pull
 uninstall-wl-gravatar-el:
 	rm -rf $(WL_GRAVATAR_EL_DIR)
 all:: install-wl-gravatar-el
 allclean:: uninstall-wl-gravatar-el
+update:: update-wl-gravatar-el
 
 .PHONY:: install-org-mode uninstall-org-mode
 ORG_MODE_DIR = $(SRC_TOP_DIR)/org-mode
@@ -248,10 +269,13 @@ $(SITE_LISP_DIR)/org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
 $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
+update-org-mode:
+	cd $(ORG_MODE_DIR) && git pull
 uninstall-org-mode:
 	rm -rf $(SITE_LISP_DIR)/org-mode
 all:: install-org-mode
 allclean:: uninstall-org-mode
+update:: update-org-mode
 
 .PHONY:: install-remember-el uninstall-remember-el
 REMEMBER_EL_DIR = $(SRC_TOP_DIR)/remember-el
