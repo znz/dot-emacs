@@ -235,18 +235,15 @@ $(SITE_LISP_DIR)/mhc: $(MHC_DIR)
 	cd $(MHC_DIR) && git clean -f
 	cd $(MHC_DIR) && git status
 $(MHC_DIR):
-	mkdir -p $(MHC_DIR)/CVS
-	cd $(MHC_DIR) && echo mhc > CVS/Repository
-	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
-	cd $(MHC_DIR) && git cvsimport -v
-#update-mhc:
-#	cd $(MHC_DIR) && git cvsimport -v
+	git clone git://github.com/yoshinari-nomura/mhc.git $(MHC_DIR)
+update-mhc:
+	cd $(MHC_DIR) && git pull
 uninstall-mhc:
 	rm -rf $(SITE_LISP_DIR)/mhc
 	rm -rf $(DOT_EMACS_D_DIR)/icons/mhc
 all:: install-mhc
 allclean:: uninstall-mhc
-#update:: update-mhc
+update:: update-mhc
 
 .PHONY:: install-wl-gravatar-el uninstall-wl-gravatar-el
 WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
