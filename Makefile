@@ -59,65 +59,88 @@ allclean:: clean
 	rm -rf $(INFO_DIR)
 
 APEL_VERSION = 10.8
-.PHONY:: install-apel
-install-apel: apel-$(APEL_VERSION).tar.gz
+.PHONY:: install-apel uninstall-apel
+install-apel: $(SITE_LISP_DIR)/apel
+$(SITE_LISP_DIR)/apel: apel-$(APEL_VERSION).tar.gz
 	tar xvf apel-$(APEL_VERSION).tar.gz
 	(cd apel-$(APEL_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR) VERSION_SPECIFIC_LISPDIR=$(SITE_LISP_DIR))
 	rm -rf apel-$(APEL_VERSION)
 apel-$(APEL_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
-all:: install-apel
-allclean::
+uninstall-apel:
 	rm -rf $(SITE_LISP_DIR)/apel $(SITE_LISP_DIR)/emu
+all:: install-apel
+allclean:: uninstall-apel
 
-FLIM_VERSION = 1.14.9
-.PHONY:: install-flim
-install-flim: flim-$(FLIM_VERSION).tar.gz
+#FLIM_VERSION = 1.14.9
+FLIM_VERSION = 1.14
+.PHONY:: install-flim uninstall-flim
+install-flim: $(SITE_LISP_DIR)/flim
+ifeq "$(FLIM_VERSION)" "1.14"
+$(SITE_LISP_DIR)/flim: flim-1.14
+	(cd flim-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
+flim-1.14:
+	cvs -z9 -d :pserver:anonymous@cvs.m17n.org:/cvs/root checkout -r flim-1_14 -d flim-1.14 flim
+else
+$(SITE_LISP_DIR)/flim: flim-$(FLIM_VERSION).tar.gz
 	tar xvf flim-$(FLIM_VERSION).tar.gz
 	(cd flim-$(FLIM_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
 	rm -rf flim-$(FLIM_VERSION)
 flim-$(FLIM_VERSION).tar.gz:
 	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/flim/flim-1.14/flim-$(FLIM_VERSION).tar.gz
-all:: install-flim
-allclean::
+endif
+uninstall-flim:
 	rm -rf $(SITE_LISP_DIR)/flim
+all:: install-flim
+allclean:: uninstall-flim
 
-SEMI_VERSION = 1.14.6
-.PHONY:: install-semi
-install-semi: semi-$(SEMI_VERSION).tar.gz
+#SEMI_VERSION = 1.14.6
+SEMI_VERSION = 1.14
+.PHONY:: install-semi uninstall-semi
+install-semi: $(SITE_LISP_DIR)/semi
+ifeq "$(SEMI_VERSION)" "1.14"
+$(SITE_LISP_DIR)/semi: semi-1.14
+	(cd semi-1.14 && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
+semi-1.14:
+	cvs -z9 -d :pserver:anonymous@cvs.m17n.org:/cvs/root checkout -r semi-1_14 -d semi-1.14 semi
+else
+$(SITE_LISP_DIR)/semi: semi-$(SEMI_VERSION).tar.gz
 	tar xvf semi-$(SEMI_VERSION).tar.gz
 	(cd semi-$(SEMI_VERSION) && ln -snf $(SITE_LISP_DIR)/flim)
 	(cd semi-$(SEMI_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR))
 	rm -rf semi-$(SEMI_VERSION)
 semi-$(SEMI_VERSION).tar.gz:
 	curl -O http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/semi/semi-1.14-for-flim-1.14/semi-$(SEMI_VERSION).tar.gz
-all:: install-semi
-allclean::
+endif
+uninstall-semi:
 	rm -rf $(SITE_LISP_DIR)/semi
+all:: install-semi
+allclean:: uninstall-semi
 
 
-.PHONY:: auto-install
+.PHONY:: install-auto-install uninstall-auto-install
 AUTO_INSTALL_DIR = $(DOT_EMACS_D_DIR)/auto-install
-auto-install:: $(AUTO_INSTALL_DIR)
+install-auto-install:: $(AUTO_INSTALL_DIR)
 $(AUTO_INSTALL_DIR):
 	mkdir $(AUTO_INSTALL_DIR)
 
 ## see init.el.d/10install.el
-auto-install:: $(AUTO_INSTALL_DIR)/auto-install.el
+install-auto-install:: $(AUTO_INSTALL_DIR)/auto-install.el
 $(AUTO_INSTALL_DIR)/auto-install.el:
-	wget -N http://www.emacswiki.org/emacs/download/auto-install.el -O $@
-
-auto-install:: $(AUTO_INSTALL_DIR)/cp5022x.el
+	curl http://www.emacswiki.org/emacs/download/auto-install.el -o $@
+install-auto-install:: $(AUTO_INSTALL_DIR)/cp5022x.el
 $(AUTO_INSTALL_DIR)/cp5022x.el:
-	wget -N http://nijino.homelinux.net/emacs/cp5022x.el -O $@
-all:: auto-install
-allclean::
+	curl http://nijino.homelinux.net/emacs/cp5022x.el -o $@
+uninstall-auto-install:
 	rm -f $(AUTO_INSTALL_DIR)/auto-install.el $(AUTO_INSTALL_DIR)/cp5022x.el
+all:: install-auto-install
+allclean:: uninstall-auto-install
 
 
-.PHONY:: install-skk
+.PHONY:: install-skk uninstall-skk
 SKK_DIR = $(SRC_TOP_DIR)/skk
-install-skk: $(SKK_DIR)
+install-skk: $(SITE_LISP_DIR)/skk
+$(SITE_LISP_DIR)/skk: $(SKK_DIR)
 	cd $(SKK_DIR)/main && echo '(setq APEL_DIR "$(SITE_LISP_DIR)/apel")' >> SKK-CFG
 	cd $(SKK_DIR)/main && echo '(setq EMU_DIR "$(SITE_LISP_DIR)/emu")' >> SKK-CFG
 	cd $(SKK_DIR)/main && echo '(setq SKK_DATADIR "$(DOT_EMACS_D_DIR)/etc/skk")' >> SKK-CFG
@@ -134,14 +157,16 @@ $(SKK_DIR):
 	cvs -d :pserver:guest@openlab.jp:/circus/cvsroot login
 	cd $(SKK_DIR) && echo :pserver:guest@openlab.jp:/circus/cvsroot > CVS/Root
 	cd $(SKK_DIR) && git cvsimport -v
-all:: install-skk
-allclean::
+uninstall-skk:
 	rm -rf $(SITE_LISP_DIR)/skk
 	rm -rf $(DOT_EMACS_D_DIR)/etc/skk
+all:: install-skk
+allclean:: uninstall-skk
 
-.PHONY:: install-w3m
+.PHONY:: install-w3m uninstall-w3m
 EMACS_W3M_DIR = $(SRC_TOP_DIR)/w3m
-install-w3m: $(EMACS_W3M_DIR)
+install-w3m: $(SITE_LISP_DIR)/w3m
+$(SITE_LISP_DIR)/w3m: $(EMACS_W3M_DIR)
 	cd $(EMACS_W3M_DIR) && autoreconf -f -i -s
 	cd $(EMACS_W3M_DIR) && ./configure --prefix="$(DOT_EMACS_D_DIR)/prefix" --with-lispdir="$(SITE_LISP_DIR)/w3m" --with-icondir="$(DOT_EMACS_D_DIR)/icons/w3m" --infodir="$(INFO_DIR)"
 	cd $(EMACS_W3M_DIR) && make what-where EMACS=$(EMACS)
@@ -156,14 +181,16 @@ $(EMACS_W3M_DIR):
 	cd $(EMACS_W3M_DIR) && echo emacs-w3m > CVS/Repository
 	cd $(EMACS_W3M_DIR) && echo :pserver:anonymous@cvs.namazu.org:/storage/cvsroot > CVS/Root
 	cd $(EMACS_W3M_DIR) && git cvsimport -v
-all:: install-w3m
-allclean::
+uninstall-w3m:
 	rm -rf $(SITE_LISP_DIR)/w3m
 	rm -rf $(DOT_EMACS_D_DIR)/icons/w3m
+all:: install-w3m
+allclean:: uninstall-w3m
 
-.PHONY:: install-wl
+.PHONY:: install-wl uninstall-wl
 WL_DIR = $(SRC_TOP_DIR)/wl
-install-wl: $(WL_DIR)
+install-wl: $(SITE_LISP_DIR)/wl
+$(SITE_LISP_DIR)/wl: $(WL_DIR)
 	cd $(WL_DIR) && $(RUBY) -pli~ -e 'sub(/^;(.* wl-install-utils )/){$$1}' WL-CFG
 	@: 'w3m を加える。(flimやsemiも)'
 	cd $(WL_DIR) && echo '(setq load-path (append (file-expand-wildcards "~/.emacs.d/site-lisp/*") load-path))' >> WL-CFG
@@ -176,14 +203,16 @@ $(WL_DIR):
 	cd $(WL_DIR) && echo wanderlust > CVS/Repository
 	cd $(WL_DIR) && echo :pserver:anonymous@cvs.m17n.org:/cvs/root > CVS/Root
 	cd $(WL_DIR) && git cvsimport -v
-all:: install-wl
-allclean::
+uninstall-wl:
 	rm -rf $(SITE_LISP_DIR)/wl
 	rm -rf $(DOT_EMACS_D_DIR)/icons/wl
+all:: install-wl
+allclean:: uninstall-wl
 
-.PHONY:: install-mhc
+.PHONY:: install-mhc uninstall-mhc
 MHC_DIR = $(SRC_TOP_DIR)/mhc
-install-mhc: $(MHC_DIR)
+install-mhc: $(SITE_LISP_DIR)/mhc
+$(SITE_LISP_DIR)/mhc: $(MHC_DIR)
 	cd $(MHC_DIR) && $(RUBY) configure.rb --with-ruby="$(RUBY)" --with-emacs="$(EMACS)" --with-lispdir="$(SITE_LISP_DIR)/mhc" --disable-palm --with-wl --with-icondir="$(DOT_EMACS_D_DIR)/icons/mhc" || echo "ignore error: $$?"
 	cd $(MHC_DIR) && $(RUBY) make.rb
 	cd $(MHC_DIR) && $(RUBY) make.rb install
@@ -195,57 +224,67 @@ $(MHC_DIR):
 	cd $(MHC_DIR) && echo mhc > CVS/Repository
 	cd $(MHC_DIR) && echo :pserver:anonymous@cvs.quickhack.net:/cvsroot > CVS/Root
 	cd $(MHC_DIR) && git cvsimport -v
-all:: install-mhc
-allclean::
+uninstall-mhc:
 	rm -rf $(SITE_LISP_DIR)/mhc
 	rm -rf $(DOT_EMACS_D_DIR)/icons/mhc
+all:: install-mhc
+allclean:: uninstall-mhc
 
-.PHONY:: install-wl-gravatar-el
+.PHONY:: install-wl-gravatar-el uninstall-wl-gravatar-el
 WL_GRAVATAR_EL_DIR = $(SITE_LISP_DIR)/gravatar-el
-install-wl-gravatar-el:
+install-wl-gravatar-el: $(WL_GRAVATAR_EL_DIR)
+$(WL_GRAVATAR_EL_DIR):
 	git clone git://gist.github.com/283328.git $(WL_GRAVATAR_EL_DIR)
-all:: install-wl-gravatar-el
-allclean::
+uninstall-wl-gravatar-el:
 	rm -rf $(WL_GRAVATAR_EL_DIR)
+all:: install-wl-gravatar-el
+allclean:: uninstall-wl-gravatar-el
 
-.PHONY:: install-org-mode
+.PHONY:: install-org-mode uninstall-org-mode
 ORG_MODE_DIR = $(SRC_TOP_DIR)/org-mode
-install-org-mode: $(ORG_MODE_DIR)
+install-org-mode: $(SITE_LISP_DIR)/org-mode
+$(SITE_LISP_DIR)/org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
 $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
-all:: install-org-mode
-allclean::
+uninstall-org-mode:
 	rm -rf $(SITE_LISP_DIR)/org-mode
+all:: install-org-mode
+allclean:: uninstall-org-mode
 
-.PHONY:: install-remember-el
+.PHONY:: install-remember-el uninstall-remember-el
 REMEMBER_EL_DIR = $(SRC_TOP_DIR)/remember-el
-install-remember-el: $(REMEMBER_EL_DIR)
+install-remember-el: $(SITE_LISP_DIR)/remember-el
+$(SITE_LISP_DIR)/remember-el: $(REMEMBER_EL_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR)
 	cd $(REMEMBER_EL_DIR) && make ELISPDIR=$(SITE_LISP_DIR)/remember-el INFODIR=$(INFO_DIR) install
 $(REMEMBER_EL_DIR):
 	git clone git://repo.or.cz/remember-el.git $(REMEMBER_EL_DIR)
-all:: install-remember-el
-allclean::
+uninstall-remember-el:
 	rm -rf $(SITE_LISP_DIR)/remember-el
+all:: install-remember-el
+allclean:: uninstall-remember-el
 
-.PHONY:: install-elscreen
+.PHONY:: install-elscreen uninstall-elscreen
 ELSCREEN_VERSION = 1.4.6
-install-elscreen: elscreen-$(ELSCREEN_VERSION).tar.gz
+install-elscreen: $(SITE_LISP_DIR)/elscreen/elscreen.el
+$(SITE_LISP_DIR)/elscreen/elscreen.el: elscreen-$(ELSCREEN_VERSION).tar.gz
 	tar xvf elscreen-$(ELSCREEN_VERSION).tar.gz
 	mkdir -p $(SITE_LISP_DIR)/elscreen
 	cp -p elscreen-$(ELSCREEN_VERSION)/elscreen.el $(SITE_LISP_DIR)/elscreen
 	rm -rf elscreen-$(ELSCREEN_VERSION)
 elscreen-$(ELSCREEN_VERSION).tar.gz:
 	curl -O ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-$(ELSCREEN_VERSION).tar.gz
-all:: install-elscreen
-allclean::
+uninstall-elscreen:
 	rm -rf $(SITE_LISP_DIR)/elscreen
+all:: install-elscreen
+allclean:: uninstall-elscreen
 
 .PHONY:: install-elscreen-wl
 ELSCREEN_WL_VERSION = 0.8.0
-install-elscreen-wl: elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
+install-elscreen-wl: $(SITE_LISP_DIR)/elscreen/elscreen-wl.el
+$(SITE_LISP_DIR)/elscreen/elscreen-wl.el: elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
 	tar xvf elscreen-wl-$(ELSCREEN_WL_VERSION).tar.gz
 	mkdir -p $(SITE_LISP_DIR)/elscreen
 	cp -p elscreen-wl-$(ELSCREEN_WL_VERSION)/elscreen-wl.el $(SITE_LISP_DIR)/elscreen
