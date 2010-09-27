@@ -1,6 +1,7 @@
 *-1.14
 *.tar.gz
 *~
+.DS_Store
 mhc
 org-mode
 remember-el
