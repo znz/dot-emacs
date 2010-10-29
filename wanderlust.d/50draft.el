@@ -31,8 +31,9 @@
 ;; 返信時のウィンドウを広くする
 (setq wl-draft-reply-buffer-style 'full)
 
-;; ドラフトを新しいフレームで書く
-(setq wl-draft-use-frame t)
+;; ドラフトを新しいフレームで開くのは emacsclient -c が閉じてしまうので
+;; 止めた。
+(setq wl-draft-use-frame nil)
 
 ;; 返信時のヘッダに相手の名前を入れない。
 (setq wl-draft-reply-use-address-with-full-name nil)
