@@ -2,19 +2,18 @@
 ;; 指定行へ移動
 (global-set-key "\M-g" 'goto-line)
 
-(defun my-setup-terminal-local (&optional frame)
-  "setup terminal-local variables."
-  (unless frame
-    (setq frame (selected-frame)))
-  (select-frame frame)
+(defun my-setup-keyboard-translate (&optional frame)
+  "setup keyboard-translate."
+  (when frame
+    (select-frame frame))
   ;; C-hもBackSpaceも同じ挙動にする。
   (keyboard-translate ?\C-h ?\C-?)  ; translate `C-h' to DEL
   ;;(keyboard-translate ?\C-? ?\C-h)  ; translate DEL to `C-h'.
   )
-(my-setup-terminal-local)
+(my-setup-keyboard-translate)
 ;; emacsclient -c でも設定
 (add-hook 'after-make-frame-functions
-          'my-setup-terminal-local)
+          'my-setup-keyboard-translate)
 
 ;; 1 回の delete-backward-char で複数の whitespace を消す。
 (setq backward-delete-char-untabify-method 'hungry)
