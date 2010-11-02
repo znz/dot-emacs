@@ -1,8 +1,23 @@
-;; mule/emacs -nw で起動した時にメニューバーを消す
+;; 端末の中ではメニューバーを消す
 (static-when (functionp 'menu-bar-mode)
   (if window-system
       (menu-bar-mode 1)
     (menu-bar-mode -1)))
+
+;; emacsclient -c の時は表示しようとしたら、
+;; (terminal-local じゃないので)
+;; 端末の中の方にも影響してうまくいかなかった。
+;; (defun my-menu-bar-mode (&optional frame)
+;;   "setup menu-bar-mode."
+;;   (unless frame
+;;     (setq frame (selected-frame)))
+;;   (select-frame frame)
+;;   (if (window-system frame)
+;;       (menu-bar-mode 1)
+;;     (menu-bar-mode -1)))
+;; (my-menu-bar-mode)
+;; (add-hook 'after-make-frame-functions
+;;           'my-menu-bar-mode)
 
 ;; ツールバーを表示しない
 (static-when (fboundp 'tool-bar-mode)
