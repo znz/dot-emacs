@@ -10,6 +10,11 @@
   (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
   )
 
+(when (require 'shell-pop nil t)
+  (shell-pop-set-internal-mode "ansi-term")
+  (global-set-key [f8] 'shell-pop)
+  )
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
