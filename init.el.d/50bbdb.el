@@ -26,6 +26,9 @@
           ("X-Mailer" (".*$" User-Agent 0))
           ("X-Newsreader" (".*$" User-Agent 0))
           ("User-Agent" (".*$" User-Agent 0))
+          ; http://www.emacswiki.org/emacs/BbdbFaces
+          ("X-Face" (".+" face 0 'replace))
+          ("Face" (".+" face 0 'replace))
           ))
   )
 
