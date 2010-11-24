@@ -6,9 +6,10 @@
   (setq bbdb-pop-up-target-lines 3)
   (setq bbdb-offer-save 'savenoprompt)
   (setq bbdb-quiet-about-name-mismatches t)
-  (setq bbdb-always-add-addresses t)
+  (setq bbdb-always-add-addresses 'bbdb-ignore-some-messages-hook)
   (setq bbdb-new-nets-always-primary t)
   (setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
+  (setq bbdb/news-auto-create-p nil)
   (setq bbdb-ignore-some-messages-alist
         '(("From" . "no.?reply\\|DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch\\|redmine")
           ("To" . "DAEMON\\|daemon\\|root\\|master\\|admin\\|info\\|log\\|arpwatch")))
