@@ -59,8 +59,14 @@
       (setenv "GPG_AGENT_INFO" nil))
      )))
 
-(my-keychain-env)
-(my-gpg-agent-info)
+(static-cond
+ ((eq window-system 'ns)
+  ;; Mac OS X の keychain Access は仕組みが違うので余計なことをしない
+  )
+ (t
+  (my-keychain-env)
+  (my-gpg-agent-info)
+  ))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
