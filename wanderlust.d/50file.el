@@ -22,7 +22,9 @@
 (setq wl-address-file
       (expand-file-name "dot-addresses.txt" my-private-directory))
 
-(setq elmo-passwd-alist-file-name "passwd.gpg")
+(setq elmo-passwd-alist-file-name
+      (expand-file-name "passwd.gpg" my-private-directory))
+
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
