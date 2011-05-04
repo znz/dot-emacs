@@ -1,5 +1,7 @@
 (defvar my-font nil)
 (static-cond
+ ((file-exists-p "~/.fonts/Ricty-Regular.ttf")
+  (setq my-font "ricty-12"))
  ((file-exists-p "/usr/share/fonts/truetype/vlgothic/VL-Gothic-Regular.ttf")
   (setq my-font "VL Gothic"))
  ((eq window-system 'ns)
