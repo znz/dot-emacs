@@ -33,15 +33,17 @@
 
   (define-key my-prefix-map "c" 'compile)
 
-  (define-key my-prefix-map "f"
-    (lambda () (interactive)
-      (unless (file-exists-p "~/.aspell.conf")
-        (error "~/.aspell.conf should be 'lang en_US'"))
-      (flyspell-mode 1)
-      (flyspell-buffer)))
-  (define-key my-prefix-map "F"
-    (lambda () (interactive)
-      (flyspell-mode -1)))
+  (defun my-flyspell-enable ()
+    (interactive)
+    (unless (file-exists-p "~/.aspell.conf")
+      (error "~/.aspell.conf should be 'lang en_US'"))
+    (flyspell-mode 1)
+    (flyspell-buffer))
+  (defun my-flyspell-disable ()
+    (interactive)
+    (flyspell-mode -1))
+  (define-key my-prefix-map "f" 'my-flyspell-enable)
+  (define-key my-prefix-map "F" 'my-flyspell-disable)
 
   (define-key my-prefix-map "o" 'browse-url-at-point)
 
