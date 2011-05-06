@@ -33,18 +33,6 @@
 
   (define-key my-prefix-map "c" 'compile)
 
-  (defun my-flyspell-enable ()
-    (interactive)
-    (unless (file-exists-p "~/.aspell.conf")
-      (error "~/.aspell.conf should be 'lang en_US'"))
-    (flyspell-mode 1)
-    (flyspell-buffer))
-  (defun my-flyspell-disable ()
-    (interactive)
-    (flyspell-mode -1))
-  (define-key my-prefix-map "f" 'my-flyspell-enable)
-  (define-key my-prefix-map "F" 'my-flyspell-disable)
-
   (define-key my-prefix-map "o" 'browse-url-at-point)
 
   (defun my-set-variable-tab-width (arg)

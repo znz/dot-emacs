@@ -29,9 +29,6 @@
 ;; [Wanderlust:14217]
 (add-to-list 'mime-charset-coding-system-alist '(cp932 . shift_jis))
 
-(when (file-exists-p "~/.aspell.conf")
-  (add-hook 'mime-view-mode-hook 'my-flyspell-enable))
-
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
