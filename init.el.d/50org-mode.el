@@ -45,6 +45,16 @@
   (setq org-log-done 'time)
   (setq org-startup-truncated nil)
 
+  (setq org-export-latex-coding-system 'euc-jp-unix)
+  (setq org-export-latex-date-format "%Y-%m-%d")
+  (setq org-latex-to-pdf-process
+        '("cd %o && platex %b && platex %b && dvipdfmx %b"
+          "cd %o && platex %b && platex %b && dvipdfmx %b"
+          ))
+
+  (static-when (file-exists-p "~/.emacs.d/site-lisp/org-mode/ditaa.jar")
+    (setq org-ditaa-jar-path "~/.emacs.d/site-lisp/org-mode/ditaa.jar"))
+
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
       ad-do-it))
