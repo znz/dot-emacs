@@ -260,10 +260,13 @@ update:: update-wl-gravatar-el
 
 .PHONY:: install-org-mode uninstall-org-mode
 ORG_MODE_DIR = $(SRC_TOP_DIR)/org-mode
-install-org-mode: $(SITE_LISP_DIR)/org-mode
+install-org-mode: $(SITE_LISP_DIR)/org-mode install-ditaa.jar
 $(SITE_LISP_DIR)/org-mode: $(ORG_MODE_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR)
 	cd $(ORG_MODE_DIR) && make lispdir=$(SITE_LISP_DIR)/org-mode infodir=$(INFO_DIR) install
+install-ditaa.jar: $(SITE_LISP_DIR)/org-mode/ditaa.jar
+$(SITE_LISP_DIR)/org-mode/ditaa.jar: $(ORG_MODE_DIR)/contrib/scripts/ditaa.jar
+	cd $(ORG_MODE_DIR) && cp -pv contrib/scripts/ditaa.jar $(SITE_LISP_DIR)/org-mode/
 $(ORG_MODE_DIR):
 	git clone git://repo.or.cz/org-mode.git $(ORG_MODE_DIR)
 update-org-mode:
