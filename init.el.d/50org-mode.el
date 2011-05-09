@@ -48,8 +48,8 @@
   (setq org-export-latex-coding-system 'euc-jp-unix)
   (setq org-export-latex-date-format "%Y-%m-%d")
   (setq org-latex-to-pdf-process
-        '("cd %o && platex %b && platex %b && dvipdfmx %b"
-          "cd %o && platex %b && platex %b && dvipdfmx %b"
+        '("cd %o && { find -name '*.png' -exec ebb '{}' +; } && platex %b && platex %b && dvipdfmx %b"
+          "cd %o && { find -name '*.png' -exec ebb '{}' +; } && platex %b && platex %b && dvipdfmx %b"
           ))
 
   (static-when (file-exists-p "~/.emacs.d/site-lisp/org-mode/ditaa.jar")
