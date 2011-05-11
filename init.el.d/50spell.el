@@ -39,12 +39,6 @@
      debian-control-mode-hook
      text-mode-hook
      latex-mode-hook
-     ))
-
-  (mapc
-   (lambda (hook)
-     (add-hook hook 'my-flyspell-enable))
-   '(
      mime-view-mode-hook
      ))
 
