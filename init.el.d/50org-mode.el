@@ -55,6 +55,10 @@
   (static-when (file-exists-p "~/.emacs.d/site-lisp/org-mode/ditaa.jar")
     (setq org-ditaa-jar-path "~/.emacs.d/site-lisp/org-mode/ditaa.jar"))
 
+  (static-when (file-exists-p "~/.emacs.d/site-lisp/org-mode/plantuml.jar")
+    (setq org-plantuml-jar-path"~/.emacs.d/site-lisp/org-mode/plantuml.jar")
+    (require 'ob-plantuml))
+
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
       ad-do-it))
