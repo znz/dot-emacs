@@ -38,6 +38,21 @@
   ;; 「ruby -I. -r syntax_highlighter -e 'SH_LANG_NAMES.each{|k,v|puts %Q(    ("#{k}" . "#{v}"))}' | sort」で更新
   "simplepaste が language で受け付けるもの一覧")
 
+(defvar atdot-simple-paste-mode-to-languages-alist
+  '((sh-mode . "Bash/shell")
+    (c++-mode . "C++")
+    (c-mode . "C++")
+    (diff-mode . "Diff")
+    (java-mode . "Java")
+    (js-mode . "JavaScript")
+    (perl-mode . "Perl")
+    (python-mode . "Python")
+    (sql-mode . "SQL")
+    (ruby-mode . "Ruby")
+    (nxml-mode . "XML"))
+  "major-mode から language への一覧")
+
+
 (defun atdot-simple-paste-post ()
   "リージョンかバッファの内容を貼り付けて URL をキルリングに入れる。"
   (interactive)
@@ -60,17 +75,25 @@
 
 (defun atdot-simple-paste-post-with-read (paste_body &optional args)
   "Title と Language を読み込んでから貼り付ける。"
-  (let ((title (read-string
-                (format "Title (default %s): " (buffer-name))
-                nil nil (buffer-name)))
-        (language
-         (cdr (assoc
-               (let ((completion-ignore-case t))
-                 (completing-read
-                  "Language (default Plain): "
-                  atdot-simple-paste-languages-alist
-                  nil t nil nil "Plain"))
-               atdot-simple-paste-languages-alist))))
+  (let* ((default-title (buffer-name))
+         (title (read-string
+                 (format "Title (default %s): " default-title)
+                 nil nil default-title))
+         (default-language
+           (or
+            (cdr (assoc
+                  major-mode
+                  atdot-simple-paste-mode-to-languages-alist))
+            (caar atdot-simple-paste-languages-alist)))
+         (language
+          (cdr (assoc
+                (let ((completion-ignore-case t))
+                  (completing-read
+                   (format "Language (default %s): "
+                           default-language)
+                   atdot-simple-paste-languages-alist
+                   nil t nil nil default-language))
+                atdot-simple-paste-languages-alist))))
     (if language
         (setq args (cons `("language" . ,language) args)))
     (if title
