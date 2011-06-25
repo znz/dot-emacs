@@ -65,10 +65,11 @@
                 nil nil (buffer-name)))
         (language
          (cdr (assoc
-               (completing-read
-                "Language (default Plain): "
-                atdot-simple-paste-languages-alist
-                nil t nil nil "Plain")
+               (let ((completion-ignore-case t))
+                 (completing-read
+                  "Language (default Plain): "
+                  atdot-simple-paste-languages-alist
+                  nil t nil nil "Plain"))
                atdot-simple-paste-languages-alist))))
     (if language
         (setq args (cons `("language" . ,language) args)))
