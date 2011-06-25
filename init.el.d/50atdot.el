@@ -60,12 +60,15 @@
 
 (defun atdot-simple-paste-post-with-read (paste_body &optional args)
   "Title と Language を読み込んでから貼り付ける。"
-  (let ((title (read-string "Title: " nil nil (buffer-name)))
+  (let ((title (read-string
+                (format "Title (default %s): " (buffer-name))
+                nil nil (buffer-name)))
         (language
          (cdr (assoc
-               (completing-read "Language: "
-                                atdot-simple-paste-languages-alist
-                                nil t nil nil "Plain")
+               (completing-read
+                "Language (default Plain): "
+                atdot-simple-paste-languages-alist
+                nil t nil nil "Plain")
                atdot-simple-paste-languages-alist))))
     (if language
         (setq args (cons `("language" . ,language) args)))
