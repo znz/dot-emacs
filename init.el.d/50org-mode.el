@@ -59,6 +59,11 @@
     (setq org-plantuml-jar-path"~/.emacs.d/site-lisp/org-mode/plantuml.jar")
     (require 'ob-plantuml))
 
+  ;;(auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw.el")
+  ;;(auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw-org.el")
+  (when (require 'calfw-org nil t)
+    (define-key my-prefix-map "C" 'cfw:open-org-calendar))
+
   (defadvice org-insert-time-stamp (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
       ad-do-it))
