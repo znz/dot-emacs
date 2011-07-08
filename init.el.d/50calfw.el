@@ -1,4 +1,14 @@
-(when (locate-library "calfw")
+;; (auto-install-from-url "http://www.meadowy.org/meadow/netinstall/export/799/branches/3.00/pkginfo/japanese-holidays/japanese-holidays.el")
+(static-when (locate-library "japanese-holidays")
+  (add-hook
+   'calendar-load-hook
+   (lambda ()
+     (require 'japanese-holidays)
+     (setq calendar-holidays
+           (append japanese-holidays local-holidays other-holidays))
+     )))
+
+(static-when (locate-library "calfw")
   (eval-after-load "calfw"
     '(progn
        (define-key cfw:calendar-mode-map "q"
