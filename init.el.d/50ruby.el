@@ -22,7 +22,7 @@
 ;; インデント
 (setq ruby-deep-indent-paren-style nil)
 
-;; (install-elisp-from-emacswiki "ruby-block.el")
+;; (auto-install-from-emacswiki "ruby-block.el")
 (static-when (locate-library "ruby-block")
   (autoload 'ruby-block-mode "ruby-block")
   ;; ミニバッファに表示
