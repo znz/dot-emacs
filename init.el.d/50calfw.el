@@ -10,11 +10,8 @@
 
 ;; (auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw.el")
 (static-when (locate-library "calfw")
-  (eval-after-load "calfw"
-    '(progn
-       (define-key cfw:calendar-mode-map "q"
-         '(lambda () (interactive) (kill-buffer nil)))
-       )))
+  (autoload 'cfw:open-calendar-buffer "calfw" nil t)
+  )
 
 ;; (auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw-ical.el")
 (static-when (locate-library "calfw-ical")
