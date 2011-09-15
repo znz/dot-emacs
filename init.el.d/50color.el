@@ -1,6 +1,7 @@
 ;; M-x color-theme-select で試して選べばいい。
 (when (require 'color-theme nil t)
-  (color-theme-initialize)
+  (when (fboundp 'color-theme-initialize)
+    (color-theme-initialize))
   (color-theme-dark-laptop))
 
 (when (require 'develock nil t)
