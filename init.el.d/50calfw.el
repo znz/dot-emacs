@@ -8,12 +8,12 @@
            (append japanese-holidays local-holidays other-holidays))
      )))
 
-;; (auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw.el")
+;; (auto-install-from-url "https://raw.github.com/kiwanami/emacs-calfw/master/calfw.el")
 (static-when (locate-library "calfw")
   (autoload 'cfw:open-calendar-buffer "calfw" nil t)
   )
 
-;; (auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw-ical.el")
+;; (auto-install-from-url "https://raw.github.com/kiwanami/emacs-calfw/master/calfw-ical.el")
 (static-when (locate-library "calfw-ical")
   (defun my-cfw-open-IT勉強会カレンダー ()
     (interactive)
@@ -23,7 +23,7 @@
   (define-key my-prefix-map "I" 'my-cfw-open-IT勉強会カレンダー)
   )
 
-;;(auto-install-from-url "https://github.com/kiwanami/emacs-calfw/raw/master/calfw-org.el")
+;;(auto-install-from-url "https://raw.github.com/kiwanami/emacs-calfw/master/calfw-org.el")
 (static-when (locate-library "calfw-org")
   (autoload 'cfw:open-org-calendar "calfw-org" nil t)
   (define-key my-prefix-map "C" 'cfw:open-org-calendar)
