@@ -16,7 +16,7 @@
   (define-key my-anything-prefix-map "r" 'anything-resume)
   (define-key my-anything-prefix-map "y" 'anything-show-kill-ring)
   (define-key my-anything-prefix-map (kbd "C-;") 'anything-call-source) ; source 一覧
-  (define-key my-anything-prefix-map (kbd "C-g") 'keyboard-quit)
+  (define-key my-anything-prefix-map (kbd "C-g") 'undefined)
   (define-key my-anything-prefix-map (kbd "C-q") 'anything)
   (define-key my-prefix-map ";" my-anything-prefix-map)
   (define-key my-prefix-map (kbd "C-;") 'anything-execute-anything-command) ; anything-config.el で preconfigured なものから選ぶ。

@@ -12,7 +12,7 @@
   (eval-after-load "elscreen"
     '(define-key my-prefix-map "a" elscreen-map))
 
-  (define-key my-prefix-map (kbd "C-g") 'keyboard-quit)
+  (define-key my-prefix-map (kbd "C-g") 'undefined)
   (define-key my-prefix-map "/" 'hippie-expand)
   (define-key my-prefix-map "\M-/" 'dabbrev-expand)
 
