@@ -6,11 +6,11 @@
   (global-set-key "\C-qq" 'quoted-insert) ; emacs-origin C-q
   (global-set-key "\C-q\C-q" 'quoted-insert)
 
-  ;; C-z の代わりに \C-qa を使う。
-  ;;(elscreen-set-prefix-key "\C-qa")
+  ;; C-z の代わりに \C-qz を使う。
+  ;;(elscreen-set-prefix-key "\C-qz")
   ;; C-z の他に \C-qa も使えるようにする。
   (eval-after-load "elscreen"
-    '(define-key my-prefix-map "a" elscreen-map))
+    '(define-key my-prefix-map "z" elscreen-map))
 
   (define-key my-prefix-map (kbd "C-g") 'undefined)
   (define-key my-prefix-map "/" 'hippie-expand)
