@@ -4,6 +4,7 @@
   (setq my-prefix-map (make-keymap))
   (global-set-key "\C-q" my-prefix-map)
   (global-set-key "\C-qq" 'quoted-insert) ; emacs-origin C-q
+  (global-set-key "\C-q\C-q" 'quoted-insert)
 
   ;; C-z の代わりに \C-qa を使う。
   ;;(elscreen-set-prefix-key "\C-qa")
