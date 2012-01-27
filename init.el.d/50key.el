@@ -29,6 +29,8 @@
 
 (global-set-key (kbd "<Scroll_Lock>") 'ignore) ; 無視する
 
+(global-set-key (kbd "M-¥") (lambda () (interactive) (insert "\\")))
+
 ;; input-method
 (global-set-key [zenkaku-hankaku] 'toggle-input-method)
 (global-set-key [kanji] 'toggle-input-method)
