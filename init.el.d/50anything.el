@@ -1,4 +1,5 @@
 ;;(auto-install-batch "anything")
+;; (auto-install-from-url "https://raw.github.com/wakaran/anything-rdefs/master/anything-rdefs.el")
 
 (static-when
     (and (<= 22 emacs-major-version)
@@ -54,6 +55,11 @@
     ;; descbinds-anything-install の内容をコピー
     (fset 'describe-bindings 'descbinds-anything)
     (autoload 'descbinds-anything "descbinds-anything" nil t))
+
+  (static-when (locate-library "anything-rdefs")
+    (setq ar:command "~/.emacs.d/rdefs.rb")
+    (when (file-exists-p ar:command)
+      (require 'anything-rdefs)))
   )
 
 ;;; Local Variables:
