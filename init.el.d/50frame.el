@@ -32,7 +32,8 @@
 (setq truncate-lines nil)
 
 ;; スクロールバーを表示する
-(scroll-bar-mode 1)
+(static-when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode 1))
 
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'right)
