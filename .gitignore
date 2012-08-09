@@ -2,6 +2,7 @@
 *.tar.gz
 *~
 .DS_Store
+apel
 mhc
 org-mode
 remember-el
