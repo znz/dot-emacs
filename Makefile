@@ -61,12 +61,11 @@ allclean:: clean
 APEL_VERSION = 10.8
 .PHONY:: install-apel uninstall-apel
 install-apel: $(SITE_LISP_DIR)/apel
-$(SITE_LISP_DIR)/apel: apel-$(APEL_VERSION).tar.gz
-	tar xvf apel-$(APEL_VERSION).tar.gz
-	(cd apel-$(APEL_VERSION) && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR) VERSION_SPECIFIC_LISPDIR=$(SITE_LISP_DIR))
-	rm -rf apel-$(APEL_VERSION)
-apel-$(APEL_VERSION).tar.gz:
-	curl -O http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-$(APEL_VERSION).tar.gz
+$(SITE_LISP_DIR)/apel: apel
+	(cd apel && make install EMACS=$(EMACS) LISPDIR=$(SITE_LISP_DIR) VERSION_SPECIFIC_LISPDIR=$(SITE_LISP_DIR))
+	(cd apel && git clean -dfx)
+apel:
+	git clone git://github.com/wanderlust/apel.git
 uninstall-apel:
 	rm -rf $(SITE_LISP_DIR)/apel $(SITE_LISP_DIR)/emu
 all:: install-apel
