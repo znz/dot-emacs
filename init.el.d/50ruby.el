@@ -8,12 +8,14 @@
     "Major mode for editing Ruby source files." t)
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-  (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
-  (autoload 'inf-ruby-keys "inf-ruby"
-    "Set local key defs for inf-ruby in ruby-mode")
-  (add-hook 'ruby-mode-hook
-            '(lambda ()
-               (inf-ruby-keys))))
+  (static-when (locate-library "inf-ruby")
+    (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
+    (autoload 'inf-ruby-keys "inf-ruby"
+      "Set local key defs for inf-ruby in ruby-mode")
+    (add-hook 'ruby-mode-hook
+              '(lambda ()
+                 (inf-ruby-keys))))
+  )
 
 ;; ruby-mode でも which-function-mode を有効にする。
 (static-when (boundp 'which-func-modes)
