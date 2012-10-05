@@ -7,6 +7,9 @@
   (autoload 'ruby-mode "ruby-mode"
     "Major mode for editing Ruby source files." t)
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\(Cap\\|Gem\\|Guard\\|Rake\\)file\\'" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (static-when (locate-library "inf-ruby")
     (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
