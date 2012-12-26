@@ -54,11 +54,16 @@
        (abbrev-mode "省" (:foreground "green"))
        (auto-fill-function "詰" (:foreground "yellow"))
        (encoded-kbd-mode "鍵" (:foreground "blue"))
-       (view-mode "見" (:foreground "white" :background "DeepPink1"))
        ))
   (apply 'my-shorten-minor-mode-name m))
+(eval-after-load "view"
+  '(my-shorten-minor-mode-name
+    'view-mode "見" '(:foreground "white" :background "DeepPink1")))
 (eval-after-load "outline"
-  '(my-shorten-minor-mode-name 'outline-minor-mode "O" '(:foreground "blue")))
+  '(my-shorten-minor-mode-name
+    'outline-minor-mode "O" '(:foreground "blue")))
+(eval-after-load "ruby-block"
+  '(my-shorten-minor-mode-name 'ruby-block-mode "区"))
 
 (setq eldoc-minor-mode-string
       (if (fboundp 'propertize)
