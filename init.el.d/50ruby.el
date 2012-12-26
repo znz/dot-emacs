@@ -6,11 +6,32 @@
 (static-when (locate-library "ruby-mode")
   (autoload 'ruby-mode "ruby-mode"
     "Major mode for editing Ruby source files." t)
-  (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\(Cap\\|Gem\\|Guard\\|Rake\\)file\\'" . ruby-mode))
+
+  (defun my-ruby-command ()
+    (cond
+     ((file-exists-p "~/.rbenv/shims/ruby")
+      "~/.rbenv/shims/ruby")
+     (nil "ruby")))
+
+  (setq
+   my-ruby-file-name-patterns
+   '("\\.rb\\'"
+     "\\.rake\\'"
+     "\\.ru\\'"
+     "\\(Cap\\|Gem\\|Guard\\|Rake\\)file\\'"
+     ))
+  (mapc
+   (lambda (pattern)
+     (add-to-list 'auto-mode-alist `(,pattern . ruby-mode)))
+   my-ruby-file-name-patterns)
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+
+  (eval-after-load "flymake"
+    '(mapc
+      (lambda (pattern)
+        (add-to-list 'flymake-allowed-file-name-masks `(,pattern flymake-ruby-init)))
+      my-ruby-file-name-patterns))
+
   (static-when (locate-library "inf-ruby")
     (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
     (autoload 'inf-ruby-keys "inf-ruby"
