@@ -2,6 +2,7 @@
     (and
      (fboundp 'flymake-mode))
 
+  ;; (auto-install-from-emacswiki "flymake-cursor.el")
   (eval-after-load "flymake"
     '(require 'flymake-cursor nil t))
 
