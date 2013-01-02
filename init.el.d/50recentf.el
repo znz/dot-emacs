@@ -23,7 +23,7 @@
   (static-when (fboundp 'file-remote-p)
     (add-to-list 'recentf-keep 'file-remote-p))
   (recentf-mode 1)
-  (global-set-key "\C-cf" 'recentf-open-files)
+  ;(global-set-key "\C-cf" 'recentf-open-files)
   )
 
 ;;; Local Variables:
