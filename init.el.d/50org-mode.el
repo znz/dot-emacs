@@ -20,7 +20,7 @@
          (file-expand-wildcards
           (expand-file-name "*/*/todo.org" howm-directory))))
 
-  (org-remember-insinuate)
+  ;(org-remember-insinuate)
   (setq org-default-notes-file
         (expand-file-name "notes.org" org-directory))
   (let* ((body "\n   %i\n   %a\n   Added: %U")
