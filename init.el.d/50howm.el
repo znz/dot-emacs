@@ -1,9 +1,9 @@
-(static-cond
+(cond
  ((file-directory-p (expand-file-name "~/howm/data"))
   (setq howm-directory (expand-file-name "~/howm/data")))
  (t (setq howm-directory nil)))
 
-(static-when (and howm-directory (locate-library "howm"))
+(when (and howm-directory (locate-library "howm"))
   (if (and
        (<= emacs-major-version 21)
        (string-match "\\`ja_JP\\.[Uu][Tt][Ff]-?8\\'" (getenv "LANG"))
