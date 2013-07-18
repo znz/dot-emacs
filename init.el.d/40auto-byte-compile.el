@@ -22,7 +22,8 @@
 (eval-when-compile
   (add-hook 'after-init-hook
             (lambda ()
-	      ;;(my-byte-compile-file "~/.emacs.d/emacs.el")
+              ;;(my-byte-compile-file "~/.emacs.d/emacs.el")
+              (require 'static)
               (my-byte-compile-file "~/.emacs.d/init")
               )))
 
