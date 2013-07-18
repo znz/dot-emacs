@@ -1,9 +1,24 @@
 (defvar my-font nil)
 (static-cond
- ((file-exists-p "~/.fonts/Ricty-Regular.ttf")
-  (setq my-font "ricty-12"))
+ ;((file-exists-p "~/.fonts/Ricty-Regular.ttf")
+ ; (setq my-font "ricty-12"))
  ((file-exists-p "/usr/share/fonts/truetype/vlgothic/VL-Gothic-Regular.ttf")
   (setq my-font "VL Gothic"))
+ ((or (file-exists-p "~/.fonts/Ricty-Regular.ttf")
+      (file-exists-p "~/Library/Fonts/Ricty-Regular.ttf"))
+  (set-face-attribute 'default nil
+                      :family "Ricty"
+                      :height 160)
+  (set-fontset-font (frame-parameter nil 'font)
+                    'japanese-jisx0208
+                    (cons "Ricty" "iso10646-1"))
+  (set-fontset-font (frame-parameter nil 'font)
+                    'japanese-jisx0212
+                    (cons "Ricty" "iso10646-1"))
+  (set-fontset-font (frame-parameter nil 'font)
+                    'katakana-jisx0201
+                    (cons "Ricty" "iso10646-1"))
+  )
  ((eq window-system 'ns)
   (setq mac-allow-anti-aliasing t)
   (set-face-attribute 'default nil
