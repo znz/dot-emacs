@@ -42,6 +42,19 @@
     ;;  'tramp-multi-connection-function-alist
     ;;  '("sshx" tramp-multi-connect-rlogin
     ;;    "ssh %h -e none -t -t -l %u /bin/sh%n"))
+
+    (setq
+     tramp-remote-process-environment
+     (mapcar
+      (lambda (arg)
+        (cond
+         ((stringp arg)
+          (if (string-match "\\`LC_ALL=.*" arg)
+              (replace-match "LC_ALL=ja_JP.utf8" t nil arg)
+            arg))
+         (t arg)
+         ))
+      tramp-remote-process-environment))
     )
 
   ;; eval-after-loadなのでquote必須
