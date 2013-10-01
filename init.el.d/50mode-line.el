@@ -10,14 +10,14 @@
 (setq-default
  mode-line-format
  (mapcar
-  '(lambda (arg)
-     (cond
-      ((stringp arg)
-       (if (string-match " +" arg)
-           (replace-match " " nil nil arg)
-         arg))
-      (t arg)
-      ))
+  (lambda (arg)
+    (cond
+     ((stringp arg)
+      (if (string-match " +" arg)
+          (replace-match " " nil nil arg)
+        arg))
+     (t arg)
+     ))
   mode-line-format))
 
 ;; モードラインに時刻表示。M-x display-time-modeで切り替え。

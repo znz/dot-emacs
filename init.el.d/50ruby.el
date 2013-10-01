@@ -37,8 +37,8 @@
     (autoload 'inf-ruby-keys "inf-ruby"
       "Set local key defs for inf-ruby in ruby-mode")
     (add-hook 'ruby-mode-hook
-              '(lambda ()
-                 (inf-ruby-keys))))
+              #'(lambda ()
+                  (inf-ruby-keys))))
   )
 
 ;; ruby-mode でも which-function-mode を有効にする。

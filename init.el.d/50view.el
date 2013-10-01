@@ -16,10 +16,10 @@
   (define-key view-mode-map "l" 'forward-char)
   (define-key view-mode-map "j" 'next-line)
   (define-key view-mode-map "J"
-    '(lambda () (interactive) (scroll-up 1)))
+    (lambda () (interactive) (scroll-up 1)))
   (define-key view-mode-map "k" 'previous-line)
   (define-key view-mode-map "K"
-    '(lambda () (interactive) (scroll-down 1)))
+    (lambda () (interactive) (scroll-down 1)))
   (define-key view-mode-map "/" 'isearch-forward-regexp)
   (define-key view-mode-map "n" 'isearch-repeat-forward)
   (define-key view-mode-map "N" 'isearch-repeat-backward)
