@@ -11,9 +11,14 @@
   )
 
 (when (require 'shell-pop nil t)
-  (shell-pop-set-internal-mode "ansi-term")
-  (global-set-key [f8] 'shell-pop)
-  )
+  (custom-set-variables
+   ;'(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+   '(shell-pop-universal-key "C-t")
+   '(shell-pop-window-position "bottom")
+   ;'(shell-pop-window-position "full")
+   )
+  ;;(global-set-key [f8] 'shell-pop)
+ )
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
