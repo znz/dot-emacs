@@ -52,6 +52,8 @@
    'elscreen-mode-to-nickname-alist
    '("^riece-" . "Riece"))
   (elscreen-rebuild-mode-to-nickname-alist)
+
+  (elscreen-start)
   )
 
 ;;; Local Variables:
