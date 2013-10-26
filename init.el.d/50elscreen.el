@@ -1,11 +1,6 @@
 (static-when (locate-library "elscreen")
   (setq elscreen-display-tab nil)
 
-  ;; emacs22 以降にある。
-  (defun-maybe booleanp (object)
-    "Return non-nil if OBJECT is one of the two canonical boolean values: t or nil."
-    (memq object '(nil t)))
-
   (require 'elscreen)
   (static-when (locate-library "elscreen-color-theme")
     (eval-after-load "color-theme"
@@ -40,13 +35,6 @@
 
   ;; C-z C-z で直前のスクリーンに移動する。
   (define-key elscreen-map "\C-z" 'elscreen-toggle)
-
-  ;; elscreen: From Emacs 24.3: Symbol's value as variable is void: last-command-char
-  ;; http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=705436
-  ;; のパッチから GNU Emacs 用の対処方法を取り出して advice に変更。
-  (defadvice elscreen-jump (around elscreen-last-command-char-event activate)
-    (let ((last-command-char last-command-event))
-      ad-do-it))
 
   (add-to-list
    'elscreen-mode-to-nickname-alist
