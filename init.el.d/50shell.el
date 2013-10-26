@@ -13,7 +13,7 @@
 (when (require 'shell-pop nil t)
   (custom-set-variables
    '(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))))
-   '(shell-pop-universal-key "C-t")
+   '(shell-pop-universal-key "C-c t")
    '(shell-pop-window-position "full")
    )
   ;;(global-set-key [f8] 'shell-pop)
