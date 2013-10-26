@@ -19,6 +19,7 @@
      elscreen
      flymake
      flymake-haml
+     helm
      markdown-mode
      org
      shell-pop
