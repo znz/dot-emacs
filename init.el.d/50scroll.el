@@ -20,6 +20,12 @@
 (setq scroll-margin 2)
 (setq scroll-step 1)
 
+;; ansi-term の最下行で文字を入力した時に一瞬スクロールするのを止める。
+(add-hook
+ 'term-mode-hook
+ (lambda ()
+   (setq-local scroll-margin 0)))
+
 ;;; Local Variables:
 ;;; mode: emacs-lisp
 ;;; coding: utf-8
