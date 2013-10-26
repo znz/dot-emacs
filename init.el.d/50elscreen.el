@@ -6,7 +6,7 @@
     "Return non-nil if OBJECT is one of the two canonical boolean values: t or nil."
     (memq object '(nil t)))
 
-  (load "elscreen")
+  (require 'elscreen)
   (static-when (locate-library "elscreen-color-theme")
     (eval-after-load "color-theme"
       '(load "elscreen-color-theme")))
