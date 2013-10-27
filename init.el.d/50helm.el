@@ -1,3 +1,9 @@
+(when t
+  (add-to-list 'my/favorite-packages 'helm)
+  (static-when (exec-installed-p "ag")
+    (add-to-list 'my/favorite-packages 'helm-ag))
+  (add-to-list 'my/favorite-packages 'helm-descbinds)
+  )
 (when (require 'helm nil t)
   (define-key my-prefix-map (kbd "C-a") 'helm-mini)
   (define-key my-prefix-map (kbd "C-x") 'helm-M-x)
@@ -5,6 +11,8 @@
    'emacs-lisp-mode-hook
    (lambda ()
      (local-set-key (kbd "C-M-i") 'helm-lisp-completion-at-point)))
+  (when (featurep 'helm-descbinds)
+    (helm-descbinds-mode 1))
   )
 
 ;;; Local Variables:

@@ -1,3 +1,4 @@
+(add-to-list 'my/favorite-packages 'elscreen)
 (static-when (locate-library "elscreen")
   (setq elscreen-display-tab nil)
 
@@ -41,6 +42,7 @@
    '("^riece-" . "Riece"))
   (elscreen-rebuild-mode-to-nickname-alist)
 
+  ;; MELPA 版では必要
   (elscreen-start)
   )
 

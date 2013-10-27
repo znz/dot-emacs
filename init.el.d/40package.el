@@ -16,13 +16,10 @@
   (setq
    my/favorite-packages
    '(
-     elscreen
      flymake
      flymake-haml
-     helm
      markdown-mode
      org
-     shell-pop
      ))
 
   (defun my-install-packages ()
