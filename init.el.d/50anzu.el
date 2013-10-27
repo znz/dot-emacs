@@ -1,0 +1,8 @@
+(static-when (>= emacs-major-version 24)
+  (add-to-list 'my/favorite-packages 'anzu)
+  (when (require 'anzu nil t)
+    (put 'anzu-mode-lighter 'risky-local-variable t)
+    (setq anzu-mode-lighter (propertize "杏" 'face 'anzu-mode-line))
+    (global-anzu-mode +1)
+    )
+  )
