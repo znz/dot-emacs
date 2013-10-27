@@ -42,7 +42,7 @@
   "minor-modeの名前を短くする。"
   (let ((cell (assq mode-sym minor-mode-alist)))
     (when (consp cell)
-      (if (and face (fboundp 'propertize))
+      (if face
           (setq short-name (propertize short-name 'face face))
         (setq short-name (concat " " short-name)))
       (setcar (cdr cell) short-name))
@@ -65,20 +65,19 @@
 (eval-after-load "ruby-block"
   '(my-shorten-minor-mode-name 'ruby-block-mode "区"))
 
+(put 'eldoc-minor-mode-string 'risky-local-variable t)
 (setq eldoc-minor-mode-string
-      (if (fboundp 'propertize)
-          (propertize "d" 'face '(:foreground "yellow"))
-        " d"))
+      (propertize "d" 'face '(:foreground "purple" :background "yellow")))
 
+(put 'action-lock-lighter 'risky-local-variable t)
 (setq action-lock-lighter (propertize "AL" 'face '(:foreground "red")))
 
 (defun my-shorten-isearch-mode-name ()
   "isearch-modeのmode-lineでの名前を短くする。"
   ;(setcar (cdr (assq 'isearch-mode minor-mode-alist)) " Is")
+  (put 'isearch-mode 'risky-local-variable t)
   (setq isearch-mode
-        (if (fboundp 'propertize)
-            (propertize "探" 'face '(:foreground "blue" :background "white"))
-          " Is"))
+        (propertize "探" 'face '(:foreground "blue" :background "white")))
   (force-mode-line-update))
 (add-hook
  'isearch-mode-hook
