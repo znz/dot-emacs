@@ -5,6 +5,7 @@
   (color-theme-dark-laptop))
 
 (when (require 'develock nil t)
+  (plist-put develock-max-column-plist 'change-log-mode 79)
   (plist-put develock-max-column-plist 'ruby-mode 'w)
   (custom-set-variables
    '(develock-mode-strings
