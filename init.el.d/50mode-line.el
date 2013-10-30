@@ -85,6 +85,7 @@
 
 (setq my-shorten-mode-name-list
       '(
+        (change-log-mode "歴")
         (emacs-lisp-mode "'" (:foreground "green" :background "white"))
         (lisp-interaction-mode "`" (:foreground "red" :background "white"))
         (perl-mode "pl" (:foreground "yellow" :background "white"))
