@@ -48,6 +48,7 @@
             )))
 
   (setq org-log-done 'time)
+  (setq org-startup-folded nil)
   (setq org-startup-truncated nil)
 
   (setq org-export-latex-coding-system 'euc-jp-unix)
