@@ -5,7 +5,7 @@
     (setenv "CVS_RSH" "plink")
   (setenv "CVS_RSH" "ssh"))
 
-(setq diff-switches "-u")
+(setq diff-switches "-upN")
 (setq vc-command-messages t)
 
 ;;; http://www4.kcn.ne.jp/~boochang/emacs/pcl-cvs-vc.html
