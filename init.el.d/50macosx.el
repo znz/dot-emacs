@@ -8,6 +8,22 @@
       (mac-translate-from-yen-to-backslash)
       (global-set-key (kbd "M-¥") (lambda () (interactive) (insert "¥")))
       )
+
+    (mapc
+     (lambda (param)
+       (let ((name (car param)))
+         (cond
+          ((string-match "Japanese\\'" name) ;; ひらがなの日本語入力
+           (mac-set-input-method-parameter name 'cursor-color "blue"))
+          ((string-match "Japanese" name) ;; カナなどの日本語入力
+           (mac-set-input-method-parameter name 'cursor-color "red"))
+          ((string-match "Roman" name) ;; 英字
+           (mac-set-input-method-parameter name 'cursor-color "black"))
+          (t ;; その他
+           (mac-set-input-method-parameter name 'cursor-color "yellow"))
+          )
+         ))
+     mac-input-method-parameters)
     )
 
   (defun my-open-firefox ()
