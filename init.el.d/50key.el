@@ -29,18 +29,6 @@
 
 (global-set-key (kbd "<Scroll_Lock>") 'ignore) ; 無視する
 
-;; Firefox などの新規タブのつもりで押してしまったときに
-;; フォント設定が開く (ns-popup-font-panel) 代わりに
-;; Firefox に切り替える。
-(static-when (eq window-system 'ns)
-  (defun my-open-firefox ()
-    (interactive)
-    (shell-command-to-string "open -a firefox"))
-  (global-set-key [(super t)] 'my-open-firefox)
-  )
-
-(global-set-key (kbd "M-¥") (lambda () (interactive) (insert "\\")))
-
 ;; input-method
 (global-set-key [zenkaku-hankaku] 'toggle-input-method)
 (global-set-key [kanji] 'toggle-input-method)
