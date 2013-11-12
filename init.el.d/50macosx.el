@@ -2,6 +2,7 @@
   (static-when (assoc "MacOSX" input-method-alist)
     ;; ime inline patch
     (setq default-input-method "MacOSX")
+    (mac-translate-from-yen-to-backslash)
     )
   )
 
