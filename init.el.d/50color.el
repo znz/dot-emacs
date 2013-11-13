@@ -4,6 +4,7 @@
     (color-theme-initialize))
   (color-theme-dark-laptop))
 
+;; http://www.jpl.org/ftp/pub/elisp/develock.el.gz
 (when (require 'develock nil t)
   (plist-put develock-max-column-plist 'change-log-mode 79)
   ;; leading 2 or more tabs
