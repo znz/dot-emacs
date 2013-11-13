@@ -42,6 +42,7 @@ It is in its Info.plist file inside the application bundle.")
      "-activate" terminal-notifier-bundle-identifier
      "-sender" terminal-notifier-bundle-identifier
      "-message" message))
+  (defalias 'my-notify 'terminal-notifier-notify)
 
   (defun my-open-firefox ()
     "Open Firefox instead of font-panel.

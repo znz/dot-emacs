@@ -7,8 +7,11 @@
          (msec (/ (- (car (cdr (cdr now)))
                      (car (cdr (cdr my-time-zero))))
                   1000))
-         (lag (+ (* 60000 min) (* 1000 sec) msec)))
-    (message "'.emacs.el' loading time: %d msec." lag)))
+         (lag (+ (* 60000 min) (* 1000 sec) msec))
+         (message (format "'.emacs.el' loading time: %d msec." lag)))
+    (when (fboundp 'my-notify)
+      (my-notify message))
+    (message "%s" message)))
 (setq my-time-zero (current-time))
 ;; 起動処理全体の時間は (emacs-init-time)
 
