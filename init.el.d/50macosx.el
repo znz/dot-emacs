@@ -34,14 +34,15 @@
     "The bundle identifier of an application.
 It is in its Info.plist file inside the application bundle.")
   (defun terminal-notifier-notify (message &optional title)
-    (start-process
-     "terminal-notifier"
-     "*terminal-notifier*"
-     terminal-notifier-command
-     "-title" (or title "Emacs")
-     "-activate" terminal-notifier-bundle-identifier
-     "-sender" terminal-notifier-bundle-identifier
-     "-message" message))
+    (when terminal-notifier-command
+      (start-process
+       "terminal-notifier"
+       "*terminal-notifier*"
+       terminal-notifier-command
+       "-title" (or title "Emacs")
+       "-activate" terminal-notifier-bundle-identifier
+       "-sender" terminal-notifier-bundle-identifier
+       "-message" message)))
   (defalias 'my-notify 'terminal-notifier-notify)
 
   (defun my-open-firefox ()
