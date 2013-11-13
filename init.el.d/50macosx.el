@@ -13,7 +13,7 @@
      (lambda (param)
        (let ((name (car param)))
          (cond
-          ((string-match "Japanese\\'" name) ;; ひらがなの日本語入力
+          ((string-match "Japanese\\(\\.base\\)?\\'" name) ;; ひらがなの日本語入力
            (mac-set-input-method-parameter name 'cursor-color "blue"))
           ((string-match "Japanese" name) ;; カナなどの日本語入力
            (mac-set-input-method-parameter name 'cursor-color "red"))
@@ -24,6 +24,7 @@
           )
          ))
      mac-input-method-parameters)
+    (mac-set-input-method-parameter "com.apple.keylayout.US" 'cursor-color "black")
     )
 
   (defvar terminal-notifier-command
