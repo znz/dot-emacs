@@ -1,3 +1,4 @@
+(defvar my/favorite-packages nil)
 (when (require 'package nil t)
   ;; http://emacs-jp.github.io/packages/package-management/package-el.html
 
