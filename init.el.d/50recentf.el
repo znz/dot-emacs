@@ -19,6 +19,8 @@
   (static-when (boundp 'tramp-file-name-regexp)
     (add-to-list 'recentf-exclude tramp-file-name-regexp))
 
+  (setq recentf-auto-save-timer (run-with-idle-timer 300 t 'recentf-save-list))
+
   ;(setq recentf-auto-cleanup 'never)
   (static-when (fboundp 'file-remote-p)
     (add-to-list 'recentf-keep 'file-remote-p))
