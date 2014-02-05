@@ -1,5 +1,6 @@
 (static-when
     (and
+     nil
      (fboundp 'flymake-mode))
 
   ;; (auto-install-from-emacswiki "flymake-cursor.el")

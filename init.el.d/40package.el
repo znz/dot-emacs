@@ -17,8 +17,9 @@
   (setq
    my/favorite-packages
    '(
-     flymake
-     flymake-haml
+     flycheck
+     ;flymake
+     ;flymake-haml
      markdown-mode
      org
      ))
@@ -28,7 +29,7 @@
     (package-refresh-contents)
     (dolist (package my/favorite-packages)
       (unless (package-installed-p package)
-	(package-install package)))
+        (package-install package)))
     )
   )
 
