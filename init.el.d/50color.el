@@ -16,6 +16,7 @@
            'develock-whitespace-2)))
 
   (plist-put develock-max-column-plist 'ruby-mode 'w)
+  (make-face 'develock-mode)
   (custom-set-variables
    '(develock-mode-strings
      (list (propertize
