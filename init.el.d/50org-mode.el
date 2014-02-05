@@ -71,6 +71,12 @@
   (defadvice org-remember-apply-template (around time-locale-set-C activate)
     (let ((system-time-locale "C"))
       ad-do-it))
+
+  (when (fboundp 'org-babel-do-load-languages)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((dot . t)))
+    )
   )
 
 ;;; Local Variables:
