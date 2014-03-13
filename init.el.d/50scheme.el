@@ -1,5 +1,5 @@
 (static-when (locate-library "cmuscheme")
-  (static-when (exec-installed-p "gosh")
+  (static-when (executable-find "gosh")
     (setq scheme-program-name "gosh -i")
     (static-if (fboundp 'modify-coding-system-alist)
 	(modify-coding-system-alist 'process "gosh" '(utf-8 . utf-8)))

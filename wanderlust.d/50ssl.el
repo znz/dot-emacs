@@ -9,7 +9,7 @@
     )))
 
 (static-when (and (locate-library "ssl")
-                  (exec-installed-p "gnutls-cli"))
+                  (executable-find "gnutls-cli"))
   ;; ssl 接続に gnutls を使う。
   ;; http://d.hatena.ne.jp/buzztaiki/20090715/1247619151
   (setq ssl-program-name "gnutls-cli")

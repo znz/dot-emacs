@@ -8,9 +8,9 @@
 (setq browse-url-generic-program
       (static-cond
        ((featurep 'meadow) "fiber.exe")
-       ((exec-installed-p "browser.sh") "browser.sh") ; my wrapper script
-       ((exec-installed-p "xdg-open") "xdg-open")
-       ((exec-installed-p "x-www-browser") "x-www-browser") ; debian
+       ((executable-find "browser.sh") "browser.sh") ; my wrapper script
+       ((executable-find "xdg-open") "xdg-open")
+       ((executable-find "x-www-browser") "x-www-browser") ; debian
        ))
 
 ;;; URL をShift+マウス中クリックでブラウザ起動する様にする

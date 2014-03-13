@@ -51,8 +51,8 @@
                    (zerop (nth 7 (file-attributes path))))
           (delete-file path))))
     (static-cond
-     ((exec-installed-p "wget")) ; ok
-     ((exec-installed-p "curl")
+     ((executable-find "wget")) ; ok
+     ((executable-find "curl")
       (setq gravatar-retrieval-program "curl -s -o '%s' '%s'"))
      (t (error "download program not found")))
     (setq gravatar-directory "~/.cache/emacs-gravatar/")

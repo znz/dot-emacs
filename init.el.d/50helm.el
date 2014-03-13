@@ -1,6 +1,6 @@
 (when t
   (add-to-list 'my/favorite-packages 'helm)
-  (static-when (exec-installed-p "ag")
+  (static-when (executable-find "ag")
     (add-to-list 'my/favorite-packages 'helm-ag))
   (add-to-list 'my/favorite-packages 'helm-descbinds)
   )

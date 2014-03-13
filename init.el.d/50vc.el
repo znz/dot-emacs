@@ -1,7 +1,7 @@
 ;; cvs関連の設定
 (static-if
     (and (featurep 'meadow)
-	 (exec-installed-p "plink.exe"))
+	 (executable-find "plink.exe"))
     (setenv "CVS_RSH" "plink")
   (setenv "CVS_RSH" "ssh"))
 
@@ -22,7 +22,7 @@
         (set-buffer buf1)
         (set-buffer-file-coding-system coding-system)))))
 
-(static-when (exec-installed-p "svn")
+(static-when (executable-find "svn")
   ;; SubversionのVC backend
   (static-when (and
                 (boundp 'vc-handled-backends)

@@ -41,8 +41,8 @@
 
 (defvar my-pinentry
   (eval-when-compile
-    (or (exec-installed-p "pinentry-x11")
-        (exec-installed-p "pinentry-gtk-2")))
+    (or (executable-find "pinentry-x11")
+        (executable-find "pinentry-gtk-2")))
   "X 上で動く pinentry がインストールされているかどうか。")
 (defun my-gpg-agent-info ()
   "gpg-agentが使えないときにはGPG_AGENT_INFOをunsetenvする"

@@ -1,7 +1,7 @@
 (static-when
     (and
-     (or (exec-installed-p "aspell")
-         (exec-installed-p "ispell"))
+     (or (executable-find "aspell")
+         (executable-find "ispell"))
      (fboundp 'flyspell-mode))
 
   (defun my-flyspell-mode-enable ()
