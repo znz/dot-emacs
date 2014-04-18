@@ -77,6 +77,12 @@
      'org-babel-load-languages
      '((dot . t)))
     )
+
+  (defun my-org-confirm-babel-evaluate (lang body)
+    (not (string= lang "dot")))  ; don't ask for dot
+  ;(setq org-confirm-babel-evaluate t)
+  (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
   )
 
 ;;; Local Variables:
