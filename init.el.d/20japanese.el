@@ -26,7 +26,7 @@
          (coding-system-plist 'utf-8))
   (set-terminal-coding-system 'utf-8-for-putty)
   ;; 機種依存文字
-  (require 'cp5022x)
+  (require 'cp5022x nil t)
   ;; East Asian Ambiguous
   (defun set-east-asian-ambiguous-width (width)
     (while (char-table-parent char-width-table)
