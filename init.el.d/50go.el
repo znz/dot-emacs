@@ -1,5 +1,9 @@
 (add-to-list 'my/favorite-packages 'go-mode)
+(add-to-list 'my/favorite-packages 'go-eldoc)
 (when (require 'go-mode nil t)
+  (when (require 'go-eldoc nil t)
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+
   (let* ((gopath (or (getenv "GOPATH")
 		     (expand-file-name "~/g")))
 	 (go/bin (concat gopath "/bin")))
