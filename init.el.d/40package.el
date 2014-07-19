@@ -14,17 +14,11 @@
 
   (package-initialize)
 
-  (setq
-   my/favorite-packages
-   '(
-     flycheck
-     ;flymake
-     ;flymake-haml
-     markdown-mode
-     org
-     ))
+  (defvar my/favorite-packages nil
+    "my-install-packagesでインストールするパッケージ")
 
   (defun my-install-packages ()
+    "my/favorite-packagesをインストールする。"
     (interactive)
     (package-refresh-contents)
     (dolist (package my/favorite-packages)

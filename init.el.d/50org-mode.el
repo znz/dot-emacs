@@ -1,3 +1,5 @@
+(add-to-list 'my/favorite-packages 'org)
+
 ;; git clone git://repo.or.cz/org-mode.git
 ;; cd org-mode
 ;; make lispdir=$HOME/.emacs.d/site-lisp/org-mode infodir=$HOME/.emacs.d/info
