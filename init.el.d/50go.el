@@ -5,7 +5,7 @@
   (when (require 'go-eldoc nil t)
     (add-hook 'go-mode-hook 'go-eldoc-setup))
 
-  ;; go get code.google.com/p/rog-go/exp/cmd/godef
+  ;; go get -u code.google.com/p/rog-go/exp/cmd/godef
   (add-hook
    'go-mode-hook
    (lambda ()
