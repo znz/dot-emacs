@@ -1,9 +1,11 @@
 (add-to-list 'my/favorite-packages 'go-mode)
 (add-to-list 'my/favorite-packages 'go-eldoc)
 (when (require 'go-mode nil t)
+  ;; go get -u github.com/nsf/gocode
   (when (require 'go-eldoc nil t)
     (add-hook 'go-mode-hook 'go-eldoc-setup))
 
+  ;; go get code.google.com/p/rog-go/exp/cmd/godef
   (add-hook
    'go-mode-hook
    (lambda ()
