@@ -8,9 +8,12 @@
   (require 'org-install)
   (add-to-list 'auto-mode-alist ' ("\\.org\\'" . org-mode))
 
-  (define-key my-prefix-map "l" 'org-store-link)
-  (define-key my-prefix-map "a" 'org-agenda)
-  (define-key my-prefix-map "r" 'org-remember)
+  (setq my-org-prefix-map (make-keymap))
+  (define-key my-prefix-map "o" my-org-prefix-map)
+
+  (define-key my-org-prefix-map "l" 'org-store-link)
+  (define-key my-org-prefix-map "a" 'org-agenda)
+  (define-key my-org-prefix-map "r" 'org-remember)
 
   (setq org-directory "~/Org")
   (setq org-agenda-files
