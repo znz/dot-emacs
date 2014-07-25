@@ -7,7 +7,11 @@
  )
 (my-add-to-path "/usr/local/bin") ; Homebrew
 (my-add-to-path (expand-file-name "~/homebrew/bin")) ; Homebrew
-(my-add-to-path (expand-file-name "~/.rbenv/bin")) ; rbenv
+;; rbenv
+(my-add-to-path (expand-file-name "~/.rbenv/bin"))
+(my-add-to-path (expand-file-name "~/.rbenv/shims"))
+(my-add-to-path (expand-file-name "/opt/rbenv/bin"))
+(my-add-to-path (expand-file-name "/opt/rbenv/shims"))
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp
