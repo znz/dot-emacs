@@ -1,9 +1,11 @@
 (add-to-list 'my/favorite-packages 'helm)
 (static-when (executable-find "ag")
   (add-to-list 'my/favorite-packages 'helm-ag))
-(define-key my-prefix-map "s" 'helm-ag)
+(define-key my-prefix-map "g" 'helm-ag)
 
 (add-to-list 'my/favorite-packages 'helm-descbinds)
+(add-to-list 'my/favorite-packages 'helm-ghq)
+(define-key my-prefix-map (kbd "M-g") 'helm-ghq)
 
 (when (require 'helm nil t)
   (define-key my-prefix-map (kbd "C-a") 'helm-mini)
