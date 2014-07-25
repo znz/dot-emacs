@@ -14,7 +14,9 @@
 (when (require 'shell-pop nil t)
   ;; setq では正常に反映されないので custom-set-variables を使う必要あり。
   (custom-set-variables
-   '(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))))
+   ;;'(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))))
+   '(shell-pop-shell-type
+     '("eshell" " *eshell*" (lambda () (eshell))))
    '(shell-pop-universal-key "C-c t")
    '(shell-pop-window-position "full")
    )
