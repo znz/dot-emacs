@@ -19,6 +19,17 @@
   (static-when (boundp 'tramp-file-name-regexp)
     (add-to-list 'recentf-exclude tramp-file-name-regexp))
 
+  (static-when (boundp 'package-user-dir)
+    (add-to-list
+     'recentf-exclude
+     (concat "\\`" (regexp-quote (expand-file-name package-user-dir))
+             "/archives/"))
+    (add-to-list
+     'recentf-exclude
+     (concat "\\`" (regexp-quote (expand-file-name package-user-dir))
+             "/.*-readme\\.txt\\'"))
+     )
+
   (setq recentf-auto-save-timer (run-with-idle-timer 300 t 'recentf-save-list))
 
   ;(setq recentf-auto-cleanup 'never)
