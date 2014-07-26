@@ -30,6 +30,10 @@
              "/.*-readme\\.txt\\'"))
      )
 
+  (add-to-list
+   'recentf-exclude
+   (concat "\\`" temporary-file-directory "/"))
+
   (setq recentf-auto-save-timer (run-with-idle-timer 300 t 'recentf-save-list))
 
   ;(setq recentf-auto-cleanup 'never)
