@@ -11,10 +11,15 @@
    (lambda ()
      (local-set-key (kbd "M-.") 'godef-jump)))
 
+
   (let* ((gopath (or (getenv "GOPATH")
 		     (expand-file-name "~/g")))
 	 (go/bin (concat gopath "/bin")))
     (when (file-directory-p gopath)
       (setenv "GOPATH" gopath)
-      (add-to-list 'exec-path go/bin)))
+      (my-add-to-path go/bin)))
+
+  ;; go get -u code.google.com/p/go.tools/cmd/goimports
+  (static-when (executable-find "goimports")
+    (setq gofmt-command "goimports"))
   )
