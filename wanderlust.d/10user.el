@@ -27,9 +27,3 @@ wl-template-alist用の名前、メールアドレス、ユーザ名からなる
 
 (add-to-list 'wl-user-mail-address-list
              (wl-address-header-extract-address wl-from))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

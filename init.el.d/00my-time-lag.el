@@ -14,9 +14,3 @@
     (message "%s" message)))
 (setq my-time-zero (current-time))
 ;; 起動処理全体の時間は (emacs-init-time)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

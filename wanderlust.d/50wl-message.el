@@ -79,9 +79,3 @@
    (local-set-key "j" (lambda () (interactive) (scroll-up 1)))
    (local-set-key "k" (lambda () (interactive) (scroll-down 1)))
    ))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

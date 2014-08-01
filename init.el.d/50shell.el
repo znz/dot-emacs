@@ -22,9 +22,3 @@
    )
   ;;(global-set-key [f8] 'shell-pop)
  )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

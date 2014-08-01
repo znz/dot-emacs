@@ -165,9 +165,3 @@
                                  nil nil t)
     (wl-summary-jump-to-msg (cdr (assoc folder referer)))))
 (define-key wl-summary-mode-map "=" 'wl-summary-jump-to-referer-message)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

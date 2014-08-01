@@ -9,9 +9,3 @@
  #'(lambda ()
      (setq buffer-invisibility-spec '((t . t)))
      (set (make-local-variable 'line-move-ignore-invisible) t)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -4,9 +4,3 @@
 ;; calendar-mode では表示しない
 (add-hook 'calendar-mode-hook
           (lambda () (setq show-trailing-whitespace nil)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

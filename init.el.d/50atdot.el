@@ -152,9 +152,3 @@
 	 (match-string 0)
        (error "Paste failed."))))
    (message "Pasted to <%s>" (car kill-ring)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

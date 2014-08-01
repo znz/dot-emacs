@@ -3,9 +3,3 @@
 
 ;; 起動時はオフライン状態にする
 (setq wl-plugged nil)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -11,9 +11,3 @@
   (eval-after-load "dired-x"
     '(global-set-key "\C-x\C-j" 'skk-mode))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

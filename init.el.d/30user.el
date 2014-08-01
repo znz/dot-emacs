@@ -9,9 +9,3 @@
 
 (defconst my-private-directory
   "~/.emacs.d/private")
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

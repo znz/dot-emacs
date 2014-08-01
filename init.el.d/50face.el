@@ -6,9 +6,3 @@
 ;;; M-x list-face-display のサンプル文字列
 (setq list-faces-sample-text
       "漢字ひらがなカタカナﾊﾝｶｸｶﾅabcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -7,9 +7,3 @@
     (let ((copyright-current-gpl-version nil))
       ad-do-it))
   (add-hook 'write-file-hooks 'copyright-update))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

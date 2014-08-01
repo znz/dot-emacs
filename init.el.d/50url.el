@@ -81,9 +81,3 @@
             (upcase (format "%%%x" char)))
         (char-to-string char))))
    (encode-coding-string str (or cs 'sjis)) ""))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

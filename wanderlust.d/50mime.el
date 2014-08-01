@@ -28,9 +28,3 @@
 
 ;; [Wanderlust:14217]
 (add-to-list 'mime-charset-coding-system-alist '(cp932 . shift_jis))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

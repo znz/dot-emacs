@@ -64,9 +64,3 @@
   (set (make-local-variable 'compile-command)
        (concat "ruby -cv " buffer-file-name)))
 (add-hook 'ruby-mode-hook #'my-ruby-mode-hook-function)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -3,9 +3,3 @@
 
 ;; 最後の"\n"を必須にする
 (setq require-final-newline t)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

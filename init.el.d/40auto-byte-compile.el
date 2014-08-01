@@ -27,9 +27,3 @@
                 (my-byte-compile-file "~/.emacs.d/init")
                 )))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

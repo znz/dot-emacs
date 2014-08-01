@@ -11,9 +11,3 @@
                            (cdr (assq 'artid (navi2ch-bm-get-article-internal
                                               (navi2ch-bm-get-property-internal (point))))))))
       (forward-line -1))))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

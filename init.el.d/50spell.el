@@ -45,9 +45,3 @@
   (setq flyspell-use-meta-tab nil)
   (define-key my-prefix-map "\M-\t" 'flyspell-auto-correct-word)
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

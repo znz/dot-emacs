@@ -44,9 +44,3 @@
         (delete-region (point) (1+ (line-end-position)))
         (navi2ch-bookmark-insert-subject num item))))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -26,9 +26,3 @@
         ;; redmine
         "x-redmine-project"
         ))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

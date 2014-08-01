@@ -40,9 +40,3 @@
 
 (set-frame-parameter nil 'alpha '(90 80))
 (add-to-list 'default-frame-alist '(alpha 90 80))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -9,9 +9,3 @@
                                     mver)
                       (match-string 1 mver))))
       (concat "emacs" (number-to-string emacs-major-version)))))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -27,9 +27,3 @@
                 (princ "\n")))))))))
 ;; http://pc.2ch.net/test/read.cgi/unix/1065246418/393
 ;(define-key navi2ch-article-mode-map "\C-c\C-d" 'my-navi2ch-article-show-matched-filter)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

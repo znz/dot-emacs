@@ -12,9 +12,3 @@
 (my-add-to-path (expand-file-name "~/.rbenv/shims"))
 (my-add-to-path (expand-file-name "/opt/rbenv/bin"))
 (my-add-to-path (expand-file-name "/opt/rbenv/shims"))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

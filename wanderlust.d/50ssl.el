@@ -23,9 +23,3 @@
   ;; http://d.hatena.ne.jp/buzztaiki/20090715/1247619151
   (require 'tls)
   (set-alist 'elmo-network-stream-type-alist "!" '(ssl ssl open-tls-stream)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

@@ -27,9 +27,3 @@
   (recentf-mode 1)
   ;(global-set-key "\C-cf" 'recentf-open-files)
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

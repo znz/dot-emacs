@@ -13,9 +13,3 @@
     (add-to-list 'scheme-font-lock-keywords-2 '("#/\\(.\\|\\\\/\\)*/" . font-lock-string-face)) ; 正規表現 #/.../
     )
   (add-hook 'scheme-mode-hook 'my-scheme-mode-hook-font-lock))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

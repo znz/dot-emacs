@@ -5,9 +5,3 @@
 (define-key navi2ch-list-mode-map "k" 'previous-line)
 ;(define-key navi2ch-article-mode-map "j" 'navi2ch-article-next-message)
 ;(define-key navi2ch-article-mode-map "k" 'navi2ch-article-previous-message)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

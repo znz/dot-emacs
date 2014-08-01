@@ -8,9 +8,3 @@
        (set-face-attribute 'navi2ch-mona-face nil :family "ＭＳ Ｐゴシック"))))
   (setq navi2ch-mona-disable-board-list '("unix" "linux" "network"))
   (require 'navi2ch-mona))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

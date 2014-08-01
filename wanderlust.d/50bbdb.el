@@ -5,9 +5,3 @@
         "^[-$&@']\\|^\\+\\(draft\\|lost\\+found\\|outbox\\|queue\\|sent\\|trash\\)\\|^[%].*\\(info\\|junk\\|log\\|root\\|spam\\)")
   (setq bbdb-user-mail-names (regexp-opt wl-user-mail-address-list))
   (bbdb-wl-setup))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

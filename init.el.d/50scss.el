@@ -8,9 +8,3 @@
   (flymake-mode -1) ; do not use flymake (default)
   (flycheck-mode -1) ; do not use flycheck (default) and avoid to create .sass-cache/
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

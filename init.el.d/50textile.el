@@ -4,9 +4,3 @@
   (require 'textile-mode)
   (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

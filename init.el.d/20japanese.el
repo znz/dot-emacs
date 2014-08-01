@@ -119,9 +119,3 @@
        (add-to-list 'mime-charset-coding-system-alist
                     '(iso-2022-jp . cp50220+jisx0212))))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

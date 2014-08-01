@@ -59,9 +59,3 @@
     (setq gravatar-unregistered-icon 'identicon)
     (setq wl-gravatar-retrieve-once t)
     (setq wl-highlight-x-face-function 'wl-gravatar-insert)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

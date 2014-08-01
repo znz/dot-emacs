@@ -55,9 +55,3 @@ Firefox に切り替える。"
     (shell-command-to-string "open -a firefox"))
   (global-set-key [(super t)] 'my-open-firefox)
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

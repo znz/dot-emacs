@@ -113,9 +113,3 @@
 
 (setq-default mode-line-buffer-identification '("%b"))
 (setq mode-line-frame-identification " ")
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

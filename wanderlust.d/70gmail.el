@@ -101,9 +101,3 @@
  (lambda (x)
    (apply #'my-wl-gmail-address-config x))
  my-gmail-address-list)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

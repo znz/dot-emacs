@@ -25,9 +25,3 @@
 ;; らば、メッセージが削除されていたときにフォルダの内容と同期を取りま
 ;; す。
 (setq wl-folder-notify-deleted 'sync)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

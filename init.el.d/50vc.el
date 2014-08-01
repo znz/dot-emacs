@@ -41,9 +41,3 @@
       "Examine the status of Subversion working copy in directory DIR." t))
    )
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

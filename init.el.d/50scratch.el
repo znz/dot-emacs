@@ -31,9 +31,3 @@
  (lambda ()
    (unless (member (get-buffer "*scratch*") (buffer-list))
      (my-make-scratch 1))))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

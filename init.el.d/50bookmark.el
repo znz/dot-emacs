@@ -11,9 +11,3 @@
 (defadvice bookmark-jump (before bookmark-set-ad activate)
   (when (file-exists-p bookmark-default-file)
     (bookmark-load bookmark-default-file t t)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

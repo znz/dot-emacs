@@ -36,9 +36,3 @@
   (autoload 'cfw:open-org-calendar "calfw-org" nil t)
   ;(define-key my-prefix-map "C" 'cfw:open-org-calendar)
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

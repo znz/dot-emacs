@@ -12,9 +12,3 @@
         (push elt list)))
     (set minibuffer-history-variable (nreverse list))))
 (add-hook 'minibuffer-setup-hook 'minibuffer-delete-duplicate)
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

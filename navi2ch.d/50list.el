@@ -14,9 +14,3 @@
 ;;   (add-to-list 'navi2ch-list-moved-board-alist
 ;;                (cons (format "http://pc5.2ch.net/%s/" ita)
 ;;                      (format "http://pc8.2ch.net/%s/" ita))))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

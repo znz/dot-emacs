@@ -15,9 +15,3 @@
   (autoload 'irbsh-toggle-cd "irbsh-toggle"
     "Pops up a irbsh-buffer and insert a \"cd <file-dir>\" command." t)
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

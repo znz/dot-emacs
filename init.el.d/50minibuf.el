@@ -35,9 +35,3 @@
 (static-when (fboundp 'minibuffer-depth-indicate-mode)
   (when enable-recursive-minibuffers
     (minibuffer-depth-indicate-mode t)))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

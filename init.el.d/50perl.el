@@ -16,9 +16,3 @@
 (defun perltidy-region (beg end)
   (interactive "r")
   (shell-command-on-region beg end "perltidy -q" nil t))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

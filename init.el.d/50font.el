@@ -52,9 +52,3 @@
     (set-default-font my-font))
   (add-to-list 'default-frame-alist `(font . ,my-font))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

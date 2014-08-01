@@ -127,9 +127,3 @@
     (setq imenu-generic-expression '((nil "^[=+-]+.+" 0)))
     )
   (add-hook 'rd-mode-hook #'my-rd-mode-hook-function))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

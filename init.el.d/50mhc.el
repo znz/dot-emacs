@@ -32,9 +32,3 @@
     (add-hook 'gnus-startup-hook 'my-dot-mhc)
     )
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

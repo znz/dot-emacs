@@ -8,9 +8,3 @@
   ;;(unless (featurep 'meadow)
   ;;  (setq browse-url-browser-function 'w3m-browse-url))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

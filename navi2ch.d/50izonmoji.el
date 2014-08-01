@@ -7,9 +7,3 @@
   (when (memq 'izonmoji-shift-jis (coding-system-list))
     (setq navi2ch-coding-system 'izonmoji-shift-jis))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

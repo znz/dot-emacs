@@ -66,10 +66,3 @@
   (global-set-key "\M-[1;2D" 'windmove-left)
   ;; nil だとループしない。
   (setq windmove-wrap-around nil))
-
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

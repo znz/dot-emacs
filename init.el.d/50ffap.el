@@ -18,9 +18,3 @@
     (interactive (list (completing-read "mla: " nil nil nil (ffap-string-at-point))))
     (browse-url (concat "http://mla.n-z.jp/?" mla)))
   )
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:

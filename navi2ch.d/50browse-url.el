@@ -5,9 +5,3 @@
     (eq browse-url-browser-function 'navi2ch-browse-url)
   (setq navi2ch-browse-url-browser-function browse-url-browser-function)
   (setq browse-url-browser-function 'navi2ch-browse-url))
-
-;;; Local Variables:
-;;; mode: emacs-lisp
-;;; coding: utf-8
-;;; indent-tabs-mode: nil
-;;; End:
