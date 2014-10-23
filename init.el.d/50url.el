@@ -36,9 +36,17 @@
 
 ;; for browse-url-at-mouse
 (eval-after-load "thingatpt"
-  '(setq
-    thing-at-point-url-regexp
-    (my-convert-regexp-allow-ttp thing-at-point-url-regexp)))
+  '(cond
+     ((boundp 'thing-at-point-url-regexp)
+       ;; emacs 24.3
+       (setq
+         thing-at-point-url-regexp
+         (my-convert-regexp-allow-ttp thing-at-point-url-regexp)))
+     ((boundp 'thing-at-point-uri-schemes)
+       ;; emacs 24.4
+       (add-to-list 'thing-at-point-uri-schemes "ttp://")
+       (add-to-list 'thing-at-point-uri-schemes "ttps://"))
+     ))
 (defadvice thing-at-point-url-at-point (after support-omitted-h activate)
   (when (and ad-return-value (string-match "\\`ttps?://" ad-return-value))
     (setq ad-return-value (concat "h" ad-return-value))))
