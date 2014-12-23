@@ -60,7 +60,18 @@
   (add-hook 'ruby-mode-hook
             (lambda () (ruby-block-mode t))))
 
+(let
+  ((rcodetools-path
+     (car
+       (last
+         (file-expand-wildcards "~/.rbenv/versions/*/lib/ruby/gems/*/gems/rcodetools-*")))))
+  (when rcodetools-path
+    (add-to-list 'load-path rcodetools-path)
+    (require 'rcodetools)
+    ))
+
 (defun my-ruby-mode-hook-function ()
+  (define-key ruby-mode-map "\C-c\C-d" 'xmp)
   (set (make-local-variable 'compile-command)
        (concat "ruby -cv " buffer-file-name)))
 (add-hook 'ruby-mode-hook #'my-ruby-mode-hook-function)
