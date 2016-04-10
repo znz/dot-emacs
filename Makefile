@@ -43,13 +43,13 @@ $(DOT_EMACS_D_DIR):
 
 # 結合と*.elcの削除
 $(DOT_EMACS_D_DIR)/init.el: $(SRC_TOP_DIR)/init.el.d/[0-9][0-9]*.el
-	sed '/^ *;;/d;/^$$/d' $^ > $@
+	ls $^ | xargs sed '/^ *;;/d;/^$$/d' > $@
 	rm -f $@c
 $(DOT_EMACS_D_DIR)/dot-%.el: $(SRC_TOP_DIR)/%.d/[0-9][0-9]*.el
-	cat $^ > $@
+	ls $^ | xargs cat > $@
 	rm -f $@c
 $(DOT_EMACS_D_DIR)/dot-wl.el: $(SRC_TOP_DIR)/wanderlust.d/[0-9][0-9]*.el
-	cat $^ > $@
+	ls $^ | xargs cat > $@
 	rm -f $@c
 
 clean::
