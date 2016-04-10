@@ -26,7 +26,7 @@
 (add-hook 'wl-draft-send-hook 'wl-draft-subject-check)
 
 ;; Message-IDのドメインパートにwl-fromを使う。
-(setq wl-message-id-use-wl-from t)
+(setq wl-message-id-use-message-from t)
 
 ;; 返信時のウィンドウを広くする
 (setq wl-draft-reply-buffer-style 'full)
