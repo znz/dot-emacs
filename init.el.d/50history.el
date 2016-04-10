@@ -11,4 +11,4 @@
       (unless (member elt list)
         (push elt list)))
     (set minibuffer-history-variable (nreverse list))))
-(add-hook 'minibuffer-setup-hook 'minibuffer-delete-duplicate)
+;;(add-hook 'minibuffer-setup-hook 'minibuffer-delete-duplicate)
