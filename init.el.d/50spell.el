@@ -1,18 +1,23 @@
 (static-when
     (and
      (or (executable-find "aspell")
+	 (executable-find "hunspell")
          (executable-find "ispell"))
      (fboundp 'flyspell-mode))
 
+  (defun my-flyspell-pre-check ()
+    (cond
+     ((string= ispell-program-name "aspell")
+      (unless (file-exists-p "~/.aspell.conf")
+	(error "~/.aspell.conf should be 'lang en_US'")))))
+
   (defun my-flyspell-mode-enable ()
     (interactive)
-    (unless (file-exists-p "~/.aspell.conf")
-      (error "~/.aspell.conf should be 'lang en_US'"))
+    (my-flyspell-pre-check)
     (flyspell-mode 1))
   (defun my-flyspell-enable ()
     (interactive)
-    (unless (file-exists-p "~/.aspell.conf")
-      (error "~/.aspell.conf should be 'lang en_US'"))
+    (my-flyspell-pre-check)
     (flyspell-mode 1)
     (flyspell-buffer))
   (defun my-flyspell-disable ()
