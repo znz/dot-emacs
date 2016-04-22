@@ -1,7 +1,7 @@
 (static-when
     (and
      (or (executable-find "aspell")
-	 (executable-find "hunspell")
+         (executable-find "hunspell")
          (executable-find "ispell"))
      (fboundp 'flyspell-mode))
 
@@ -9,7 +9,7 @@
     (cond
      ((string= ispell-program-name "aspell")
       (unless (file-exists-p "~/.aspell.conf")
-	(error "~/.aspell.conf should be 'lang en_US'")))))
+        (error "~/.aspell.conf should be 'lang en_US'")))))
 
   (defun my-flyspell-mode-enable ()
     (interactive)
