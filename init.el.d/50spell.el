@@ -8,6 +8,9 @@
   (with-eval-after-load "ispell"
     (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
+  ;; for hunspell
+  (setenv "DICTIONARY" "en_US")
+
   (defun my-flyspell-pre-check ()
     (cond
      ((string= ispell-program-name "aspell")
