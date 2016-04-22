@@ -5,6 +5,9 @@
          (executable-find "ispell"))
      (fboundp 'flyspell-mode))
 
+  (with-eval-after-load "ispell"
+    (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
   (defun my-flyspell-pre-check ()
     (cond
      ((string= ispell-program-name "aspell")
