@@ -7,7 +7,8 @@
 (add-to-list 'my/favorite-packages 'helm-ghq)
 (define-key my-prefix-map (kbd "M-g") 'helm-ghq)
 
-(when (require 'helm nil t)
+(static-when (locate-library "helm")
+  (require 'helm)
   (define-key my-prefix-map (kbd "C-a") 'helm-mini)
   (define-key my-prefix-map (kbd "C-x") 'helm-M-x)
   (add-hook
