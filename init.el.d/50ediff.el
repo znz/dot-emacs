@@ -6,13 +6,13 @@
   (diff-auto-refine-mode t))
 (add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
 
-(defvar gemdir nil)
+(defvar my-gemdir nil)
 (defun my-ediff-gem ()
   (interactive)
-  (let ((default-directory gemdir))
+  (let ((default-directory my-gemdir))
     (call-interactively #'ediff-directories)))
 
 (defadvice my-ediff-gem (before my-set-gemdir activate)
-  (unless gemdir
-    (setq gemdir (shell-command-to-string "echo -n $(rbenv exec gem env gemdir)/gems/"))
+  (unless my-gemdir
+    (setq my-gemdir (shell-command-to-string "echo -n $(rbenv exec gem env gemdir)/gems/"))
     ))
