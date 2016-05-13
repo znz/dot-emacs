@@ -1,5 +1,6 @@
 ;; M-x color-theme-select で試して選べばいい。
-(when (require 'color-theme nil t)
+(static-when (locate-library "color-theme")
+  (require 'color-theme)
   (when (fboundp 'color-theme-initialize)
     (color-theme-initialize))
   (color-theme-dark-laptop))
