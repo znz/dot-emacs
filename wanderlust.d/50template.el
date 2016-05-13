@@ -30,13 +30,13 @@
         "|ZnZ(ゼット エヌ ゼット)\n"
         "|西山和広(Kazuhiro NISHIYAMA)"
         ))
-   (template . "smtp-nifty-vs2nd")
+   (template . "smtp-nifty")
    ))
 
 (add-to-list
  'my-smtp-template-alist
- '("smtp-nifty-vs2nd"
-   (wl-smtp-posting-server . "vs2nd.nifty.com")
+ '("smtp-nifty"
+   (wl-smtp-posting-server . "mbf.nifty.com")
    (wl-smtp-posting-port . 587)
    (wl-smtp-posting-user . "zn\@mbf.nifty.com")
    (wl-smtp-authenticate-type . "cram-md5")
