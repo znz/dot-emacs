@@ -1,15 +1,18 @@
-(cond
- ((file-directory-p (expand-file-name "~/howm/data"))
-  (setq howm-directory (expand-file-name "~/howm/data")))
- (t (setq howm-directory nil)))
+(eval-and-compile
+  (cond
+   ((file-directory-p (expand-file-name "~/howm/data"))
+    (setq howm-directory (expand-file-name "~/howm/data")))
+   (t (setq howm-directory nil))))
 
-(when (and howm-directory (locate-library "howm"))
+(static-when (and howm-directory (locate-library "howm"))
   (if (and
        (<= emacs-major-version 21)
        (string-match "\\`ja_JP\\.[Uu][Tt][Ff]-?8\\'" (getenv "LANG"))
        (not (featurep 'un-define)))
       (defadvice howm-menu (around my-howm-utf-8-without-mule-ucs activate)
         (error "utf-8 without mule-ucs!")))
+
+  (eval-when-compile (require 'howm))
 
   (setq howm-menu-lang 'ja)
 

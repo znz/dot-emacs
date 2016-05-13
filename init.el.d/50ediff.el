@@ -1,5 +1,6 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+(eval-when-compile (autoload 'diff-auto-refine-mode "diff-mode" nil t))
 ;; http://www.clear-code.com/blog/2012/4/3.html
 (defun diff-mode-refine-automatically ()
   (diff-auto-refine-mode t))

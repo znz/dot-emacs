@@ -23,9 +23,9 @@
   (autoload 'cfw:open-calendar-buffer "calfw" nil t))
 
 (static-when (locate-library "calfw-ical")
+  (autoload 'cfw:open-ical-calendar "calfw-ical" nil t)
   (defun my-cfw-open-IT勉強会カレンダー ()
     (interactive)
-    (require 'calfw-ical)
     (cfw:open-ical-calendar
      "http://www.google.com/calendar/ical/fvijvohm91uifvd9hratehf65k%40group.calendar.google.com/public/basic.ics"))
   ;(define-key my-prefix-map "I" 'my-cfw-open-IT勉強会カレンダー)
