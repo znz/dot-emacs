@@ -117,8 +117,11 @@
     '(when (coding-system-p 'cp50220+jisx0212)
        (add-to-list 'mm-charset-override-alist '(iso-2022-jp . cp50220+jisx0212))))
   ;; SEMI
-  (eval-after-load "mcs-20"
-    '(when (coding-system-p 'cp50220+jisx0212)
-       (add-to-list 'mime-charset-coding-system-alist
-                    '(iso-2022-jp . cp50220+jisx0212))))
+  (static-when (locate-library "mcs-20")
+    (eval-when-compile (require 'mcs-20))
+    (eval-after-load "mcs-20"
+      '(when (coding-system-p 'cp50220+jisx0212)
+         (add-to-list 'mime-charset-coding-system-alist
+                      '(iso-2022-jp . cp50220+jisx0212))))
+    )
   )
