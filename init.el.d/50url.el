@@ -61,10 +61,13 @@
     (setq ad-return-value (concat "h" ad-return-value))))
 
 ;; for SEMI
-(eval-after-load "semi-def"
-  '(setq
-    mime-browse-url-regexp
-    (my-convert-regexp-allow-ttp mime-browse-url-regexp)))
+(static-when (locate-library "semi-def")
+  (eval-when-compile (require 'semi-def))
+  (eval-after-load "semi-def"
+    '(setq
+      mime-browse-url-regexp
+      (my-convert-regexp-allow-ttp mime-browse-url-regexp)))
+  )
 
 (defadvice browse-url (before support-omitted-h (url &rest args) activate)
   (or url
