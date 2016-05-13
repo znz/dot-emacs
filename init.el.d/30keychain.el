@@ -30,12 +30,12 @@
       (kill-buffer buffer)))
   (let ((pid (getenv "SSH_AGENT_PID")))
     (if (and pid (= 0 (shell-command (format "kill -0 %s" pid))))
-        (if (interactive-p)
+        (if (called-interactively-p 'interactive)
             (message "ssh-agent found at PID %s." pid))
       ;; ssh-agentがいなかったらunsetenv
       (setenv "SSH_AGENT_PID" nil)
       (setenv "SSH_AUTH_SOCK" nil)
-      (if (interactive-p)
+      (if (called-interactively-p 'interactive)
           (message "ssh-agent not found."))))
   )
 
