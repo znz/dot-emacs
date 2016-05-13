@@ -1,5 +1,6 @@
 (add-to-list 'my/favorite-packages 'scss-mode)
 (static-when (locate-library "scss-mode")
+  (eval-when-compile (require 'css-mode))
   (require 'scss-mode)
   (setq scss-compile-at-save nil)
   (add-hook 'scss-mode-hook #'my-scss-mode-hook)
