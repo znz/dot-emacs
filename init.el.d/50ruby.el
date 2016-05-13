@@ -6,6 +6,7 @@
 (static-when (locate-library "ruby-mode")
   (autoload 'ruby-mode "ruby-mode"
     "Major mode for editing Ruby source files." t)
+  (eval-when-compile (require 'ruby-mode))
 
   (defun my-ruby-command ()
     (cond
