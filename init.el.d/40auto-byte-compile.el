@@ -18,6 +18,7 @@
           (byte-compile-file init-file)))
       )))
 
+(defvar my-dot-mhc-file)
 (eval-after-load "mhc" '(my-byte-compile-file my-dot-mhc-file))
 (static-unless (eq window-system 'ns)
   (eval-when-compile
