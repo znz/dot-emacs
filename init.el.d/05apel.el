@@ -17,20 +17,20 @@
       "Like `if', but evaluate COND at compile time."
       (if (eval cond)
           then
-        (` (progn  (,@ else)))))
+        `(progn  (,@ else))))
 
     (put 'static-when 'lisp-indent-function 1)
     (defmacro static-when (cond &rest body)
       "Like `when', but evaluate COND at compile time."
       (if (eval cond)
-          (` (progn (,@ body)))))
+          `(progn (,@ body))))
 
     (put 'static-unless 'lisp-indent-function 1)
     (defmacro static-unless (cond &rest body)
       "Like `unless', but evaluate COND at compile time."
       (if (eval cond)
           nil
-        (` (progn (,@ body)))))
+        `(progn (,@ body))))
 
     (defmacro static-cond (&rest clauses)
       "Like `cond', but evaluate CONDITION part of each clause at compile time."
