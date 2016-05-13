@@ -1,4 +1,5 @@
-(when (require 'skk-setup nil t)
+(static-when (locate-library "skk-setup")
+  (require 'skk-setup)
   (setq skk-byte-compile-init-file t)
   (setq default-input-method "japanese-skk")
   (setq skk-user-directory
