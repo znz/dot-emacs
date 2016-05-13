@@ -5,8 +5,8 @@
          (executable-find "ispell"))
      (fboundp 'flyspell-mode))
 
-  (with-eval-after-load "ispell"
-    (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+  (eval-after-load "ispell"
+    '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
   ;; for hunspell
   (setenv "DICTIONARY" "en_US")
