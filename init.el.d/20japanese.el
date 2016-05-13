@@ -79,9 +79,12 @@
   (set-east-asian-ambiguous-width 2)
   ))
 ;; emacs-w3m
-(eval-after-load "w3m"
-  '(when (coding-system-p 'cp51932)
-     (add-to-list 'w3m-compatible-encoding-alist '(euc-jp . cp51932))))
+(static-when (locate-library "w3m")
+  (eval-when-compile (require 'w3m))
+  (eval-after-load "w3m"
+    '(when (coding-system-p 'cp51932)
+       (add-to-list 'w3m-compatible-encoding-alist '(euc-jp . cp51932))))
+  )
 ;; Gnus
 ;;(eval-after-load "mm-util"
 ;;  '(when (coding-system-p 'cp50220)
