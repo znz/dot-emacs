@@ -9,9 +9,8 @@
 	 (advice-add ',function :before ',name)))
   (defmacro my-once-before (function name body)
     "functionの初回実行時だけにbodyを実行するnameという名前のaround adviceを定義する。"
-    `(defadvice ,function (around ,name activate)
+    `(defadvice ,function (before ,name activate)
        ,body
-       ad-do-it
-       (ad-remove-advice ',function 'around ',name)
+       (ad-remove-advice ',function 'before ',name)
        (ad-update ',function)))
   )
