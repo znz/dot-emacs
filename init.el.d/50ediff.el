@@ -12,7 +12,7 @@
   (let ((default-directory my-gemdir))
     (call-interactively #'ediff-directories)))
 
-(defadvice my-ediff-gem (before my-set-gemdir activate)
+(my-once-before my-ediff-gem my-set-gemdir
   (unless my-gemdir
     (setq my-gemdir (shell-command-to-string "echo -n $(rbenv exec gem env gemdir)/gems/"))
     ))
