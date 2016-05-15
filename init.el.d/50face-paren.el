@@ -17,9 +17,15 @@
   (set-face-foreground 'bracket-face "#aaaa00")
 
   ;; lisp-mode の色設定に追加
-  (setq lisp-font-lock-keywords-2
-        (append '(("[()]" . paren-face))
-                lisp-font-lock-keywords-2))
+  (static-if (boundp 'lisp-el-font-lock-keywords-2)
+      (setq lisp-el-font-lock-keywords-2
+            (append '(("[()]" . paren-face))
+                    lisp-el-font-lock-keywords-2))
+    ;; Warning: `lisp-font-lock-keywords-2' is an obsolete variable
+    ;; (as of 24.4); use `lisp-el-font-lock-keywords-2' instead.
+    (setq lisp-font-lock-keywords-2
+          (append '(("[()]" . paren-face))
+                  lisp-font-lock-keywords-2)))
 
   ;; c-mode の色設定に追加
   (setq c-font-lock-keywords-3
