@@ -75,7 +75,6 @@
   (when (string-match "\\`ttps?://" url)
     (setq url (concat "h" url))))
 
-(eval-when-compile (require 'url))
 (my-once-before url-hexify-string-cs my-require-url
   (require 'url))
 ;; http://www.bookshelf.jp/cgi-bin/goto.cgi?file=meadow&node=url-hexify-string
