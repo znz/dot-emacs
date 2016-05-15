@@ -15,6 +15,6 @@
    'emacs-lisp-mode-hook
    (lambda ()
      (local-set-key (kbd "C-M-i") 'helm-lisp-completion-at-point)))
-  (when (featurep 'helm-descbinds)
+  (static-when (featurep 'helm-descbinds)
     (helm-descbinds-mode 1))
   )
