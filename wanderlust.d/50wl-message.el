@@ -40,6 +40,8 @@
         "^X-MSMail-Priority:"
         "^X-MimeOLE:"
         "^X-Spam-Checker-Version:"
+        "^X-GitHub-Recipient:"
+        "^X-GitHub-Recipient-Address:"
         ;; news.gmane.org
         "^Approved:"
         "^Original-Received:"
