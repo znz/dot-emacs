@@ -42,6 +42,10 @@
         "^X-Spam-Checker-Version:"
         "^X-GitHub-Recipient:"
         "^X-GitHub-Recipient-Address:"
+	"^X-Microsoft-Exchange-Diagnostics:"
+	"^X-Microsoft-Antispam\\(-PRVS\\)?:"
+	"^X-Exchange-Antispam-Report-\\(CFA-\\)?Test:"
+	"^X-Forefront-\\(PRVS\\|Antispam-Report\\):"
         ;; news.gmane.org
         "^Approved:"
         "^Original-Received:"
