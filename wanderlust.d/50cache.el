@@ -12,3 +12,4 @@
 (setq
  elmo-cache-directory
  (expand-file-name "elmo-cache" temporary-file-directory))
+(make-directory elmo-cache-directory t)
