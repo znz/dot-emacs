@@ -10,7 +10,7 @@
   ;; Marmalade
   (add-to-list
    'package-archives
-   '("marmalade" . "http://marmalade-repo.org/packages/"))
+   '("marmalade" . "https://marmalade-repo.org/packages/"))
 
   (package-initialize)
 
