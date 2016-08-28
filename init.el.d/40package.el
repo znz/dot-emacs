@@ -5,7 +5,7 @@
   ;; MELPA
   (add-to-list
    'package-archives
-   '("melpa" . "http://melpa.milkbox.net/packages/"))
+   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
   ;; Marmalade
   (add-to-list
