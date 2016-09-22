@@ -11,7 +11,7 @@
   (defvar rd-rurema-param-face 'font-lock-variable-name-face)
   (defvar rd-rurema-todo-face 'font-lock-warning-face)
   (defun my-rd-mode-hook-function ()
-    ;; http://redmine.ruby-lang.org/wiki/rurema/ReferenceManualFormatDigest
+    ;; https://github.com/rurema/doctree/wiki/ReferenceManualFormatDigest
     ;; リンク
     (add-to-list
      'rd-font-lock-keywords
@@ -24,20 +24,26 @@
          "\\|"
          ;; クラスメソッド [[m:String.new]]
          ;; モジュール関数 [[m:Math.#sin]] (「.#」なのに注意)
-         "m:[A-Z][A-Za-z_:]*\\.#?[a-z_]+"
+         "m:[A-Z][A-Za-z0-9_:]*\\.#?[A-Za-z0-9_]+[=?!]?"
          "\\|"
          ;; インスタンスメソッド
          ;; [[m:String#dump]]、![[m:String#[] ]]など ([]の場合のみ空白必須なのに注意)
-         "m:[A-Z][A-Za-z_:]*#\\(\\[\\] \\|[^][ ]+\\)"
+         "m:[A-Z][A-Za-z_:]*#\\(\\[\\][ =]\\|[^][ ]+\\)"
          "\\|"
          ;; グローバル変数 [[m:$~]] など
-         "m:\\$."
+         "m:\\$\\([A-Za-z0-9_]+\\|.\\)"
          "\\|"
          ;; ライブラリ [[lib:jcode]] など
          "lib:[^][ ]+"
          "\\|"
          ;; ruby-list [[ruby-list:12345]] など
          "ruby-\\(list\\|dev\\|ext\\|talk\\|core\\):[0-9]+"
+         "\\|"
+         ;; feature [[feature:12345]]など。https://bugs.ruby-lang.org/issues/12345 へのリンクになる
+         "feature:[0-9]+"
+         "\\|"
+         ;; bug [[bug:12345]]など。https://bugs.ruby-lang.org/issues/12345 へのリンクになる
+         "bug:[0-9]+"
          "\\|"
          ;; man [[man:tr(1)]] など
          "man:[^()]+([0-9])"
@@ -124,6 +130,7 @@
     ;; 書きかけの印
     (add-to-list 'rd-font-lock-keywords
                  '("^#@todo.*$" 0 rd-rurema-todo-face))
+    (setq outline-regexp "^\\(=+\\|---\\)")
     (setq imenu-generic-expression '((nil "^[=+-]+.+" 0)))
     )
   (add-hook 'rd-mode-hook #'my-rd-mode-hook-function))
