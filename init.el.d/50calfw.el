@@ -24,11 +24,14 @@
 
 (static-when (locate-library "calfw-ical")
   (autoload 'cfw:open-ical-calendar "calfw-ical" nil t)
-  (defun my-cfw-open-IT勉強会カレンダー ()
+  (defun my-cfw-open-JapanHolidays ()
     (interactive)
     (cfw:open-ical-calendar
-     "http://www.google.com/calendar/ical/fvijvohm91uifvd9hratehf65k%40group.calendar.google.com/public/basic.ics"))
-  ;(define-key my-prefix-map "I" 'my-cfw-open-IT勉強会カレンダー)
+      "https://www.mozilla.org/projects/calendar/caldata/JapanHolidays.ics"))
+  (defun my-cfw-open-google-japanese-holiday ()
+    (interactive)
+    (cfw:open-ical-calendar
+      "https://calendar.google.com/calendar/ical/ja.japanese%23holiday%40group.v.calendar.google.com/public/basic.ics"))
   )
 
 ;;(auto-install-from-url "https://raw.github.com/kiwanami/emacs-calfw/master/calfw-org.el")
