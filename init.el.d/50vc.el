@@ -21,23 +21,3 @@
             (coding-system buffer-file-coding-system))
         (set-buffer buf1)
         (set-buffer-file-coding-system coding-system)))))
-
-(static-when (executable-find "svn")
-  ;; SubversionのVC backend
-  (static-when (and
-                (boundp 'vc-handled-backends)
-                (locate-library "vc-svn"))
-    (add-to-list 'vc-handled-backends 'SVN))
-
-  (static-cond
-   ((locate-library "dsvn")
-    (setq svn-program "~/howm/bin/env-svn")
-    (autoload 'svn-status "dsvn" "Run `svn status'." t)
-    (autoload 'svn-update "dsvn" "Run `svn update'." t)
-    )
-   ((locate-library "psvn")
-    (setq svn-status-svn-environment-var-list '("LC_MESSAGES=C" "LC_ALL="))
-    (autoload 'svn-status "psvn"
-      "Examine the status of Subversion working copy in directory DIR." t))
-   )
-  )
