@@ -4,3 +4,7 @@
 ;; calendar-mode では表示しない
 (add-hook 'calendar-mode-hook
           (lambda () (setq show-trailing-whitespace nil)))
+
+;; whitespace-mode で長い行を強調表示しない
+(eval-after-load "whitespace"
+  '(setq whitespace-style (delq 'lines whitespace-style)))
