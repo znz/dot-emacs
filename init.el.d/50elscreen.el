@@ -37,6 +37,20 @@
   ;; C-z C-z で直前のスクリーンに移動する。
   (define-key elscreen-map "\C-z" 'elscreen-toggle)
 
+  (when t
+    ;; Super+num like browsers and iTerm2
+    (global-set-key (kbd "s-1") (lambda () (interactive) (elscreen-goto 1)))
+    (global-set-key (kbd "s-2") (lambda () (interactive) (elscreen-goto 2)))
+    (global-set-key (kbd "s-3") (lambda () (interactive) (elscreen-goto 3)))
+    (global-set-key (kbd "s-4") (lambda () (interactive) (elscreen-goto 4)))
+    (global-set-key (kbd "s-5") (lambda () (interactive) (elscreen-goto 5)))
+    (global-set-key (kbd "s-6") (lambda () (interactive) (elscreen-goto 6)))
+    (global-set-key (kbd "s-7") (lambda () (interactive) (elscreen-goto 7)))
+    (global-set-key (kbd "s-8") (lambda () (interactive) (elscreen-goto 8)))
+    (global-set-key (kbd "s-9") (lambda () (interactive) (elscreen-goto 9)))
+    (global-set-key (kbd "s-0") (lambda () (interactive) (elscreen-goto 0)))
+    )
+
   (add-to-list
    'elscreen-mode-to-nickname-alist
    '("^riece-" . "Riece"))
