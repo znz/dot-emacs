@@ -36,12 +36,13 @@
 (add-to-list
  'my-smtp-template-alist
  '("smtp-nifty"
-   (wl-smtp-posting-server . "mbf.nifty.com")
-   (wl-smtp-posting-port . 587)
+   (wl-smtp-posting-server . "smtp.nifty.com")
+   (wl-smtp-posting-port . 465)
    (wl-smtp-posting-user . "zn\@mbf.nifty.com")
    (wl-smtp-authenticate-type . "cram-md5")
    (wl-smtp-authenticate-realm . nil)
-   (wl-smtp-connection-type . nil)
+   (wl-smtp-connection-type . 'ssl)
+   (wl-local-domain . "mbf.nifty.com")
    ))
 
 (add-to-list
