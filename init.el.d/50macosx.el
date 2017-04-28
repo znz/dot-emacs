@@ -1,6 +1,10 @@
 (global-set-key (kbd "M-¥") (lambda () (interactive) (insert "\\")))
 
 (static-when (eq window-system 'ns)
+  ;; This variable is obsolete since 24.5.
+  ;; see https://ja.osdn.net/projects/macemacsjp/lists/archive/users/2017-April/001758.html
+  (setq redisplay-dont-pause nil)
+
   (static-when (assoc "MacOSX" input-method-alist)
     ;; ime inline patch
     (setq default-input-method "MacOSX")
