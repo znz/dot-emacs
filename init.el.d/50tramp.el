@@ -7,14 +7,7 @@
   ;; バックアップファイルを作らない。
   (add-to-list 'backup-directory-alist
                (cons tramp-file-name-regexp nil))
-  (static-when (featurep 'meadow)
-    ;; http://www.unix-fan.com/celt/blog/20040501.html を参考にした。
-    (modify-coding-system-alist 'process "plink" my-tramp-pscp-coding-system)
-    (modify-coding-system-alist 'process "pscp" my-tramp-pscp-coding-system)
-    (setq tramp-completion-without-shell-p t)
-    (setq tramp-default-method "pscp"))
-  (static-unless (featurep 'meadow)
-    (setq tramp-default-method "sshx"))
+  (setq tramp-default-method "sshx")
 
   (defun my-tramp-setup ()
     (setq
