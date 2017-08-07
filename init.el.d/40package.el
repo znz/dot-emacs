@@ -5,17 +5,19 @@
   ;; MELPA
   (add-to-list
    'package-archives
-   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+   '("melpa" . "https://melpa.org/packages/") t)
+  ;;'("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
   ;; Marmalade
-  (add-to-list
-   'package-archives
-   '("marmalade" . "https://marmalade-repo.org/packages/"))
+  ;;(add-to-list
+  ;; 'package-archives
+  ;; '("marmalade" . "https://marmalade-repo.org/packages/"))
 
   (package-initialize)
 
   (defvar my/favorite-packages nil
     "my-install-packagesでインストールするパッケージ")
+  (add-to-list 'my/favorite-packages 'apel)
 
   (defun my-install-packages ()
     "my/favorite-packagesをインストールする。"
