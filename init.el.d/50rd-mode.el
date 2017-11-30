@@ -1,9 +1,11 @@
+(add-to-list 'load-path "~/s/github.com/uwabami/rdtool/utils")
 (static-when (locate-library "rd-mode")
+  (autoload 'rd-mode "rd-mode" "major mode for ruby document formatter RD" t)
   ;; るりまの
   ;; http://jp.rubyist.net/svn/rurema/doctree/trunk/
   ;; の中の refm/api/src/ 以下の拡張子がないファイルも
   ;; rd-mode にする。
-  (add-to-list 'auto-mode-alist '("/refm/api/src/[^.]+\\'" . rd-mode))
+  (add-to-list 'auto-mode-alist '("/refm/api/src/" . rd-mode))
   (defvar rd-method-list-face 'font-lock-function-name-face)
   (defvar rd-rurema-comment-face 'font-lock-comment-face)
   (defvar rd-rurema-keyword-face 'font-lock-keyword-face)
@@ -24,7 +26,8 @@
          "\\|"
          ;; クラスメソッド [[m:String.new]]
          ;; モジュール関数 [[m:Math.#sin]] (「.#」なのに注意)
-         "m:[A-Z][A-Za-z0-9_:]*\\.#?[A-Za-z0-9_]+[=?!]?"
+         ;; main の関数 [[m:main.using]]
+         "m:[A-Zm][A-Za-z0-9_:]*\\.#?[A-Za-z0-9_]+[=?!]?"
          "\\|"
          ;; インスタンスメソッド
          ;; [[m:String#dump]]、![[m:String#[] ]]など ([]の場合のみ空白必須なのに注意)
