@@ -124,6 +124,7 @@
          "^#@"
          (regexp-opt
           '("include"
+            "samplecode"
             "since"
             "end"
             "else"
