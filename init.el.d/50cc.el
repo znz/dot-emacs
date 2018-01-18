@@ -22,6 +22,7 @@
 (static-when (fboundp 'global-cwarn-mode)
   (global-cwarn-mode 1))
 
+(setq hide-ifdef-initially t)
 (setq hide-ifdef-shadow t)
 ;;(custom-set-faces
 ;; '(hide-ifdef-shadow
@@ -32,8 +33,4 @@
      (:background "gray"))
     (((class color) (background light))
      (:background "light gray")))))
-(defun my-enable-hide-ifdef ()
-  (hide-ifdef-mode t)
-  (hide-ifdefs))
-(add-hook 'c-mode-hook 'my-enable-hide-ifdef)
-(add-hook 'c++-mode-hook 'my-enable-hide-ifdef)
+(add-hook 'c-mode-common-hook 'hide-ifdef-mode)
