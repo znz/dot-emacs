@@ -27,9 +27,9 @@
   (static-when (locate-library "elscreen-w3m")
     (eval-after-load "w3m"
       '(load "elscreen-w3m")))
-  (static-when (locate-library "elscreen-wl")
-    (eval-after-load "wl"
-      '(load "elscreen-wl")))
+  ;;(static-when (locate-library "elscreen-wl")
+  ;;  (eval-after-load "wl"
+  ;;    '(load "elscreen-wl")))
   (static-when (locate-library "elscreen-mew")
     (eval-after-load "mew"
       '(load "elscreen-mew")))
