@@ -46,6 +46,8 @@
 	"^X-Microsoft-Antispam\\(-PRVS\\)?:"
 	"^X-Exchange-Antispam-Report-\\(CFA-\\)?Test:"
 	"^X-Forefront-\\(PRVS\\|Antispam-Report\\):"
+	"^X-YMail-\\(JAS\\|OSG\\):"
+	"^Autocrypt:"
         ;; news.gmane.org
         "^Approved:"
         "^Original-Received:"
