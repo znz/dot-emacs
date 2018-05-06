@@ -43,3 +43,7 @@
 ;;     "Encode a string."
 ;;     (require 'eword-encode)
 ;;     (ad-set-arg 0 (eword-encode-string (ad-get-arg 0)))))
+
+;; Wanderlust 14620
+(eval-after-load "mime-edit"
+  '(add-to-list 'mime-charset-type-list '(utf-8 8 "base64")))
