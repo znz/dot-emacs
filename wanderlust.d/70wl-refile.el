@@ -37,3 +37,5 @@
     ("to"
      ("@good-day\\.co\\.jp" . ,(my-gd-folder "tdiary"))
      ))))
+
+(load "~/.emacs.d/private/my-wl-refile")
