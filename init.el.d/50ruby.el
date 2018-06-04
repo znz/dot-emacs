@@ -42,10 +42,6 @@
                   (inf-ruby-keys))))
   )
 
-;; ruby-mode でも which-function-mode を有効にする。
-;;(static-when (boundp 'which-func-modes)
-;;  (add-to-list 'which-func-modes 'ruby-mode))
-
 ;; インデント
 (setq ruby-deep-indent-paren-style nil)
 
