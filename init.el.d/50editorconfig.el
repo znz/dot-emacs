@@ -3,6 +3,6 @@
   (when (require 'editorconfig nil t)
     (when (consp (assq 'editorconfig-mode minor-mode-alist))
       (setcar (cdr (assq 'editorconfig-mode minor-mode-alist))
-        (propertize "設" 'face '(:foreground "yellow"))))
+        (propertize "EC" 'face '(:foreground "yellow"))))
     (editorconfig-mode 1))
   )
