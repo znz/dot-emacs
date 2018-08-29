@@ -12,3 +12,13 @@
 (my-add-to-path (expand-file-name "~/.rbenv/shims"))
 (my-add-to-path (expand-file-name "/opt/rbenv/bin"))
 (my-add-to-path (expand-file-name "/opt/rbenv/shims"))
+;; anyenv
+(my-add-to-path (expand-file-name "~/.anyenv/bin"))
+(mapc #'my-add-to-path
+  (mapcar #'expand-file-name
+    (file-expand-wildcards "~/.anyenv/envs/*/bin")
+    ))
+(mapc #'my-add-to-path
+  (mapcar #'expand-file-name
+    (file-expand-wildcards "~/.anyenv/envs/*/shims")
+    ))
