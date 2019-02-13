@@ -19,6 +19,7 @@
    '("\\.rb\\'"
      "\\.rake\\'"
      "\\.ru\\'"
+     "\\.gemspec\\'"
      "\\(Cap\\|Gem\\|Guard\\|Rake\\)file\\'"
      ))
   (mapc
