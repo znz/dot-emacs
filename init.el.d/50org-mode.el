@@ -8,6 +8,9 @@
   (require 'org-install)
   (add-to-list 'auto-mode-alist ' ("\\.org\\'" . org-mode))
 
+  (with-eval-after-load "org"
+    (setq org-modules (delq 'org-gnus org-modules)))
+
   (setq my-org-prefix-map (make-keymap))
   (define-key my-prefix-map "o" my-org-prefix-map)
 
