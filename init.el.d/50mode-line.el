@@ -20,6 +20,32 @@
      ))
   mode-line-format))
 
+(defun my-format-following-char ()
+  (let ((char (following-char)))
+    (propertize
+      (format-message "U+%04X" char)
+      'face
+      (cond
+        ((= char 0)
+         '(:foreground "white"))
+        ((or (= char 10) (= char 13)) ; newline
+         '(:foreground "lightblue"))
+        ((= char 9) ; tab
+         '(:foreground "blue"))
+        ((= char 255) ; 0xff
+         '(:foreground "white"))
+        ((< char 32) ; control code
+         '(:foreground "orange"))
+        ((< char 128) ; text
+         '(:foreground "lightgrey"))
+        ))))
+
+(setq-default
+  mode-line-format
+  (append mode-line-format
+    '((:eval (my-format-following-char)))
+    ))
+
 ;; モードラインに時刻表示。M-x display-time-modeで切り替え。
 (setq display-time-24hr-format t) ;; 24 時間表示
 (setq display-time-day-and-date t) ;; 時刻の書式に日付を追加
