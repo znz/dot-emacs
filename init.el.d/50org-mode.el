@@ -26,11 +26,12 @@
   (setq org-agenda-files
         (file-expand-wildcards
          (expand-file-name "*.org" org-directory)))
-  (setq org-agenda-files
-        (append
-         org-agenda-files
-         (file-expand-wildcards
-          (expand-file-name "*/*/todo.org" howm-directory))))
+  (when howm-directory
+    (setq org-agenda-files
+	  (append
+	   org-agenda-files
+	   (file-expand-wildcards
+	    (expand-file-name "*/*/todo.org" howm-directory)))))
 
   ;(org-remember-insinuate)
   (setq org-default-notes-file
