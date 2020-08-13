@@ -96,4 +96,7 @@
   ;(setq org-confirm-babel-evaluate t)
   (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
+  ; <e [TAB] とか
+  (require 'org-tempo)
+
   )
