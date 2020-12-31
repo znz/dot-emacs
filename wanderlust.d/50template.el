@@ -49,7 +49,7 @@
  'my-smtp-template-alist
  '("smtp-localhost"
    (wl-smtp-posting-server . "localhost")
-   (wl-smtp-posting-port . nil)
+   (wl-smtp-posting-port . 10025)
    (wl-smtp-posting-user . nil)
    (wl-smtp-authenticate-type . nil)
    (wl-smtp-authenticate-realm . nil)
