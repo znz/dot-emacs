@@ -48,6 +48,7 @@
 	"^X-Forefront-\\(PRVS\\|Antispam-Report\\):"
 	"^X-YMail-\\(JAS\\|OSG\\):"
 	"^Autocrypt:"
+	"^X-UI-\\(Sender-Class\\|Out-Filterresults\\):"
         ;; news.gmane.org
         "^Approved:"
         "^Original-Received:"
@@ -55,6 +56,8 @@
         "^X-Amavis-Spam-Status:"
         "^X-policyd-weight:"
         "^X-Rc-\\(Virus\\|Spam\\):"
+	"^X-Wide-Eyed-Share:"
+	"^X-MC-\\(Relay\\|Loop-Signature\\|Ingress-Time\\):"
         ))
 
 ;; 表示するヘッダの設定
