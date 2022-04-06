@@ -5,6 +5,7 @@
 (mapc #'my-add-to-path
  (file-expand-wildcards "/opt/local/*bin") ; MacPorts
  )
+(my-add-to-path "/opt/homebrew/bin") ; Homebrew
 (my-add-to-path "/usr/local/bin") ; Homebrew
 (my-add-to-path (expand-file-name "~/homebrew/bin")) ; Homebrew
 ;; rbenv
