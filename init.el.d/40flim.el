@@ -1,7 +1,7 @@
 ;; [Wanderlust:14139]
 ;; Subject: Re: base64 (Re: 英語のUTF-8メールを読めない)
 ;; Date: Sat, 16 Dec 2006 03:07:28 +0900
-(static-when (locate-library "mel")
+(static-when nil (locate-library "mel")
   (require 'mime-def)
   (mel-define-method mime-decode-string (string (nil "base64"))
     (condition-case error
