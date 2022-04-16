@@ -42,8 +42,7 @@
         "^X-Spam-Checker-Version:"
         "^X-GitHub-Recipient:"
         "^X-GitHub-Recipient-Address:"
-	"^X-Microsoft-Exchange-Diagnostics:"
-	"^X-Microsoft-Antispam\\(-PRVS\\)?:"
+	"^X-Microsoft-[^:]*:"
 	"^X-Exchange-Antispam-Report-\\(CFA-\\)?Test:"
 	"^X-Forefront-\\(PRVS\\|Antispam-Report\\):"
 	"^X-YMail-\\(JAS\\|OSG\\):"
@@ -57,7 +56,13 @@
         "^X-policyd-weight:"
         "^X-Rc-\\(Virus\\|Spam\\):"
 	"^X-Wide-Eyed-Share:"
-	"^X-MC-\\(Relay\\|Loop-Signature\\|Ingress-Time\\):"
+	"^X-M[CES]-[^:]*:"
+	"^X-CMAE-Envelope:"
+	"^ARC-[^:]*:"
+	"^X-QQ-[^:]*:"
+	"^X-Gm-Message-State:"
+	"^X-Google-Smtp-Source:"
+	"^X-IronPort-AV:"
         ))
 
 ;; 表示するヘッダの設定
