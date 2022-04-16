@@ -66,21 +66,6 @@
 ;; 'wl-message-ignored-field-list' より優先される
 ;(setq wl-message-visible-field-list '("^Message-Id:"))
 
-; X-ML-Name: Wanderlust English
-; X-Mail-Count: 00653
-(when (locate-library "flow-fill")
-  (autoload 'fill-flowed "flow-fill")
-  (add-hook 'mime-display-text/plain-hook
-            (lambda ()
-              (when (string= "flowed"
-                             (cdr (assoc "format"
-                                         (mime-content-type-parameters
-                                          (mime-entity-content-type entity)))))
-                (fill-flowed))))
-  ; For writing, (mime-edit-insert-tag "text" "plain" "; format=flowed")
-  ; to insert mime tag.
-  )
-
 ;(setq wl-message-mode-line-format "Wanderlust: << %f / %n %F>> [%m]")
 (setq wl-message-mode-line-format "WL: << %f / %n %F>> [%m]")
 
