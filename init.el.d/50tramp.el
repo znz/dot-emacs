@@ -9,8 +9,9 @@
                (cons tramp-file-name-regexp nil))
   (setq tramp-default-method "sshx")
 
-  (add-to-list 'my/favorite-packages 'docker-tramp)
-  (setq docker-tramp-use-names t)
+  ;; ⛔ Warning (emacs): Package ‘docker-tramp’ has been obsoleted, please use integrated package ‘tramp-container’
+  ;;(add-to-list 'my/favorite-packages 'docker-tramp)
+  ;;(setq docker-tramp-use-names t)
 
   (defun my-tramp-setup ()
     (setq
